@@ -6,9 +6,21 @@
              xmlns:local="clr-namespace:TimeManager.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"             
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:data="clr-namespace:Dao.Entities;assembly=Dao"
+             mc:Ignorable="d" Width="523.214" Height="428.572">
 
+    <!--This enables the user to use keyboard shortcuts in other to perform anctions-->
+    <UserControl.InputBindings>
+        <!--Delete shortcut == Ctrl + D-->
+        <KeyBinding Key="D"
+                    Modifiers="Ctrl"
+                    Command="{Binding DeleteCommand}"/>
+        <!--Edit Shortcut == Ctrl + E-->
+        <KeyBinding Key="E"
+                    Modifiers="Ctrl"
+                    Command="{Binding DeleteCommand}"/>
+    </UserControl.InputBindings>
+    
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,14 +29,66 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
+
+            <!--This dataTemplate is used in Displaying the Events in a clean fashion in the list box-->
+            <DataTemplate DataType="{x:Type data:Event}" x:Key="DisplayEventTemplate">
+                <StackPanel>
+                    <TextBlock Text="{Binding Name}"/>
+                    <TextBlock Text="{Binding Date_Time}"/>
+                </StackPanel>
+            </DataTemplate>
+
         </ResourceDictionary>
     </UserControl.Resources>
 
     <UserControl.DataContext>
         <localViewModels:ManageEventViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="238*"/>
+            <ColumnDefinition Width="229*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="39"/>
+        </Grid.RowDefinitions>
+
+        <ListView ItemsSource="{Binding Events}" ItemTemplate="{StaticResource DisplayEventTemplate}"
+                  SelectedItem="{Binding CurrentEvent}" Margin="0,15,30.5,10"/>
+        <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                Grid.Row="1"
+                        HorizontalAlignment="Left" Command="{Binding EditCommand}"
+                        ToolTip="Edit" Height="Auto" Width="45">
+            <materialDesign:PackIcon Kind="KeyChange" Height="24" Width="24" />
+        </Button>
+        <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                Grid.Row="1"
+                Command="{Binding DeleteCommand}"
+                        HorizontalAlignment="Left"
+                        ToolTip="Delete" Height="Auto" Width="45" Margin="50,0,0,0">
+            <materialDesign:PackIcon Kind="Delete" Height="24" Width="24" />
+        </Button>
+
+        <materialDesign:Card Margin="10,30,10,83" Grid.Column="1"
+                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <StackPanel Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Name:  " FontFamily="Bold"/>
+                    <TextBlock Text="{Binding CurrentEvent.Name, Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Venue:  " FontFamily="Bold"/>
+                    <TextBlock Text="{Binding CurrentEvent.Venue, Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Time:  " FontFamily="Bold"/>
+                    <TextBlock Text="{Binding CurrentEvent.Date_Time, Mode=TwoWay}"/>
+                </StackPanel>
+                <TextBlock Text="Description:  " FontFamily="Bold"/>
+                <TextBox IsEnabled="False" Text="{Binding CurrentEvent.Description, Mode=TwoWay}"/>
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </UserControl>

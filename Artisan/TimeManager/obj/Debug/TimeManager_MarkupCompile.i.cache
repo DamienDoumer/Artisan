@@ -16,5 +16,5 @@ DEBUG;TRACE
 161353007665
 Views\CreateEventView.xaml;Views\CreateWorkingSessionView.xaml;Views\ManageEventView.xaml;Views\ManageWorkingSessionsView.xaml;
 
-True
+False
 

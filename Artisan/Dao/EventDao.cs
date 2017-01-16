@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.SQLite;
 using Dao.Entities;
+using System.Diagnostics;
 
 namespace Dao
 {
@@ -55,6 +56,7 @@ namespace Dao
         public bool Delete(Event evnt)
         {
             Event ev = evnt;
+            Debug.WriteLine(evnt.Name);
             return base.Delete(ev.ID);
         }//Works
         public List<Event> RetrieveAllEvents()

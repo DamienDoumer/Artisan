@@ -16,53 +16,48 @@ namespace Artisan.ViewModels
         /// These commands are to handle the click events of the 
         /// Hamburger Menu.
         /// </summary>
-        public RelayCommand<string> NavigationCommand { get; private set; }
-        public RelayCommand<string> MainMenuNavCommand { get; private set; }
+        public RelayCommand MainMenuSwitchCommand { get; private set; }
+        public RelayCommand ManageEventSwitchCommand { get; private set; }
+        public RelayCommand ManageWorkingSessionSwitchCommand { get; private set; }
 
-        private CreateWorkingSessionViewModel createWorkingSessionViewModel = new CreateWorkingSessionViewModel();
-        private ManageWorkingSessionsViewModel manageWorkingSessionViewModel = new ManageWorkingSessionsViewModel();
-        private ManageEventViewModel manageEventsViewModel = new ManageEventViewModel();
-        private CreateEventViewModel createEventViewModel;
-        private MainMenuViewModel mainMenuViewModel = new MainMenuViewModel();
+        CreateEventViewModel createEventViewModel = new CreateEventViewModel();
+        MainMenuViewModel mainMenuViewModel = new MainMenuViewModel();
+        ManageEventViewModel manageEventViewModel = new ManageEventViewModel();
 
         private BindableBase currentViewModel;
         public BindableBase CurrentViewModel
         {
             get { return currentViewModel; }
-            set {SetProperty(ref currentViewModel, value); }
+            set { SetProperty(ref currentViewModel, value); }
         }
+
 
         public MainWindowViewModel()
         {
-            NavigationCommand = new RelayCommand<string>(OnNavigation);
-            MainMenuNavCommand = new RelayCommand<string>(OnMainMenuNav);
-            createEventViewModel = new CreateEventViewModel();
-            createEventViewModel.EventCreated += (Event evt) =>
-            {
-                Debug.WriteLine(evt);
-            };
+            MainMenuSwitchCommand = new RelayCommand(OnMainMenuViewSwitch);
+            ManageEventSwitchCommand = new RelayCommand(OnManageEventViewSwitch);
             CurrentViewModel = createEventViewModel;
         }
 
-        private void OnMainMenuNav(string d)
+        private void OnMainMenuViewSwitch()
         {
-            currentViewModel = mainMenuViewModel;
+            CurrentViewModel = createEventViewModel;
         }
-
-        private void OnNavigation(string view)
+        private void OnManageEventViewSwitch()
         {
-            switch (view)
-            {
-                case "main":
-                    CurrentViewModel = mainMenuViewModel;
-                    break;
-                case "manageWorkingSessions":
-                    CurrentViewModel = manageWorkingSessionViewModel;
-                    break;
-                case "manageEvents":
-                    CurrentViewModel = manageEventsViewModel;
-                    break;
-            }
+            CurrentViewModel = manageEventViewModel;
+        }
+        private void OnManageWorkingSessionViewSwitch()
+        {
+
+        }
+        private void OnSettingsViewSwitch()
+        {
+
+        }
+        private void OnMessagesViewSwitch()
+        {
+
         }
     }
 }
