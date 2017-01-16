@@ -1,0 +1,88 @@
+﻿<Window x:Class="Artisan.Views.WelcomeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Artisan.Views"
+        mc:Ignorable="d"
+        Title="WelcomeScreen" Height="481.368" Width="593.401" WindowStyle="None" 
+        AllowsTransparency="True" WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+
+        xmlns:welcome="clr-namespace:Artisan.ViewModels"
+        
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <Window.DataContext>
+        <welcome:WelcomeScreenViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <ImageBrush x:Key="WelcomeBackGround" ImageSource="UIResources\WelcomeScreenBackground.jpg" />
+    </Window.Resources>
+
+    <Border Background="{StaticResource WelcomeBackGround}" MouseLeftButtonDown="Border_MouseLeftButtonDown" BorderBrush="Blue">
+        <StackPanel Margin="30">
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                       TextWrapping="Wrap" Margin="0" Height="33" 
+                       Style="{StaticResource MaterialDesignHeadlineTextBlock}" 
+                       Width="220">
+                      
+                Welcome to Artisan
+
+            </TextBlock>
+
+            <TextBox 		
+                Margin="20,40,20,10"
+				 x:Name="UserNameTextBox"
+				 materialDesign:HintAssist.Hint="User Name"
+                 Text="{Binding Path=Name, Mode=TwoWay}"
+                 ToolTip="Input your user name"/>
+
+            <PasswordBox Name="PasswordTextBlock1"
+                materialDesign:HintAssist.Hint="Password"
+                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="20,10,20,10"
+                          ToolTip="Enter your Password"/>
+
+            <PasswordBox Name="PasswordTextBlock2"
+                materialDesign:HintAssist.Hint="Password"
+            	Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="20,10,20,10"
+            	ToolTip="Re-enter your password"/>
+
+            <TextBox 		
+                Margin="20,10,20,10"
+				 x:Name="EmailTextBox"
+                 Text="{Binding Path=EMail, Mode=TwoWay}"
+				 materialDesign:HintAssist.Hint="E-Mail"
+                 ToolTip="Input your e-mail address"/>
+
+            <TextBox 		
+                Margin="20,10,20,50"
+				 x:Name="PhoneNumberTextBox"
+                Text="{Binding Path=PhoneNumber, Mode=OneWay}"
+				 materialDesign:HintAssist.Hint="Phone Number"
+                 ToolTip="Input your phone number" Height="31"/>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+            		Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"
+            		Command="{Binding CloseCommand}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+            		Width="86" Margin="327,4,4,4"
+                    Content="Cancle"
+                    />
+                <Button Style="{StaticResource MaterialDesignFlatButton}" 
+            		Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"
+            		HorizontalAlignment="Center" VerticalAlignment="Bottom"
+            		Content="Done" Margin="13,4,4,4" Width="86" />
+            </StackPanel>
+
+        </StackPanel>
+    </Border>
+</Window>

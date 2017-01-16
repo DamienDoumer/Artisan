@@ -1,0 +1,38 @@
+C:\Users\Damien\Desktop\PersonalPerfMonitor\TimeManager\bin\Debug\TimeManager.dll
+C:\Users\Damien\Desktop\PersonalPerfMonitor\TimeManager\bin\Debug\TimeManager.pdb
+C:\Users\Damien\Desktop\PersonalPerfMonitor\TimeManager\obj\Debug\TimeManager.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\PersonalPerfMonitor\TimeManager\obj\Debug\TimeManager.dll
+C:\Users\Damien\Desktop\PersonalPerfMonitor\TimeManager\obj\Debug\TimeManager.pdb
+C:\Users\Damien\Desktop\PersonalPerfMonitor\TimeManager\bin\Debug\Dao.dll
+C:\Users\Damien\Desktop\PersonalPerfMonitor\TimeManager\bin\Debug\System.Data.SQLite.dll
+C:\Users\Damien\Desktop\PersonalPerfMonitor\TimeManager\bin\Debug\Dao.pdb
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\DMera\PersonalPerfMonitor\TimeManager\bin\Debug\TimeManager.dll
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\DMera\PersonalPerfMonitor\TimeManager\bin\Debug\TimeManager.pdb
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\DMera\PersonalPerfMonitor\TimeManager\bin\Debug\Dao.dll
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\DMera\PersonalPerfMonitor\TimeManager\bin\Debug\System.Data.SQLite.dll
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\DMera\PersonalPerfMonitor\TimeManager\bin\Debug\Dao.pdb
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\DMera\PersonalPerfMonitor\TimeManager\obj\Debug\TimeManager.csprojResolveAssemblyReference.cache
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\DMera\PersonalPerfMonitor\TimeManager\obj\Debug\TimeManager.dll
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\DMera\PersonalPerfMonitor\TimeManager\obj\Debug\TimeManager.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\bin\Debug\TimeManager.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\bin\Debug\TimeManager.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\bin\Debug\Dao.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\bin\Debug\System.Data.SQLite.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\bin\Debug\Dao.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\TimeManager.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\TimeManager.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\TimeManager.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\CreateWorkingSessionView.g.cs
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\ManageWorkingSessionsView.g.cs
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\TimeManager_MarkupCompile.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\TimeManager_MarkupCompile.lref
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\CreateWorkingSessionView.baml
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\ManageWorkingSessionsView.baml
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\TimeManager.g.resources
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\bin\Debug\MVVMShared.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\bin\Debug\MVVMShared.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\CreateEventView.g.cs
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\CreateEventView.baml
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\ManageEventView.g.cs
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\ManageEventView.baml
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\GeneratedInternalTypeHelper.g.cs

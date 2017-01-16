@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="TimeManager.Views.CreateEventView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TimeManager.Views"
+             xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.DataContext>
+        <localViewModels:CreateEventViewModel/>
+    </UserControl.DataContext>
+    
+    <Grid>
+        <TextBlock Text="Create Event" FontSize="19" ></TextBlock>
+        
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" 
+                 Text="{Binding Name ,Mode=TwoWay}" Height="22" Margin="32,63,0,0" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" 
+                 Text="{Binding Description ,Mode=TwoWay}" Height="44" Margin="32,90,0,0" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="VenueTextBox" HorizontalAlignment="Left"
+                 Text="{Binding Venue ,Mode=TwoWay}" Height="22" Margin="32,139,0,0" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="134"/>
+
+        <DatePicker Width="134" HorizontalAlignment="Left" 
+                    Text="{Binding Date ,Mode=OneWay}" Margin="32,166,0,100" />
+
+        <Button Content="Click Me" Command="{Binding CreateCommand}"  Margin="201,243,27,30"/>
+    </Grid>
+</UserControl>

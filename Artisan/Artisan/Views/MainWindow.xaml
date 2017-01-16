@@ -1,0 +1,105 @@
+﻿<Controls:MetroWindow  
+        x:Class="Artisan.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Artisan.Views"
+        mc:Ignorable="d"
+        Title="Artisan" Height="559.639" Width="673.787" WindowStartupLocation="CenterScreen"
+        x:Name="Artisan" MinHeight="525.26" MinWidth="636.329" BorderThickness="1"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:main="clr-namespace:Artisan.ViewModels"
+        xmlns:timeManagerViewModel="clr-namespace:TimeManager.ViewModels;assembly=TimeManager"
+        xmlns:timeManagerView="clr-namespace:TimeManager.Views;assembly=TimeManager"
+        xmlns:localViewModels="clr-namespace:Artisan.ViewModels"
+    
+        GlowBrush="DarkBlue" BorderBrush="DarkBlue"
+        ShowIconOnTitleBar="True"
+        Icon="UIResources\DoumeraIcon2.png"
+        WindowTransitionsEnabled="True"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontFamily="Verdana"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+    >
+
+    <Window.DataContext>
+        <main:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        
+            <!--Call the View within the DataTemplate
+            and create it and set its datacontext to the ViewModel stated above-->
+        <DataTemplate DataType="{x:Type timeManagerViewModel:CreateWorkingSessionViewModel}">
+            <timeManagerView:CreateWorkingSessionView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type timeManagerViewModel:CreateEventViewModel}">
+            <timeManagerView:CreateEventView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type timeManagerViewModel:ManageEventViewModel}">
+            <timeManagerView:ManageEventView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type localViewModels:MainMenuViewModel}">
+            <local:MainMenuView/>
+        </DataTemplate>
+
+    </Window.Resources>
+
+
+    <DockPanel>
+        <HamburgerMenu:HamburgerMenu Background="CornflowerBlue" MenuIconColor="White" 
+                                     Grid.Column="0" DockPanel.Dock="Left"
+                                     SelectionIndicatorColor="White" MenuItemForeground="White"
+                                     HorizontalAlignment="Left">
+            <HamburgerMenu:HamburgerMenu.Content>
+                <HamburgerMenu:HamburgerMenuItem Height="50" Text="Home" Icon="UIResources\HomeIcon.png"
+                                                 SelectionCommand="{Binding MainMenuNavCommand}" />
+                <HamburgerMenu:HamburgerMenuItem Height="50" Text="Wifi Messaging" Icon="UIResources\Message.png"/>
+                <HamburgerMenu:HamburgerMenuItem Height="50" Text="Manage your Appointments" Icon="UIResources\Event.png"/>
+                <HamburgerMenu:HamburgerMenuItem Height="50" Text="Manage Your Working Sessions" Icon="UIResources\WorkingSession.png"/>
+                <HamburgerMenu:HamburgerMenuItem Height="50" Text="Settings" Icon="UIResources\Settings.png"/>
+            </HamburgerMenu:HamburgerMenu.Content>
+        </HamburgerMenu:HamburgerMenu>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <WrapPanel DockPanel.Dock="Right" Orientation="Horizontal" >
+
+                <!--This content control is used to carry the Views of other modules-->
+                <ContentControl Content="{Binding CurrentViewModel}" Height="365" Width="585"></ContentControl>
+
+                <!--<materialDesign:Card Margin="4 4 0 0" Background="AliceBlue"
+            		Foreground="{DynamicResource AccentColorBrush}"
+            		Width="200" Height="163" materialDesign:ShadowAssist.ShadowDepth="Depth3"/>-->
+
+                <!--<Button Margin="10" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignRaisedButton}" 
+                    Height="Auto" Content="Click" materialDesign:ShadowAssist.ShadowDepth="Depth3"/>
+            <Button Margin="10" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Grid.Column="1" Height="40" Content="Click" materialDesign:ShadowAssist.ShadowDepth="Depth3"/>
+            <Button Margin="10" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Grid.Column="1" Height="40" Content="Click" materialDesign:ShadowAssist.ShadowDepth="Depth3"/>
+            <Button Margin="10" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Grid.Column="1" Height="40" Content="Click" materialDesign:ShadowAssist.ShadowDepth="Depth3"/>
+            <Button Margin="10" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Grid.Column="1" Height="40" Content="Click" materialDesign:ShadowAssist.ShadowDepth="Depth3"/>
+            <Button Margin="10" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Grid.Column="1" Height="40" Content="Click" materialDesign:ShadowAssist.ShadowDepth="Depth3"/>
+                <ListView Height="493" Width="258"/>
+                <ListView Height="493" Width="258"/>-->
+
+            </WrapPanel>
+        </ScrollViewer>
+
+    </DockPanel>
+
+</Controls:MetroWindow>

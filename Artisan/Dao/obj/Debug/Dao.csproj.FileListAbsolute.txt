@@ -1,0 +1,13 @@
+C:\Users\Damien\Desktop\PersonalPerfMonitor\Dao\obj\Debug\Dao.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\Software development\Artisan\Dao\bin\Debug\Dao.dll
+C:\Users\Damien\Desktop\Software development\Artisan\Dao\bin\Debug\Dao.pdb
+C:\Users\Damien\Desktop\Software development\Artisan\Dao\bin\Debug\System.Data.SQLite.dll
+C:\Users\Damien\Desktop\Software development\Artisan\Dao\obj\Debug\Dao.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\Software development\Artisan\Dao\obj\Debug\Dao.dll
+C:\Users\Damien\Desktop\Software development\Artisan\Dao\obj\Debug\Dao.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Dao\bin\Debug\Dao.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Dao\bin\Debug\Dao.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Dao\bin\Debug\System.Data.SQLite.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Dao\obj\Debug\Dao.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Dao\obj\Debug\Dao.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Dao\obj\Debug\Dao.pdb
