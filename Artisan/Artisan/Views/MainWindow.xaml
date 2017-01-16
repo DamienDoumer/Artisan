@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Artisan.Views"
         mc:Ignorable="d"
-        Title="Artisan" Height="559.639" Width="673.787" WindowStartupLocation="CenterScreen"
+        Title="Artisan" Height="493.639" Width="614.329" WindowStartupLocation="CenterScreen"
         x:Name="Artisan" MinHeight="525.26" MinWidth="636.329" BorderThickness="1"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
@@ -36,8 +36,8 @@
     </Window.DataContext>
 
     <Window.Resources>
-        
-            <!--Call the View within the DataTemplate
+
+        <!--Call the View within the DataTemplate
             and create it and set its datacontext to the ViewModel stated above-->
         <DataTemplate DataType="{x:Type timeManagerViewModel:CreateWorkingSessionViewModel}">
             <timeManagerView:CreateWorkingSessionView/>
@@ -72,12 +72,12 @@
             </HamburgerMenu:HamburgerMenu.Content>
         </HamburgerMenu:HamburgerMenu>
 
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <WrapPanel DockPanel.Dock="Right" Orientation="Horizontal" >
-
                 <!--This content control is used to carry the Views of other modules-->
-                <ContentControl Content="{Binding CurrentViewModel}" Height="365" Width="585"></ContentControl>
-
+                <ContentControl Margin="10" Content="{Binding CurrentViewModel, Mode=TwoWay}"
+                                HorizontalAlignment="Center" Height="461" Width="551"/>
+                
                 <!--<materialDesign:Card Margin="4 4 0 0" Background="AliceBlue"
             		Foreground="{DynamicResource AccentColorBrush}"
             		Width="200" Height="163" materialDesign:ShadowAssist.ShadowDepth="Depth3"/>-->

@@ -3,6 +3,9 @@ using Dao.ShareResources;
 
 namespace TimeManager
 {
+    /// <summary>
+    /// Calculates the statistics for the user's performances
+    /// </summary>
     public class Monitor
     {
         public OccuranceMonitor OccuranceMon { get; }

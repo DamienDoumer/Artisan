@@ -6,24 +6,23 @@ using System.Threading.Tasks;
 using Artisan.MVVMShared;
 using Dao.Entities;
 using Dao;
+using System.Diagnostics;
 
 namespace TimeManager.ViewModels
 {
     public class CreateEventViewModel : BindableBase
     {
-        //-------------------------------------------------------
-        //NB!!!!!!!!!!!!!!!!!!!!!!!!
-        /// <summary>
-        /// Set another atribute for time, which will 
-        /// be combined to the date, and give the precise time when 
-        /// the appointment is to occure.
-        /// </summary>
+        public delegate void EventCreatedEventHandler(Event eventCreated);
+        public event EventCreatedEventHandler EventCreated;
+
+        private DateTime date;
         private EventDao eventDao;
         public RelayCommand CreateCommand { get; private set; }
         public string Name { get; set; }
-        public string Venu { get; set; }
+        public string Venue { get; set; }
         public string Description { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get { return date; } set { date = value; } }
+        public DateTime Time { get; set; }
 
         public CreateEventViewModel()
         {
@@ -34,8 +33,11 @@ namespace TimeManager.ViewModels
 
         private void OnCreateEvent()
         {
-            Event newEvent = new Event(Name, Description, Venu, Date);
-
+            ///Create the exact day and time at which the event should be fired.
+            DateTime finalDate = new DateTime(Date.Year, Date.Month, Date.Day, Time.Hour, Time.Minute, Time.Second);
+            Event newEvent = new Event(Name, Description, Venue, finalDate);
+            eventDao.Save(newEvent);
+            EventCreated?.Invoke(newEvent);
         }
     }
 }

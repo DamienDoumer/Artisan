@@ -107,7 +107,7 @@ namespace TimeManager
         {
             ///____________________________________________________________
             ///Debug Code
-            Debug.WriteLine("Timer Started for: " + Entity.GetType() + " with ID " + Entity.ID + "\n");
+            ///Debug.WriteLine("Timer Started for: " + Entity.GetType() + " with ID " + Entity.ID + "\n");
 
             stopVal = false;
             startTime = DateTime.Now;

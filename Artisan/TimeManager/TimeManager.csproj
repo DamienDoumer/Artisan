@@ -34,6 +34,9 @@
     <Reference Include="Dao">
       <HintPath>..\Dao\bin\x86\Debug\Dao.dll</HintPath>
     </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\TestViews\packages\MaterialDesignThemes.2.2.1.750\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="MVVMShared">
       <HintPath>..\MVVMShared\bin\Debug\MVVMShared.dll</HintPath>
     </Reference>

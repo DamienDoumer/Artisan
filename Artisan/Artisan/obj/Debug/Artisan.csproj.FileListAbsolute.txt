@@ -66,5 +66,3 @@ C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\b
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\bin\Debug\MVVMShared.pdb
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\obj\Debug\Views\MainMenuView.g.cs
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\obj\Debug\Views\MainMenuView.baml
-C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\obj\Debug\Views\Window1.g.cs
-C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\obj\Debug\Views\Window1.baml

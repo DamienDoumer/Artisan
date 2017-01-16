@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TimeManager.ViewModels;
 using Artisan.MVVMShared;
 using System.Diagnostics;
+using Dao.Entities;
 
 namespace Artisan.ViewModels
 {
@@ -21,7 +22,7 @@ namespace Artisan.ViewModels
         private CreateWorkingSessionViewModel createWorkingSessionViewModel = new CreateWorkingSessionViewModel();
         private ManageWorkingSessionsViewModel manageWorkingSessionViewModel = new ManageWorkingSessionsViewModel();
         private ManageEventViewModel manageEventsViewModel = new ManageEventViewModel();
-        private CreateEventViewModel createEventViewModel = new CreateEventViewModel();
+        private CreateEventViewModel createEventViewModel;
         private MainMenuViewModel mainMenuViewModel = new MainMenuViewModel();
 
         private BindableBase currentViewModel;
@@ -35,13 +36,17 @@ namespace Artisan.ViewModels
         {
             NavigationCommand = new RelayCommand<string>(OnNavigation);
             MainMenuNavCommand = new RelayCommand<string>(OnMainMenuNav);
+            createEventViewModel = new CreateEventViewModel();
+            createEventViewModel.EventCreated += (Event evt) =>
+            {
+                Debug.WriteLine(evt);
+            };
             CurrentViewModel = createEventViewModel;
         }
 
         private void OnMainMenuNav(string d)
         {
             currentViewModel = mainMenuViewModel;
-            Debug.WriteLine(currentViewModel);
         }
 
         private void OnNavigation(string view)

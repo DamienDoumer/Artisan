@@ -5,29 +5,80 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TimeManager.Views"
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" Height="453.639" Width="324"
+             >
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
 
     <UserControl.DataContext>
         <localViewModels:CreateEventViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid>
-        <TextBlock Text="Create Event" FontSize="19" ></TextBlock>
+    <materialDesign:Card VerticalAlignment="Stretch" Margin="1" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+        <Grid Margin="1" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="279*"/>
+                <ColumnDefinition Width="28*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Create Event" FontSize="19" Margin="91,23,82,0" 
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
+            <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" 
+                 VerticalAlignment="Center" Height="26"
+                 Text="{Binding Name ,Mode=TwoWay}" 
+                 materialDesign:HintAssist.Hint="Title"
+                 Margin="20,10,0,26" Width="249"
+                 Grid.Column="0" Grid.Row="1"
+				 />
+            <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" 
+        	Text="{Binding Description, Mode=TwoWay}" Height="26" Margin="20,6,0,22"
+                 Grid.Row="2"
+            materialDesign:HintAssist.Hint="Description"
+        	TextWrapping="Wrap" VerticalAlignment="Center" Width="249"/>
+            <TextBox x:Name="VenueTextBox" HorizontalAlignment="Left"
+                 materialDesign:HintAssist.Hint="Venue"
+                 Grid.Row="3" Height="28" 
+                 Text="{Binding Venue ,Mode=TwoWay}" Margin="20,11,0,26"
+                 TextWrapping="Wrap" VerticalAlignment="Center" Width="249"/>
+            <DatePicker Width="249" HorizontalAlignment="Left" materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                    Text="{Binding Date ,Mode=TwoWay}" 
+                    VerticalAlignment="Center"
+                    Height="33"
+                    Margin="20,22,0,10" Grid.Row="4"
+                    />
+            <materialDesign:TimePicker Is24Hours="True" x:Name="PresentTimePicker"
+                                   VerticalAlignment="Top"  Width="249" HorizontalAlignment="Left" 
+                                   Grid.Row="5" Text="{Binding Time, Mode=TwoWay}" Margin="20,12,0,0"/>
+            <Button materialDesign:ShadowAssist.ShadowDepth="Depth3" Grid.Row="6" Command="{Binding CreateCommand}"  
+        		VerticalAlignment="Center" HorizontalAlignment="Right"
+        	    Width="79" Height="25">
+                Save
+            </Button>
+
+        </Grid>
+    </materialDesign:Card>
         
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" 
-                 Text="{Binding Name ,Mode=TwoWay}" Height="22" Margin="32,63,0,0" 
-                 TextWrapping="Wrap" VerticalAlignment="Top" Width="134"/>
-        <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" 
-                 Text="{Binding Description ,Mode=TwoWay}" Height="44" Margin="32,90,0,0" 
-                 TextWrapping="Wrap" VerticalAlignment="Top" Width="134"/>
-        <TextBox x:Name="VenueTextBox" HorizontalAlignment="Left"
-                 Text="{Binding Venue ,Mode=TwoWay}" Height="22" Margin="32,139,0,0" 
-                 TextWrapping="Wrap" VerticalAlignment="Top" Width="134"/>
-
-        <DatePicker Width="134" HorizontalAlignment="Left" 
-                    Text="{Binding Date ,Mode=OneWay}" Margin="32,166,0,100" />
-
-        <Button Content="Click Me" Command="{Binding CreateCommand}"  Margin="201,243,27,30"/>
     </Grid>
 </UserControl>

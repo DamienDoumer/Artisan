@@ -40,7 +40,7 @@
             </TextBlock>
 
             <TextBox 		
-                Margin="20,40,20,10"
+                 Margin="20,40,20,10"
 				 x:Name="UserNameTextBox"
 				 materialDesign:HintAssist.Hint="User Name"
                  Text="{Binding Path=Name, Mode=TwoWay}"
