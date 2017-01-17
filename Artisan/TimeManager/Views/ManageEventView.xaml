@@ -18,7 +18,7 @@
         <!--Edit Shortcut == Ctrl + E-->
         <KeyBinding Key="E"
                     Modifiers="Ctrl"
-                    Command="{Binding DeleteCommand}"/>
+                    Command="{Binding EditCommand}"/>
     </UserControl.InputBindings>
     
     <UserControl.Resources>
@@ -69,6 +69,13 @@
                         HorizontalAlignment="Left"
                         ToolTip="Delete" Height="Auto" Width="45" Margin="50,0,0,0">
             <materialDesign:PackIcon Kind="Delete" Height="24" Width="24" />
+        </Button>
+        <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                Grid.Row="1"
+                Command="{Binding CreateEventCommand}"
+                        HorizontalAlignment="Left"
+                        ToolTip="Create Appointment" Height="Auto" Width="45" Margin="95,0,0,0">
+            <materialDesign:PackIcon Kind="Creation" Height="24" Width="24" />
         </Button>
 
         <materialDesign:Card Margin="10,30,10,83" Grid.Column="1"

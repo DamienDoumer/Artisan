@@ -41,29 +41,29 @@
                 <ColumnDefinition Width="28*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Create Event" FontSize="19" Margin="91,23,82,0" 
+            <Label Content="{Binding Title, Mode=TwoWay}" FontSize="19" Margin="91,23,82,0" 
                    Grid.Column="0"
                    Grid.Row="0"
-                   HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
+                   HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
             <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" 
                  VerticalAlignment="Center" Height="26"
-                 Text="{Binding Name ,Mode=TwoWay}" 
+                 Text="{Binding MainEvent.Name}" 
                  materialDesign:HintAssist.Hint="Title"
                  Margin="20,10,0,26" Width="249"
                  Grid.Column="0" Grid.Row="1"
 				 />
             <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" 
-        	Text="{Binding Description, Mode=TwoWay}" Height="26" Margin="20,6,0,22"
+        	Text="{Binding MainEvent.Description}" Height="26" Margin="20,6,0,22"
                  Grid.Row="2"
             materialDesign:HintAssist.Hint="Description"
         	TextWrapping="Wrap" VerticalAlignment="Center" Width="249"/>
             <TextBox x:Name="VenueTextBox" HorizontalAlignment="Left"
                  materialDesign:HintAssist.Hint="Venue"
                  Grid.Row="3" Height="28" 
-                 Text="{Binding Venue ,Mode=TwoWay}" Margin="20,11,0,26"
+                 Text="{Binding MainEvent.Venue}" Margin="20,11,0,26"
                  TextWrapping="Wrap" VerticalAlignment="Center" Width="249"/>
             <DatePicker Width="249" HorizontalAlignment="Left" materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                    Text="{Binding Date ,Mode=TwoWay}" 
+                    Text="{Binding MainEvent.Date_Time}"
                     VerticalAlignment="Center"
                     Height="33"
                     Margin="20,22,0,10" Grid.Row="4"

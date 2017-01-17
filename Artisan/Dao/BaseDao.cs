@@ -194,10 +194,17 @@ namespace Dao
             }
             return success;
         }//Works
-        protected bool Update(string attrib, string attribVal)
+        protected bool Update(string attrib, string attribVal, string conditions = null)
         {
             Query = null;
-            Query = "Update " + Table + " Set " + attrib + " = '" + attribVal+"' ";
+            if(conditions ==null)
+            {
+                Query = "Update " + Table + " Set " + attrib + " = '" + attribVal + "' ";
+            }
+            else
+            {
+                Query = "Update " + Table + " Set " + attrib + " = '" + attribVal + "' "+conditions;
+            }
             int success = ExecuteQuery(Query);
 
             if (success == 1)

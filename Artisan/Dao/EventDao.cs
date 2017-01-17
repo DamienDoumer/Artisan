@@ -87,5 +87,13 @@ namespace Dao
 
             return events;
         }//Works
+
+        public void UpdateEvent(Event old, Event newEvt)
+        {
+            base.Update("Name", newEvt.Name, "Where ID = " + old.ID);
+            base.Update("Description", newEvt.Description, "Where ID = " + old.ID);
+            base.Update("Venue", newEvt.Venue, "Where ID = " + old.ID);
+            base.Update("Date_Time", newEvt.Date_Time.ToString(), "Where ID = " + old.ID);
+        }
     }
 }

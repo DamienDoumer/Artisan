@@ -45,6 +45,10 @@ namespace Dao.Entities
             }
             Date_Time = date;
         }
+        public Event():base(0, "", DateTime.Now, DateTime.Now)
+        {
+
+        }
         public Event(int id, string name, string desc, string venue, DateTime date) : base(id, name, DateTime.Now, date)
         {
             Description = desc;

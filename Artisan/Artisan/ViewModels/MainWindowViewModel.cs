@@ -22,8 +22,7 @@ namespace Artisan.ViewModels
 
         CreateEventViewModel createEventViewModel = new CreateEventViewModel();
         MainMenuViewModel mainMenuViewModel = new MainMenuViewModel();
-        ManageEventViewModel manageEventViewModel = new ManageEventViewModel();
-
+        ManageEventViewModel manageEventViewModel;
         private BindableBase currentViewModel;
         public BindableBase CurrentViewModel
         {
@@ -34,14 +33,34 @@ namespace Artisan.ViewModels
 
         public MainWindowViewModel()
         {
+            manageEventViewModel = new ManageEventViewModel();
+            ///Here I handle the event Fired when the user wants to edit an event.
+            ManageEventViewModel.EditEvent += NavigateToEditEventView;
+            ManageEventViewModel.CreateEvent += NavigateToCreateEventView;
+            CreateEventViewModel.EventCreated += OnEventCreated;
             MainMenuSwitchCommand = new RelayCommand(OnMainMenuViewSwitch);
             ManageEventSwitchCommand = new RelayCommand(OnManageEventViewSwitch);
-            CurrentViewModel = createEventViewModel;
+            CurrentViewModel = mainMenuViewModel;
         }
 
+        private void OnEventCreated(Event evt)
+        {
+            OnManageEventViewSwitch();
+        }
+        private void NavigateToCreateEventView()
+        {
+            CreateEventViewModel.Title = "Create Event";
+            CurrentViewModel = createEventViewModel;
+        }
+        private void NavigateToEditEventView(Event evt)
+        {
+            CreateEventViewModel.MainEvent = evt;
+            CreateEventViewModel.Title = "Edit Event";
+            CurrentViewModel = createEventViewModel;
+        }
         private void OnMainMenuViewSwitch()
         {
-            CurrentViewModel = createEventViewModel;
+            CurrentViewModel = mainMenuViewModel;
         }
         private void OnManageEventViewSwitch()
         {
