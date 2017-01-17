@@ -15,7 +15,7 @@ namespace TimeManager
 
         public Monitor()
         {
-            OccuranceMon = new OccuranceMonitor();
+            OccuranceMon = OccuranceMonitor.Instance;
             //Save this day as a day if it is saved already, no PB.
             settingsDao = new SettingsDao("Settings");
             settingsDao.SaveDateForDaysOfWork();

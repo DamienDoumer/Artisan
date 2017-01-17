@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using Dao.Entities;
 using Dao;
 using System.Diagnostics;
+using TimeManager;
 
 namespace TimeManager.ViewModels
 {
@@ -16,6 +17,7 @@ namespace TimeManager.ViewModels
         ObservableCollection<Event> events;
         EventDao evtDao;
         private Event evnt;
+        OccuranceMonitor occuranceMon;
 
         /// <summary>
         /// Fired when the user chooses an event which he wants to edit 
@@ -26,10 +28,16 @@ namespace TimeManager.ViewModels
         /// <param name="evt">The event to be edited.</param>
         public static event Action<Event> EditEvent;
         public static event Action CreateEvent;
+        private string groupboxHeader;
 
         public RelayCommand EditCommand { get; private set; }
         public RelayCommand DeleteCommand { get; private set; }
         public RelayCommand CreateEventCommand { get; private set; }
+        /// <summary>
+        /// Loads events according to present, future, past
+        /// </summary>
+        public RelayCommand<string> LoadEventOfPeriodCommand { get; private set; }
+
 
         /// <summary>
         /// this is the selected Event
@@ -50,13 +58,22 @@ namespace TimeManager.ViewModels
             get { return events; }
             set { SetProperty(ref events, value); }
         }
+        /// <summary>
+        /// This is the header which is displayed on the group box containing the listview
+        /// </summary>
+        public string GroupboxHeader
+        {
+            get { return groupboxHeader; } set { SetProperty(ref groupboxHeader, value); }
+        }
 
         public ManageEventViewModel()
         {
+            groupboxHeader = "All Your Appointments";
+            LoadEventOfPeriodCommand = new RelayCommand<string>(OnLoadEvent);
             evtDao = new EventDao("Event");
             Events = new ObservableCollection<Event>(evtDao.RetrieveAllEvents());
-            EditCommand = new RelayCommand(OnEditCommand, CanEdit);
-            DeleteCommand = new RelayCommand(OnDelete, CanDelete);
+            EditCommand = new RelayCommand(OnEditCommand, CanDeleteOrEdit);
+            DeleteCommand = new RelayCommand(OnDelete, CanDeleteOrEdit);
             CreateEventCommand = new RelayCommand(OnCreateEvent);
         }
 
@@ -65,22 +82,49 @@ namespace TimeManager.ViewModels
             Debug.WriteLine(EditEvent == null);
             EditEvent?.Invoke(CurrentEvent);
         }
-        private bool CanEdit()
-        {
-            return CurrentEvent != null;
-        }
         private void OnDelete()
         {
             evtDao.Delete(CurrentEvent);
             Events.Remove(CurrentEvent);
         }
-        private bool CanDelete()
+        private bool CanDeleteOrEdit()
         {
+            ///Sets the button to enabled only and only if 
+            /// An event was choosen from the list.
             return CurrentEvent!=null;
         }
         private void OnCreateEvent()
         {
             CreateEvent?.Invoke();
+        }
+        private void OnLoadEvent(string period)
+        {
+            List<Event> present;
+            List<Event> future;
+            List<Event> past;
+
+            occuranceMon = OccuranceMonitor.Instance;
+            occuranceMon.SortEvents(out present, out future, out past);
+
+            switch(period)
+            {
+                case "present":
+                    addToEventsList(present);
+                    GroupboxHeader = "Today's Appointments.";
+                    break;
+                case "past":
+                    addToEventsList(past);
+                    GroupboxHeader = "Past Appointments";
+                    break;
+                case "future":
+                    GroupboxHeader = "Future Appointments";
+                    addToEventsList(future);
+                    break;
+            }
+        }
+        private void addToEventsList(List<Event> evts)
+        {
+            Events = new ObservableCollection<Event>(evts);
         }
     }
 }

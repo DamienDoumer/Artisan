@@ -20,7 +20,7 @@
                     Modifiers="Ctrl"
                     Command="{Binding EditCommand}"/>
     </UserControl.InputBindings>
-    
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -55,8 +55,13 @@
             <RowDefinition Height="39"/>
         </Grid.RowDefinitions>
 
-        <ListView ItemsSource="{Binding Events}" ItemTemplate="{StaticResource DisplayEventTemplate}"
-                  SelectedItem="{Binding CurrentEvent}" Margin="0,15,30.5,10"/>
+        <GroupBox Grid.Column="0" Grid.Row="0" Style="{DynamicResource MaterialDesignGroupBox}" Margin="10,10,17,0"
+                  Header="{Binding GroupboxHeader}"
+                  materialDesign:ShadowAssist.ShadowDepth="Depth3">
+            <ListView ItemsSource="{Binding Events}" ItemTemplate="{StaticResource DisplayEventTemplate}"
+                  SelectedItem="{Binding CurrentEvent}" Margin="0,0,0,10" Width="231"/>
+        </GroupBox>
+        
         <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                 Grid.Row="1"
                         HorizontalAlignment="Left" Command="{Binding EditCommand}"
@@ -74,11 +79,31 @@
                 Grid.Row="1"
                 Command="{Binding CreateEventCommand}"
                         HorizontalAlignment="Left"
-                        ToolTip="Create Appointment" Height="Auto" Width="45" Margin="95,0,0,0">
+                        ToolTip="Create Appointment" Height="Auto" Width="45" Margin="100,0,0,0">
             <materialDesign:PackIcon Kind="Creation" Height="24" Width="24" />
         </Button>
-
-        <materialDesign:Card Margin="10,30,10,83" Grid.Column="1"
+        <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                Grid.Row="1"
+                Command="{Binding LoadEventOfPeriodCommand}" CommandParameter="future"
+                        HorizontalAlignment="Left"
+                        ToolTip="Future Appointments" Height="Auto" Width="45" Margin="150,0,0,0">
+            <materialDesign:PackIcon Kind="ArrowBottomRight" Height="24" Width="24" />
+        </Button>
+        <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                Grid.Row="1"
+                Command="{Binding LoadEventOfPeriodCommand}" CommandParameter="past"
+                        HorizontalAlignment="Left"
+                        ToolTip="Past Appointments" Height="Auto" Width="45" Margin="250,0,0,0" Grid.ColumnSpan="2">
+            <materialDesign:PackIcon Kind="ArrowBottomLeft" Height="24" Width="24" />
+        </Button>
+        <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                Grid.Row="1"
+                Command="{Binding LoadEventOfPeriodCommand}" CommandParameter="present"
+                        HorizontalAlignment="Left"
+                        ToolTip="Today's Appointments" Height="Auto" Width="45" Margin="200,0,0,0">
+            <materialDesign:PackIcon Kind="CalendarToday" Height="24" Width="24" />
+        </Button>
+        <materialDesign:Card Margin="10,46,10,10" Grid.Column="1"
                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <StackPanel Margin="10">
                 <StackPanel Orientation="Horizontal">

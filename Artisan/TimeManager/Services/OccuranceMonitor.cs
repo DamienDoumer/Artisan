@@ -16,6 +16,15 @@ namespace TimeManager
     /// </summary>
     public class OccuranceMonitor
     {
+        /// <summary>
+        /// Singleton instance
+        /// </summary>
+        private static OccuranceMonitor instance;
+        public static OccuranceMonitor Instance
+        {
+            get { return instance; } set { instance = value; }
+        }
+
         private List<TimeEntity> pastEntities;
         private List<TimeEntity> futureEntities;
         public List<Event> PresentEvents { get; }
@@ -55,13 +64,20 @@ namespace TimeManager
         WorkingSessionDao workingSessionDao;
         EventDao eventDao;
 
-        public OccuranceMonitor()
+        /// <summary>
+        /// Singleton constructors
+        /// </summary>
+        private OccuranceMonitor()
         {
             pastEntities = new List<TimeEntity>();
             futureEntities = new List<TimeEntity>();
             PresentEvents = new List<Event>();
             workingSessionDao = new WorkingSessionDao("WorkingSession");
             eventDao = new EventDao("Event");
+        }
+        static OccuranceMonitor()
+        {
+            OccuranceMonitor.instance = new OccuranceMonitor();
         }
 
         public void SortTimeEntities()
@@ -121,7 +137,49 @@ namespace TimeManager
                 }
             }
         }
+        /// <summary>
+        /// this is used to sort events which are given in and 
+        /// Send them out when needed.
+        /// </summary>
+        /// <param name="evts"></param>
+        /// <param name="present"></param>
+        /// <param name="future"></param>
+        /// <param name="past"></param>
+        public void SortEvents(out List<Event> present, out List<Event> future, out List<Event> past)
+        {
+            past = new List<Event>();
+            future = new List<Event>();
+            present = new List<Event>();
 
+            foreach (Event evt in eventDao.RetrieveAllEvents())
+            {
+                if (HasPassed(evt.EndTime))
+                {
+                    past.Add(evt);
+
+                    /////____________________________________________________________
+                    /////Debug Code
+                    //Debug.WriteLine(" PAST Event"+ evt.ID + "Was loaded from the database...");
+                }
+                else
+                {
+                    future.Add(evt);
+
+                    /////____________________________________________________________
+                    /////Debug Code
+                    //Debug.WriteLine(" FUTURE " + evt.ID + "Event Was loaded from the database...");
+                }
+
+                if (evt.Date_Time.DayOfYear == DateTime.Now.DayOfYear)
+                {
+                    present.Add(evt);
+
+                    /////____________________________________________________________
+                    /////Debug Code
+                    //Debug.WriteLine(" PRESENT" + evt.ID + " Event Was loaded from the database...");
+                }
+            }
+        }
         public void StartMonitoring()
         {
             SprintTimer timer = null;
@@ -177,6 +235,37 @@ namespace TimeManager
 
                 timer.Start();
             }
+        }
+        /// <summary>
+        /// Start monitoring time for only one entity.
+        /// </summary>
+        /// <param name="ent"></param>
+        public void StartMonitoring(TimeEntity ent)
+        {
+            SprintTimer timer = null;
+
+            TimeSelect selection = CheckOccuranceTimeRange(ent.EndTime);
+
+            if (selection == TimeSelect.Hour)
+            {
+                timer = new SprintTimer(ent, TimeSelect.Hour);
+            }
+            else
+                    if (selection == TimeSelect.Minute)
+            {
+                timer = new SprintTimer(ent, TimeSelect.Minute);
+            }
+            else
+                if (selection == TimeSelect.Second)
+            {
+                timer = new SprintTimer(ent, TimeSelect.Second);
+            }
+
+            timer.CheckTimeRange = new SprintTimer.CheckTimeRangeDelegate(CheckOccuranceTimeRange);
+            timer.TimeArrived += OnTimeArrived;
+            timer.TimeStopped += OnTimeStopped;
+
+            timer.Start();
         }
 
         private void OnTimeArrived(DateTime end, SprintTimer timer)
