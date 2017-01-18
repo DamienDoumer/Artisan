@@ -9,6 +9,7 @@
              mc:Ignorable="d" Height="453.639" Width="324"
              >
 
+    <!--This view is used to create and Edit Events sessions-->
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -63,7 +64,7 @@
                  Text="{Binding MainEvent.Venue}" Margin="20,11,0,26"
                  TextWrapping="Wrap" VerticalAlignment="Center" Width="249"/>
             <DatePicker Width="249" HorizontalAlignment="Left" materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                    Text="{Binding MainEvent.Date_Time}"
+                    Text="{Binding Date, Mode=TwoWay}"
                     VerticalAlignment="Center"
                     Height="33"
                     Margin="20,22,0,10" Grid.Row="4"

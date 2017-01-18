@@ -180,13 +180,48 @@ namespace TimeManager
                 }
             }
         }
+        public void SortWorkingSessions(out List<WorkingSession> present, out List<WorkingSession> future, out List<WorkingSession> past)
+        {
+            past = new List<WorkingSession>();
+            future = new List<WorkingSession>();
+            present = new List<WorkingSession>();
+
+            foreach (WorkingSession wrk in workingSessionDao.RetrieveAllWorkingSessions())
+            {
+                if (HasPassed(wrk.EndTime))
+                {
+                    past.Add(wrk);
+
+                    /////____________________________________________________________
+                    /////Debug Code
+                    //Debug.WriteLine(" PAST Event"+ evt.ID + "Was loaded from the database...");
+                }
+                else
+                {
+                    future.Add(wrk);
+
+                    /////____________________________________________________________
+                    /////Debug Code
+                    //Debug.WriteLine(" FUTURE " + evt.ID + "Event Was loaded from the database...");
+                }
+
+                if (wrk.Day.DayOfYear == DateTime.Now.DayOfYear)
+                {
+                    present.Add(wrk);
+
+                    /////____________________________________________________________
+                    /////Debug Code
+                    //Debug.WriteLine(" PRESENT" + evt.ID + " Event Was loaded from the database...");
+                }
+            }
+        }
         public void StartMonitoring()
         {
             SprintTimer timer = null;
 
-            /////____________________________________________________________
-            /////Debug Code
-            //Debug.WriteLine("\nMONITORING TimeEntities Started\n");
+            ///____________________________________________________________
+            ///Debug Code
+            Debug.WriteLine("\nMONITORING TimeEntities Started\n");
 
             foreach (TimeEntity ent in futureEntities)
             {
@@ -245,27 +280,29 @@ namespace TimeManager
             SprintTimer timer = null;
 
             TimeSelect selection = CheckOccuranceTimeRange(ent.EndTime);
-
+            Debug.WriteLine(selection+" "+ent.EndTime);
             if (selection == TimeSelect.Hour)
             {
                 timer = new SprintTimer(ent, TimeSelect.Hour);
             }
             else
-                    if (selection == TimeSelect.Minute)
+            if (selection == TimeSelect.Minute)
             {
                 timer = new SprintTimer(ent, TimeSelect.Minute);
             }
             else
-                if (selection == TimeSelect.Second)
+            if (selection == TimeSelect.Second)
             {
                 timer = new SprintTimer(ent, TimeSelect.Second);
             }
+            if (timer != null)
+            {
+                timer.CheckTimeRange = new SprintTimer.CheckTimeRangeDelegate(CheckOccuranceTimeRange);
+                timer.TimeArrived += OnTimeArrived;
+                timer.TimeStopped += OnTimeStopped;
 
-            timer.CheckTimeRange = new SprintTimer.CheckTimeRangeDelegate(CheckOccuranceTimeRange);
-            timer.TimeArrived += OnTimeArrived;
-            timer.TimeStopped += OnTimeStopped;
-
-            timer.Start();
+                timer.Start();
+            }
         }
 
         private void OnTimeArrived(DateTime end, SprintTimer timer)

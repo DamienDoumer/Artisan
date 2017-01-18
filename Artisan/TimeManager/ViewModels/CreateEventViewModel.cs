@@ -23,7 +23,7 @@ namespace TimeManager.ViewModels
         private DateTime date;
         private EventDao eventDao;
         public RelayCommand CreateCommand { get; private set; }
-        public DateTime Date { get { return date; } set { date = value; } }
+        public DateTime Date { get { return date; } set { SetProperty(ref date, value); } }
         public DateTime Time { get; set; }
         static public string Title { get; set; }
         /// <summary>
@@ -34,23 +34,32 @@ namespace TimeManager.ViewModels
 
         public CreateEventViewModel()
         {
-            mainEvent = new Event();
-            mainEvent.Date_Time = DateTime.Now;
+            if (Title == "Create Event")
+            {
+                mainEvent = new Event();
+                Date = DateTime.Now;
+            }
+            else
+            if(Title == "Edit Event")
+            {
+                Date = mainEvent.Date_Time;
+                Time = mainEvent.Date_Time;
+            }
+
             CreateCommand = new RelayCommand(OnCreateEvent);
             eventDao = new EventDao("Event");
-            Date = DateTime.Now;
         }
 
         private void OnCreateEvent()
         {
-            Debug.WriteLine(MainEvent == null);
-            Debug.WriteLine(MainEvent.Date_Time == null);
             ///Create the exact day and time at which the event should be fired.
-            DateTime finalDate = new DateTime(mainEvent.Date_Time.Year, mainEvent.Date_Time.Month,
-                mainEvent.Date_Time.Day, mainEvent.Date_Time.Hour,
-                mainEvent.Date_Time.Minute, mainEvent.Date_Time.Second);
+            DateTime finalDate = new DateTime(Date.Year, Date.Month,
+               Date.Day, Time.Hour,
+                Time.Minute, Time.Second);
 
+            ///setting these two differently is very important
             mainEvent.Date_Time = finalDate;
+            mainEvent.EndTime = finalDate;
             
             if(Title == "Edit Event") { eventDao.UpdateEvent(oldEvent, mainEvent); }
             else

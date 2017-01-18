@@ -19,7 +19,7 @@ namespace Dao.Entities
         }
 
         public WorkingSession(string name, DateTime day, string desc,
-            DateTime startT, DateTime endT) : base(0, name, startT, endT)
+            DateTime startT, DateTime endT) : base(0, name, startT, endT, "WorkingSession")
         {
             this.day = day.Date;
             Description = desc;
@@ -28,7 +28,8 @@ namespace Dao.Entities
         }
 
         public WorkingSession(string name, DateTime day,
-            List<Task> tasks,string desc, DateTime startT, DateTime endT) : base(0, name, startT, endT)
+            List<Task> tasks,string desc, DateTime startT, DateTime endT)
+            : base(0, name, startT, endT, "WorkingSession")
         {
             Description = desc;
             StartTime = startT;
@@ -38,7 +39,7 @@ namespace Dao.Entities
             this.day = day.Date;
         }
         public WorkingSession(int id, string name, DateTime day,
-            string desc, DateTime startT, DateTime endT) : base(id, name, startT, endT)
+            string desc, DateTime startT, DateTime endT) : base(id, name, startT, endT, "WorkingSession")
         {
             Name = name;
             Description = desc;

@@ -31,7 +31,8 @@ namespace Dao.Entities
         }
         public DateTime Date_Time { get; set; }
 
-        public Event(string name, string desc, string venue, DateTime date) : base(0, name, DateTime.Now, date)
+        public Event(string name, string desc, string venue, DateTime date)
+            : base(0, name, DateTime.Now, date, "Event")
         {
             Description = desc;
 
@@ -45,11 +46,12 @@ namespace Dao.Entities
             }
             Date_Time = date;
         }
-        public Event():base(0, "", DateTime.Now, DateTime.Now)
+        public Event():base(0, "", DateTime.Now, DateTime.Now, "Event")
         {
 
         }
-        public Event(int id, string name, string desc, string venue, DateTime date) : base(id, name, DateTime.Now, date)
+        public Event(int id, string name, string desc, string venue, DateTime date) 
+            : base(id, name, DateTime.Now, date, "Event")
         {
             Description = desc;
 

@@ -7,6 +7,7 @@ using TimeManager.ViewModels;
 using Artisan.MVVMShared;
 using System.Diagnostics;
 using Dao.Entities;
+using TimeManager;
 
 namespace Artisan.ViewModels
 {
@@ -24,6 +25,8 @@ namespace Artisan.ViewModels
         MainMenuViewModel mainMenuViewModel = new MainMenuViewModel();
         ManageEventViewModel manageEventViewModel;
         private BindableBase currentViewModel;
+        private OccuranceMonitor occuranceMon;
+
         public BindableBase CurrentViewModel
         {
             get { return currentViewModel; }
@@ -41,11 +44,17 @@ namespace Artisan.ViewModels
             MainMenuSwitchCommand = new RelayCommand(OnMainMenuViewSwitch);
             ManageEventSwitchCommand = new RelayCommand(OnManageEventViewSwitch);
             CurrentViewModel = mainMenuViewModel;
+
+            ///Code for monitoring working sessions and events.
+            occuranceMon = OccuranceMonitor.Instance;
+            occuranceMon.SortTimeEntities();
+            occuranceMon.StartMonitoring();
         }
 
         private void OnEventCreated(Event evt)
         {
             OnManageEventViewSwitch();
+            occuranceMon.StartMonitoring(evt);
         }
         private void NavigateToCreateEventView()
         {
