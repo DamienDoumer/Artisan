@@ -18,6 +18,10 @@ namespace Dao.Entities
             set { day = value.Date; }
         }
 
+        public WorkingSession() : base(0, "", DateTime.Now, DateTime.Now, "WorkingSession")
+        {
+        }
+
         public WorkingSession(string name, DateTime day, string desc,
             DateTime startT, DateTime endT) : base(0, name, startT, endT, "WorkingSession")
         {
@@ -47,7 +51,6 @@ namespace Dao.Entities
             EndTime = endT;
             this.day = day.Date;
         }
-
         public override string[] GetProperties()
         {
             return new string[] { "Name", "Description", "Day", "StartTime", "EndTime" };

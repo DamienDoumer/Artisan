@@ -63,10 +63,14 @@
     <Compile Include="Services\OccuranceMonitor.cs" />
     <Compile Include="Services\SprintTimer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CreateEditWorkingSessionNextViewModel.cs" />
     <Compile Include="ViewModels\CreateEventViewModel.cs" />
-    <Compile Include="ViewModels\CreateWorkingSessionViewModel.cs" />
+    <Compile Include="ViewModels\CreateEditWorkingSessionViewModel.cs" />
     <Compile Include="ViewModels\ManageEventViewModel.cs" />
     <Compile Include="ViewModels\ManageWorkingSessionsViewModel.cs" />
+    <Compile Include="Views\CreateEditWorkingSessionNextView.xaml.cs">
+      <DependentUpon>CreateEditWorkingSessionNextView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateEventView.xaml.cs">
       <DependentUpon>CreateEventView.xaml</DependentUpon>
     </Compile>
@@ -81,6 +85,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\CreateEditWorkingSessionNextView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CreateEventView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

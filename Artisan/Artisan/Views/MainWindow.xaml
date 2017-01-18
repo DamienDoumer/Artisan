@@ -48,6 +48,15 @@
         <DataTemplate DataType="{x:Type timeManagerViewModel:ManageEventViewModel}">
             <timeManagerView:ManageEventView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type timeManagerViewModel:CreateEditWorkingSessionViewModel}">
+            <timeManagerView:CreateWorkingSessionView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type timeManagerViewModel:ManageWorkingSessionsViewModel}">
+            <timeManagerView:ManageWorkingSessionsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type timeManagerViewModel:CreateEditWorkingSessionNextViewModel}">
+            <timeManagerView:CreateEditWorkingSessionNextView/>
+        </DataTemplate>
     </Window.Resources>
 
 
@@ -64,7 +73,9 @@
                 <HamburgerMenu:HamburgerMenuItem Height="50" Text="Manage your Appointments" 
                                                  SelectionCommand="{Binding ManageEventSwitchCommand}" 
                                                  Icon="UIResources\Event.png"/>
-                <HamburgerMenu:HamburgerMenuItem Height="50" Text="Manage Your Working Sessions" Icon="UIResources\WorkingSession.png"/>
+                <HamburgerMenu:HamburgerMenuItem Height="50" Text="Manage Your Working Sessions" 
+                                                 SelectionCommand="{Binding ManageWorkingSessionSwitchCommand}"
+                                                 Icon="UIResources\WorkingSession.png"/>
                 <HamburgerMenu:HamburgerMenuItem Height="50" Text="Settings" Icon="UIResources\Settings.png"/>
             </HamburgerMenu:HamburgerMenu.Content>
         </HamburgerMenu:HamburgerMenu>

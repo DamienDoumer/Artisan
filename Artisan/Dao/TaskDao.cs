@@ -11,6 +11,7 @@ namespace Dao
         public static string CreateStatement { get; } = "CREATE TABLE `Task` ( " +
                        " `ID`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
                         "`Name`	VarChar(50) NOT NULL," +
+                        " `Accomplished`	boolean, "+
                         " `WorkingSessionID`	INTEGER, FOREIGN KEY(`WorkingSessionID`) REFERENCES WorkingSession(ID) " +
                         ")";
 
@@ -70,7 +71,7 @@ namespace Dao
                 while (reader.Read())
                 {
                     task = new Task(Convert.ToInt32(reader[0]), reader[1].ToString(), 
-                        Convert.ToInt32(reader[2].ToString()), Convert.ToBoolean(reader[3].ToString()));
+                        Convert.ToInt32(reader[2]), Convert.ToBoolean(reader[3]));
                     tasks.Add(task);
                 }
                 reader.Close();

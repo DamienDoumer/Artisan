@@ -79,7 +79,6 @@ namespace TimeManager.ViewModels
 
         public void OnEditCommand()
         {
-            Debug.WriteLine(EditEvent == null);
             EditEvent?.Invoke(CurrentEvent);
         }
         private void OnDelete()

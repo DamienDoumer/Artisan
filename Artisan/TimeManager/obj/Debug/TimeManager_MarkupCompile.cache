@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-41118950572
+51261049206
 
-17-1662613041
+19-1604114358
 161353007665
-Views\CreateEventView.xaml;Views\CreateWorkingSessionView.xaml;Views\ManageEventView.xaml;Views\ManageWorkingSessionsView.xaml;
+Views\CreateEditWorkingSessionNextView.xaml;Views\CreateEventView.xaml;Views\CreateWorkingSessionView.xaml;Views\ManageEventView.xaml;Views\ManageWorkingSessionsView.xaml;
 
 False
 

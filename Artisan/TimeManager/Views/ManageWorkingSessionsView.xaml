@@ -4,9 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TimeManager.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
+             xmlns:data="clr-namespace:Dao.Entities;assembly=Dao"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.DataContext>
+        <localViewModels:ManageWorkingSessionsViewModel/>
+    </UserControl.DataContext>
+    
     <Grid>
-            
+        <Button x:Name="button" Content="Create" ToolTip="Create A Working Session"
+                Command="{Binding CreateCommand}" HorizontalAlignment="Left" 
+                Margin="10,249,0,0" VerticalAlignment="Top" Width="75"/>
+
     </Grid>
 </UserControl>

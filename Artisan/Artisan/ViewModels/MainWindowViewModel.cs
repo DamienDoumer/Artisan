@@ -21,7 +21,10 @@ namespace Artisan.ViewModels
         public RelayCommand ManageEventSwitchCommand { get; private set; }
         public RelayCommand ManageWorkingSessionSwitchCommand { get; private set; }
 
+        ManageWorkingSessionsViewModel manageWorkingSessionVM;
+        CreateEditWorkingSessionNextViewModel createWrkNextVM;
         CreateEventViewModel createEventViewModel = new CreateEventViewModel();
+        CreateEditWorkingSessionViewModel createEditWorkingSession;
         MainMenuViewModel mainMenuViewModel = new MainMenuViewModel();
         ManageEventViewModel manageEventViewModel;
         private BindableBase currentViewModel;
@@ -36,6 +39,15 @@ namespace Artisan.ViewModels
 
         public MainWindowViewModel()
         {
+            ///Workingsession management code
+            CreateEditWorkingSessionViewModel.Mode = "Create";
+            createEditWorkingSession = new CreateEditWorkingSessionViewModel();
+            manageWorkingSessionVM = new ManageWorkingSessionsViewModel();
+            CreateEditWorkingSessionViewModel.NextStepLaunched += OnNextStepSwitch;
+            ManageWorkingSessionsViewModel.CreateWorkingSessionCommand += OnCreateWorkingSessionInitiated;
+            CreateEditWorkingSessionNextViewModel.CreateEditTerminated += OnSwitchToManageWorkingSession;
+            ManageWorkingSessionSwitchCommand = new RelayCommand(OnSwitchToManageWorkingSession);
+
             manageEventViewModel = new ManageEventViewModel();
             ///Here I handle the event Fired when the user wants to edit an event.
             ManageEventViewModel.EditEvent += NavigateToEditEventView;
@@ -51,6 +63,35 @@ namespace Artisan.ViewModels
             occuranceMon.StartMonitoring();
         }
 
+        #region WorkingSession ManagementCode
+
+        private void OnSwitchToManageWorkingSession()
+        {
+            CurrentViewModel = manageWorkingSessionVM;
+        }
+        /// <summary>
+        /// Occures when the next button of create working session is pressed
+        /// </summary>
+        /// <param name="wrk"></param>
+        private void OnNextStepSwitch(WorkingSession wrk)
+        {
+            CreateEditWorkingSessionNextViewModel.MainWorkingSession = wrk;
+            CreateEditWorkingSessionNextViewModel.Mode = "Create";
+            if(createWrkNextVM == null)
+            {
+                createWrkNextVM = new CreateEditWorkingSessionNextViewModel();
+            }
+            CurrentViewModel = createWrkNextVM;
+        }
+        private void OnCreateWorkingSessionInitiated()
+        {
+            CreateEditWorkingSessionNextViewModel.Mode = "Create";
+            CurrentViewModel = createEditWorkingSession;
+        }
+
+        #endregion
+
+        #region Event managing code
         private void OnEventCreated(Event evt)
         {
             OnManageEventViewSwitch();
@@ -75,10 +116,8 @@ namespace Artisan.ViewModels
         {
             CurrentViewModel = manageEventViewModel;
         }
-        private void OnManageWorkingSessionViewSwitch()
-        {
-
-        }
+        #endregion
+        
         private void OnSettingsViewSwitch()
         {
 

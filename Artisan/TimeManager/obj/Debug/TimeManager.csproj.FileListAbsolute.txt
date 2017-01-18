@@ -39,3 +39,5 @@ C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManag
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\bin\Debug\MaterialDesignThemes.Wpf.dll
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\CreateEditWorkingSessionNextView.g.cs
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\CreateEditWorkingSessionNextView.baml

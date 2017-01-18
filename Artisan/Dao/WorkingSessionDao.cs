@@ -19,8 +19,12 @@ namespace Dao
                                     "`EndTime`	VarChar(50) NOT NULL" +
                                     ");";
 
+
+
         public WorkingSessionDao(string table):base(table)
         { tDao = new TaskDao(table); }
+
+
 
         public bool DeleteAllWorkingSessions()
         {
@@ -113,6 +117,37 @@ namespace Dao
                 return true;
             return false;
         }//works
+
+        /// <summary>
+        /// Rerieves the last working session to be inserted in the database.
+        /// </summary>
+        /// <returns></returns>
+        public WorkingSession RetrieveLastWorkingSession()
+        {
+            return RetrieveWorkingSession("SELECT * FROM "+Table+
+                " WHERE   ID = (SELECT MAX(ID)  FROM "+Table+" );");
+        }
+        private WorkingSession RetrieveWorkingSession(string query)
+        {
+            WorkingSession workingSession;
+            using (connection = new Connection())
+            using (SQLiteCommand command = new SQLiteCommand())
+            {
+                SQLiteConnection con = connection.Open(DataSource);
+                command.Connection = con;
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+                SQLiteDataReader reader = command.ExecuteReader();
+                reader.Read();
+                workingSession = new WorkingSession(Convert.ToInt32(reader[0]),
+                        reader[1].ToString(), Convert.ToDateTime(reader[3].ToString()),
+                        reader[2].ToString(), Convert.ToDateTime(reader[4].ToString()),
+                        Convert.ToDateTime(reader[5].ToString()));
+
+                workingSession.Tasks = tDao.RetrieveTasksForWorkingSession(workingSession);
+            }
+            return workingSession;
+        }
 
 
         public int RetrieveAllWorkingSessionsCount()

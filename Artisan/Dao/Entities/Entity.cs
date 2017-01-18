@@ -7,7 +7,9 @@ namespace Dao.Entities
         protected int iD;
         protected string name;
 
-        public int ID { get { return iD; } }
+        public int ID { get { return iD; }
+            set { iD = value; }
+        }
         public string Name
         {
             get { return name; }

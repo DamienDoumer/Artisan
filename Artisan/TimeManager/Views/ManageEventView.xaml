@@ -58,7 +58,7 @@
         <GroupBox Grid.Column="0" Grid.Row="0" Style="{DynamicResource MaterialDesignGroupBox}" Margin="10,10,17,0"
                   Header="{Binding GroupboxHeader}"
                   materialDesign:ShadowAssist.ShadowDepth="Depth3">
-            <ListView ItemsSource="{Binding Events}" ItemTemplate="{StaticResource DisplayEventTemplate}"
+            <ListBox ItemsSource="{Binding Events}" ItemTemplate="{StaticResource DisplayEventTemplate}"
                   SelectedItem="{Binding CurrentEvent}" Margin="0,0,0,10" Width="231"/>
         </GroupBox>
         

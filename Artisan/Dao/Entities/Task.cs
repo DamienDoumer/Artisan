@@ -7,6 +7,9 @@ namespace Dao.Entities
         public int WorkingSessionID { get; set; }
         public bool Accomplished { get; set; }
 
+        public Task():base("", 0)
+        {
+        }
         public Task(int id , string name, int workingSessionID, bool accomp):base(name, id)
         {
             WorkingSessionID = workingSessionID;

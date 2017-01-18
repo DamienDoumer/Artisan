@@ -9,5 +9,18 @@ namespace TimeManager.ViewModels
 {
     public class ManageWorkingSessionsViewModel : BindableBase
     {
+        public static event Action CreateWorkingSessionCommand;
+
+        public RelayCommand CreateCommand { get; private set; }
+
+        public ManageWorkingSessionsViewModel()
+        {
+            CreateCommand = new RelayCommand(OnCreate);
+        }
+
+        public void OnCreate()
+        {
+            CreateWorkingSessionCommand?.Invoke();
+        }
     }
 }
