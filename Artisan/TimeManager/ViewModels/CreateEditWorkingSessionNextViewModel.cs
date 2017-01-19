@@ -85,11 +85,9 @@ namespace TimeManager.ViewModels
         public CreateEditWorkingSessionNextViewModel()
         {
             AddEditButtonText = "Add";
-
             if (Mode == CreateEditWorkingSessionViewModel.CREATE_MODE)
             {
                 TaskList = new ObservableCollection<Task>();
-                MainWorkingSession = new WorkingSession();
             }
             else
             {
@@ -112,11 +110,10 @@ namespace TimeManager.ViewModels
         }
         private void OnSave()
         {
-            MainWorkingSession.Tasks = new List<Task>(TaskList);
-            wrkDao.Save(MainWorkingSession);
-
             if(Mode == CreateEditWorkingSessionViewModel.CREATE_MODE)
             {
+                MainWorkingSession.Tasks = new List<Task>(TaskList);
+                wrkDao.Save(MainWorkingSession);
                 SaveTasks(MainWorkingSession.Tasks);
             }
             else
@@ -125,6 +122,7 @@ namespace TimeManager.ViewModels
                 {
                     ///In edit mode, save only the newly added tasks.
                     SaveTasks(newTasks);
+                    wrkDao.Update(MainWorkingSession);
                 }
             }
             
@@ -199,6 +197,14 @@ namespace TimeManager.ViewModels
         {
             foreach (Task t in tasks)
             {
+                if (MainWorkingSession.ID == 0)
+                {
+                    t.WorkingSessionID = 1;
+                }
+                else
+                {
+                    t.WorkingSessionID = MainWorkingSession.ID;
+                }
                 taskDao.Save(t);
             }
         }
