@@ -139,6 +139,12 @@ namespace Dao
                 command.ExecuteNonQuery();
                 SQLiteDataReader reader = command.ExecuteReader();
                 reader.Read();
+
+                if(!reader.HasRows)
+                {
+                    throw new Exception("No Working sessions found in database");
+                }
+                
                 workingSession = new WorkingSession(Convert.ToInt32(reader[0]),
                         reader[1].ToString(), Convert.ToDateTime(reader[3].ToString()),
                         reader[2].ToString(), Convert.ToDateTime(reader[4].ToString()),
@@ -168,5 +174,14 @@ namespace Dao
         {
             return RetrieveCount("select count() from WorkingSession where Day = '" + date.ToString() + "'");
         }//works
+        public void Update(WorkingSession wrk)
+        {
+            string condition = " Where ID = " + wrk.ID;
+            Update("Name", wrk.Name, condition);
+            Update("Description", wrk.Description, condition);
+            Update("Day", wrk.Day.ToString(), condition);
+            Update("StartTime", wrk.StartTime.ToString(), condition);
+            Update("EndTime", wrk.EndTime.ToString(), condition);
+        }
     }
 }

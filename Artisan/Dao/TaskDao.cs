@@ -124,6 +124,9 @@ namespace Dao
         {
             return RetrieveCount("Select count() from " + Table);
         }//works
-
+        public void Update(Task task)
+        {
+            Update("Name", task.Name, "Where ID = " + task.ID);
+        }
     }
 }

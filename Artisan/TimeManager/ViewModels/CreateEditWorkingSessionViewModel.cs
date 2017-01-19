@@ -8,6 +8,9 @@ namespace TimeManager.ViewModels
 {
     public class CreateEditWorkingSessionViewModel : BindableBase
     {
+        public const string CREATE_MODE = "Create";
+        public const string EDIT_MODE = "Edit";
+
         private static WorkingSession workingSession;
         public static event Action<WorkingSession> NextStepLaunched;
 
@@ -24,38 +27,61 @@ namespace TimeManager.ViewModels
 
         public CreateEditWorkingSessionViewModel()
         {
-            if(Mode == "Create")
+            if(Mode == CREATE_MODE)
             {
                 Title = "Create A Working Session";
-                workingSession = new WorkingSession();
+                NextCommand = new RelayCommand(OnNextClickSave, CanNextClick);
             }
             else
             {
                 Title = "Edit A Working Session";
+                NextCommand = new RelayCommand(OnNextClickUpdate, CanNextClick);
             }
-
-            NextCommand = new RelayCommand(OnNextClick, CanNextClick);
+            if(MainWorkingSession == null)
+            {
+                MainWorkingSession = new WorkingSession();
+                MainWorkingSession.Day = DateTime.Now;
+            }
+            EndTime = DateTime.Now;
+            StartTime = DateTime.Now;
         }
 
-        private void OnNextClick()
+        private void OnNextClickUpdate()
+        {
+            BuilWorkingSessionTime();
+            NextStepLaunched?.Invoke(MainWorkingSession);
+        }
+        private void OnNextClickSave()
+        {
+            BuilWorkingSessionTime();
+            ///I set the ID of this wrkingsession to correspond to that
+            /// of the workingsession to be Saved.
+            try
+            {
+                MainWorkingSession.ID = new WorkingSessionDao("WorkingSession") { }
+                .RetrieveLastWorkingSession().ID + 1;
+            }
+            catch
+            {
+                MainWorkingSession.ID = 0;
+            }
+
+            NextStepLaunched?.Invoke(MainWorkingSession);
+        }
+        private void BuilWorkingSessionTime()
         {
             ///Set the appropriate date and send it to the next layer 
             /// as a working session event
             MainWorkingSession.EndTime = new DateTime(MainWorkingSession.Day.Year,
                                              MainWorkingSession.Day.Month, MainWorkingSession.Day.Day,
                                              MainWorkingSession.EndTime.Hour,
-                                             MainWorkingSession.EndTime.Minute, 
+                                             MainWorkingSession.EndTime.Minute,
                                              MainWorkingSession.EndTime.Second);
             MainWorkingSession.StartTime = new DateTime(MainWorkingSession.Day.Year,
                                              MainWorkingSession.Day.Month, MainWorkingSession.Day.Day,
                                              MainWorkingSession.StartTime.Hour,
                                              MainWorkingSession.StartTime.Minute,
                                              MainWorkingSession.StartTime.Second);
-            ///I set the ID of this wrkingsession to correspond to that
-            /// of the workingsession to be Saved.
-            MainWorkingSession.ID = new WorkingSessionDao("WorkingSession") { }.RetrieveLastWorkingSession().ID + 1;
-
-            NextStepLaunched?.Invoke(MainWorkingSession);
         }
         private bool CanNextClick()
         {

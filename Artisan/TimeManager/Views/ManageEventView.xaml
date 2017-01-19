@@ -107,7 +107,7 @@
                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <StackPanel Margin="10">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Name:  " FontFamily="Bold"/>
+                    <TextBlock Text="Title:  " FontFamily="Bold"/>
                     <TextBlock Text="{Binding CurrentEvent.Name, Mode=TwoWay}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">

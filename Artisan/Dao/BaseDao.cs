@@ -196,15 +196,12 @@ namespace Dao
         }//Works
         protected bool Update(string attrib, string attribVal, string conditions = null)
         {
-            Query = null;
-            if(conditions ==null)
+            Query = "Update " + Table + " Set " + attrib + " = '" + attribVal + "' ";
+            if (conditions !=null)
             {
-                Query = "Update " + Table + " Set " + attrib + " = '" + attribVal + "' ";
+                Query = Query + conditions;
             }
-            else
-            {
-                Query = "Update " + Table + " Set " + attrib + " = '" + attribVal + "' "+conditions;
-            }
+
             int success = ExecuteQuery(Query);
 
             if (success == 1)

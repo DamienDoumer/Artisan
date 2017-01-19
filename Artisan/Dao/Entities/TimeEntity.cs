@@ -18,8 +18,8 @@ namespace Dao.Entities
             }
             else
             {
-                TimeNarative = "This Working Session Occures At: " + StartTime.Date+" From "
-                    +StartTime.TimeOfDay+" To "+EndTime.TimeOfDay;
+                TimeNarative = "Starts At: " + StartTime.Date+"\n From "
+                    +StartTime.TimeOfDay+"\n To "+EndTime.TimeOfDay;
 
             }
         }

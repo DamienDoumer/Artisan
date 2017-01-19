@@ -36,20 +36,21 @@ namespace Artisan.ViewModels
             set { SetProperty(ref currentViewModel, value); }
         }
 
-
         public MainWindowViewModel()
         {
             ///Workingsession management code
-            CreateEditWorkingSessionViewModel.Mode = "Create";
+            CreateEditWorkingSessionNextViewModel.SwitchToPreviousScreen += SwitchToPreviousScreenInitiated;
+            CreateEditWorkingSessionViewModel.Mode = CreateEditWorkingSessionViewModel.CREATE_MODE;
             createEditWorkingSession = new CreateEditWorkingSessionViewModel();
             manageWorkingSessionVM = new ManageWorkingSessionsViewModel();
             CreateEditWorkingSessionViewModel.NextStepLaunched += OnNextStepSwitch;
             ManageWorkingSessionsViewModel.CreateWorkingSessionCommand += OnCreateWorkingSessionInitiated;
             CreateEditWorkingSessionNextViewModel.CreateEditTerminated += OnSwitchToManageWorkingSession;
             ManageWorkingSessionSwitchCommand = new RelayCommand(OnSwitchToManageWorkingSession);
+            ManageWorkingSessionsViewModel.EditWorkingSession += OnEditWorkingSessionInitiated;
 
-            manageEventViewModel = new ManageEventViewModel();
             ///Here I handle the event Fired when the user wants to edit an event.
+            manageEventViewModel = new ManageEventViewModel();
             ManageEventViewModel.EditEvent += NavigateToEditEventView;
             ManageEventViewModel.CreateEvent += NavigateToCreateEventView;
             CreateEventViewModel.EventCreated += OnEventCreated;
@@ -65,6 +66,10 @@ namespace Artisan.ViewModels
 
         #region WorkingSession ManagementCode
 
+        private void SwitchToPreviousScreenInitiated()
+        {
+            CurrentViewModel = new CreateEditWorkingSessionViewModel();
+        }
         private void OnSwitchToManageWorkingSession()
         {
             CurrentViewModel = manageWorkingSessionVM;
@@ -76,19 +81,39 @@ namespace Artisan.ViewModels
         private void OnNextStepSwitch(WorkingSession wrk)
         {
             CreateEditWorkingSessionNextViewModel.MainWorkingSession = wrk;
-            CreateEditWorkingSessionNextViewModel.Mode = "Create";
-            if(createWrkNextVM == null)
+
+            if (CreateEditWorkingSessionViewModel.Mode == CreateEditWorkingSessionViewModel.CREATE_MODE)
             {
-                createWrkNextVM = new CreateEditWorkingSessionNextViewModel();
+                CreateEditWorkingSessionNextViewModel.Mode = CreateEditWorkingSessionViewModel.CREATE_MODE;
+                if (createWrkNextVM == null)
+                {
+                    createWrkNextVM = new CreateEditWorkingSessionNextViewModel();
+                }
             }
+            else
+            {
+                CreateEditWorkingSessionNextViewModel.Mode = CreateEditWorkingSessionViewModel.EDIT_MODE;
+                if (createWrkNextVM == null)
+                {
+                    createWrkNextVM = new CreateEditWorkingSessionNextViewModel();
+                }
+            }
+
             CurrentViewModel = createWrkNextVM;
         }
         private void OnCreateWorkingSessionInitiated()
         {
-            CreateEditWorkingSessionNextViewModel.Mode = "Create";
-            CurrentViewModel = createEditWorkingSession;
+            CreateEditWorkingSessionViewModel.Mode = CreateEditWorkingSessionViewModel.CREATE_MODE;
+            CreateEditWorkingSessionViewModel.MainWorkingSession = new WorkingSession();
+            CreateEditWorkingSessionViewModel.MainWorkingSession.Day = DateTime.Now;
+            CurrentViewModel = new CreateEditWorkingSessionViewModel();
         }
-
+        private void OnEditWorkingSessionInitiated(WorkingSession wrk)
+        {
+            CreateEditWorkingSessionViewModel.Mode = CreateEditWorkingSessionViewModel.EDIT_MODE;
+            CreateEditWorkingSessionViewModel.MainWorkingSession = wrk;
+            CurrentViewModel = new CreateEditWorkingSessionViewModel();
+        }
         #endregion
 
         #region Event managing code
