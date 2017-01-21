@@ -7,8 +7,12 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
              xmlns:data="clr-namespace:Dao.Entities;assembly=Dao"
-             mc:Ignorable="d" 
-             d:DesignHeight="392.276" Width="474.552">
+             mc:Ignorable="d" >
+
+
+    <!--This height should be set only to work on the view and 
+    it should be canceled when deploying the application to end users-->
+    <!--d:DesignHeight="392.276" Width="474.552"-->
 
     <UserControl.DataContext>
         <localViewModels:ManageWorkingSessionsViewModel/>
@@ -69,7 +73,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Description:  " FontFamily="Bold"/>
-                    <TextBlock Text="{Binding CurrentWorkingSession.Venue, Mode=TwoWay}"/>
+                    <TextBlock Text="{Binding CurrentWorkingSession.Description, Mode=TwoWay}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Time:  " FontFamily="Bold"/>

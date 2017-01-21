@@ -10,8 +10,8 @@ namespace Dao
         public static string CreateStatement { get; } = "CREATE TABLE `User` ( " +
                                                         " `Name`	TEXT NOT NULL, "+
 	                                                    " `Email`	Varchar(50) NOT NULL, "+
-	                                                    " `PhoneNumber`	INTEGER NOT NULL, "+
-	                                                    " `Address`	TEXT NOT NULL "+
+                                                        " `PhoneNumber`	Varchar(20) NOT NULL, " +
+                                                        " `Password`	Varchar(50) NOT NULL " +
                                                         " ) ";
 
         public UserDao(string table):base(table)
@@ -20,7 +20,7 @@ namespace Dao
         public bool Save(User data)
         {
             return ChangeUserName(data.Name) && ChangePhoneNumber(data.PhoneNumber)
-                && ChangeEmail(data.EmailAddress) && ChangeAddress(data.Address);
+                && ChangeEmail(data.EmailAddress) && ChangePassword(data.Password);
         }
         public bool SaveNew(User data)
         {
@@ -46,13 +46,13 @@ namespace Dao
         {
             return Update("Email", email);
         }//Works
-        public bool ChangePhoneNumber(int phoneNum)
+        public bool ChangePhoneNumber(string phoneNum)
         {
             return Update("PhoneNumber", phoneNum.ToString());
         }//Works
-        public bool ChangeAddress(string add)
+        public bool ChangePassword(string psw)
         {
-            return Update("Address", add);
+            return Update("Password", psw);
         }//Works
         public User retrieveUser()
         {
@@ -72,7 +72,7 @@ namespace Dao
                 while (reader.Read())
                 {
                     user = new User(reader[0].ToString(), 
-                        Convert.ToInt32(reader[1].ToString()),
+                        reader[1].ToString(),
                         reader[2].ToString(), reader[3].ToString());
                 }
                 reader.Close();

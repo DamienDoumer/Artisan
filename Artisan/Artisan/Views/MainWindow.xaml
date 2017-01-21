@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Artisan.Views"
         mc:Ignorable="d"
-        Title="Artisan" Height="493.639" Width="614.329" WindowStartupLocation="CenterScreen"
+        Title="Artisan" Height="531.26" Width="654.329" WindowStartupLocation="CenterScreen"
         x:Name="Artisan" MinHeight="525.26" MinWidth="636.329" BorderThickness="1"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
@@ -81,12 +81,24 @@
         </HamburgerMenu:HamburgerMenu>
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Right" VerticalScrollBarVisibility="Auto">
-            <WrapPanel Orientation="Horizontal" >
                 <!--This content control is used to carry the Views of other modules-->
-                <ContentControl Margin="10" Content="{Binding CurrentViewModel}"
-                                HorizontalAlignment="Center" Height="461" Width="551"/>
-             
-            </WrapPanel>
+                <ContentControl BorderBrush="Red" HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                BorderThickness="2" Content="{Binding CurrentViewModel}"
+                                Grid.Column="1" Grid.Row="1"
+                                />
+            <!--<Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+            </Grid>-->
         </ScrollViewer>
 
     </DockPanel>

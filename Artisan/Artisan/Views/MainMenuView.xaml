@@ -14,12 +14,12 @@
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
-     FontFamily="{DynamicResource MaterialDesignFont}" Height="323.782" Width="370.42"
+     FontFamily="{DynamicResource MaterialDesignFont}"
     >
     <Grid Background="Aqua">
-        <materialDesign:Card Margin="4 4 0 0" Background="AliceBlue"
+        <!--<materialDesign:Card Margin="94,58,100,69" Background="AliceBlue"
             		Foreground="{DynamicResource AccentColorBrush}"
-            		Width="200" Height="163" materialDesign:ShadowAssist.ShadowDepth="Depth3"/> 
-
+                             materialDesign:ShadowAssist.ShadowDepth="Depth3"/>-->
+        <Border Margin="82,102,117,49" Background="Red" />
     </Grid>
 </UserControl>

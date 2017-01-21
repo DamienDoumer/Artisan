@@ -28,61 +28,68 @@
         <ImageBrush x:Key="WelcomeBackGround" ImageSource="UIResources\WelcomeScreenBackground.jpg" />
     </Window.Resources>
 
-    <Border Background="{StaticResource WelcomeBackGround}" MouseLeftButtonDown="Border_MouseLeftButtonDown" BorderBrush="Blue">
-        <StackPanel Margin="30">
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Center" VerticalAlignment="Top" 
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="{StaticResource WelcomeBackGround}" Grid.Column="0"
+                MouseLeftButtonDown="Border_MouseLeftButtonDown" BorderBrush="Blue" Grid.ColumnSpan="1">
+            <StackPanel Margin="30">
+                <TextBlock x:Name="textBlock" HorizontalAlignment="Center" VerticalAlignment="Top" 
                        TextWrapping="Wrap" Margin="0" Height="33" 
                        Style="{StaticResource MaterialDesignHeadlineTextBlock}" 
                        Width="220">
                       
                 Welcome to Artisan
 
-            </TextBlock>
+                </TextBlock>
 
-            <TextBox 		
+                <TextBox 		
                  Margin="20,40,20,10"
 				 x:Name="UserNameTextBox"
 				 materialDesign:HintAssist.Hint="User Name"
                  Text="{Binding Path=Name, Mode=TwoWay}"
                  ToolTip="Input your user name"/>
 
-            <PasswordBox Name="PasswordTextBlock1"
-                materialDesign:HintAssist.Hint="Password"
-                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="20,10,20,10"
+                <PasswordBox Name="PasswordTextBox1"
+                materialDesign:HintAssist.Hint="Password" Margin="20,10,20,10"
                           ToolTip="Enter your Password"/>
 
-            <PasswordBox Name="PasswordTextBlock2"
-                materialDesign:HintAssist.Hint="Password"
-            	Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="20,10,20,10"
+                <PasswordBox Name="PasswordTextBlock2"
+                materialDesign:HintAssist.Hint="Password" Margin="20,10,20,10"
             	ToolTip="Re-enter your password"/>
 
-            <TextBox 		
+                <TextBox 		
                 Margin="20,10,20,10"
 				 x:Name="EmailTextBox"
                  Text="{Binding Path=EMail, Mode=TwoWay}"
 				 materialDesign:HintAssist.Hint="E-Mail"
                  ToolTip="Input your e-mail address"/>
 
-            <TextBox 		
+                <TextBox 		
                 Margin="20,10,20,50"
 				 x:Name="PhoneNumberTextBox"
-                Text="{Binding Path=PhoneNumber, Mode=OneWay}"
+                Text="{Binding Path=PhoneNumber, Mode=TwoWay}"
 				 materialDesign:HintAssist.Hint="Phone Number"
                  ToolTip="Input your phone number" Height="31"/>
 
-            <StackPanel Orientation="Horizontal">
-                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
             		Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"
             		Command="{Binding CloseCommand}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
             		Width="86" Margin="327,4,4,4"
                     Content="Cancle"
                     />
-                <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" 
             		Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"
+                        Command="{Binding DoneCommand}"
             		HorizontalAlignment="Center" VerticalAlignment="Bottom"
             		Content="Done" Margin="13,4,4,4" Width="86" />
-            </StackPanel>
+                </StackPanel>
 
-        </StackPanel>
-    </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+
 </Window>

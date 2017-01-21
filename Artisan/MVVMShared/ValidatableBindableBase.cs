@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
+/// <summary>
+/// Used for data validation
+/// </summary>
 namespace Artisan.MVVMShared
 {
     public class ValidatableBindableBase : BindableBase, INotifyDataErrorInfo
@@ -24,7 +27,7 @@ namespace Artisan.MVVMShared
         {
             get
             {
-                throw new NotImplementedException();
+                return _errors.Count > 0;
             } 
         }
 
@@ -56,17 +59,26 @@ namespace Artisan.MVVMShared
         private void ValidateProperty<T>(string propertyName, T value)
         {
             var results = new List<ValidationResult>();
+            ///Call a given object, 
             ValidationContext context = new ValidationContext(this);
+            ///Say what property in the object is being validated
             context.MemberName = propertyName;
+            ///Call a method to evaluate the object
+            /// Goes throught the object, look for errors, if any is found,
+            /// add it to the result collection.
             Validator.TryValidateProperty(value, context, results);
 
+            ///if there are any results(errors)
             if (results.Any())
             {
-
+                ///Add the errors in set the result as the error for the property 
+                /// with the given name.
                 _errors[propertyName] = results.Select(c => c.ErrorMessage).ToList();
             }
             else
             {
+                ///else remove the property fromt eh dictionary cause there is no
+                /// error a ssociated to it
                 _errors.Remove(propertyName);
             }
             ErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName));

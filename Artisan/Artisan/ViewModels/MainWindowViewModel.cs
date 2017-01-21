@@ -14,6 +14,11 @@ namespace Artisan.ViewModels
     class MainWindowViewModel : BindableBase
     {
         /// <summary>
+        /// Fired when th eneed of displaying a message to the user comes.
+        /// </summary>
+        public static event Action<string> DiaologNeeded;
+
+        /// <summary>
         /// These commands are to handle the click events of the 
         /// Hamburger Menu.
         /// </summary>
@@ -100,6 +105,11 @@ namespace Artisan.ViewModels
             }
 
             CurrentViewModel = createWrkNextVM;
+
+            ///--------------------------------
+            /// Translation.......
+            /// -------------------------------
+            DiaologNeeded?.Invoke("Input a step at a time and press \"Add\" to add the step to the working session.");
         }
         private void OnCreateWorkingSessionInitiated()
         {
