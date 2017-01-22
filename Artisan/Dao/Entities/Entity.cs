@@ -28,17 +28,19 @@ namespace Dao.Entities
 
         public Entity(string name, int id)
         {
-            if (name.Length > 50)
-            {
-                ///----------------------------------///
-                /// translation needed               ///
-                /// ---------------------------------///
-                throw new Exception("The name of your event should not be of more than 100 characters.");
-            }
-            else
-            {
-                this.name = name;
-            }
+            //if (name.Length > 50)
+            //{
+            //    ///----------------------------------///
+            //    /// translation needed               ///
+            //    /// ---------------------------------///
+            //    throw new Exception("The name of your event should not be of more than 100 characters.");
+            //}
+            //else
+            //{
+            //    this.name = name;
+            //}
+
+            this.name = name;
 
             iD = id;
         }

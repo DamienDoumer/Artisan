@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
              xmlns:data="clr-namespace:Dao.Entities;assembly=Dao"
-             mc:Ignorable="d" >
+             mc:Ignorable="d">
 
 
     <!--This height should be set only to work on the view and 
@@ -20,70 +20,120 @@
 
     <UserControl.Resources>
         <DataTemplate x:Key="DataTemplate2" DataType="{x:Type data:Task}">
-            <TextBlock Text="{Binding Name}"/>
+            <TextBlock Text="{Binding Name}"  FontFamily="Segoe Print" FontSize="15"/>
         </DataTemplate>
         <DataTemplate x:Key="DataTemplate1" DataType="{x:Type data:WorkingSession}">
-            <TextBlock Text="{Binding Name}"/>
+            <StackPanel>
+                <TextBlock Text="{Binding Name}"  FontFamily="Segoe Print" FontSize="15"/>
+                <TextBlock Text="{Binding StartTime}" FontFamily="Segoe Print" FontSize="15"/>
+            </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Button x:Name="CreateButton" Content="Create" ToolTip="Create A Working Session"
-                Command="{Binding CreateCommand}" HorizontalAlignment="Left" 
-                Margin="10,275,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="EditButton" Content="Edit" HorizontalAlignment="Left"
-                ToolTip="Edit The Selected Working Session"
-                Command="{Binding EditCommand}"
-                Margin="90,275,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="DeleteButton" Content="Delete" HorizontalAlignment="Left"
-                ToolTip="Delete The Selected Working Session"
-                Command="{Binding DeleteCommand}"
-                Margin="10,309,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="TodayButton" Content="Todays" HorizontalAlignment="Left"
-                ToolTip="Today's Working Session" CommandParameter="today"
-                Command="{Binding SortWorkingSessionsCommand}"
-                Margin="90,339,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="FutureButton" Content="Future" HorizontalAlignment="Left"
-                ToolTip="Future Working Sessions"
-                CommandParameter="future"
-                Command="{Binding SortWorkingSessionsCommand}"
-                Margin="10,339,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="PastButton" Content="Past" HorizontalAlignment="Left"
-                ToolTip="Past Working Sessions"
-                CommandParameter="past"
-                Command="{Binding SortWorkingSessionsCommand}"
-                Margin="90,309,0,0" VerticalAlignment="Top" Width="75"/>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="251"
-                 Margin="10,10,0,0" VerticalAlignment="Top" Width="218"
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="39"/>
+        </Grid.RowDefinitions>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="139*" />
+                <ColumnDefinition Width="7" />
+                <ColumnDefinition Width="119*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"
+                      Grid.RowSpan="2" Background="Gray" Margin="1,0" />
+
+            <StackPanel Background="White" Grid.Column="0" Opacity="0.8" >
+
+                <TextBlock Text="{Binding GroupboxHeader}" FontFamily="Segoe Print" FontSize="25"
+                   HorizontalAlignment="Center" FontWeight="UltraBold" Margin="5, 5, 5, 15"/>
+
+                <ListBox x:Name="listBox"
                  SelectedItem="{Binding CurrentWorkingSession}"
                  ItemTemplate="{StaticResource DataTemplate1}"
                  ItemsSource="{Binding WorkingSessions}"
-                 />
+                 >
+                </ListBox>
+            </StackPanel>
+            
+            <materialDesign:Card Grid.Column="2" Margin="5" Grid.RowSpan="2"
+                                 materialDesign:ShadowAssist.ShadowDepth="Depth5">
+                <!--<materialDesign:Card.Effect>
+                    <BlurEffect Radius="10"/>
+                </materialDesign:Card.Effect>-->
+                
+                <StackPanel Margin="10" Opacity="1">
+                    <TextBlock Text="Details" FontFamily="Segoe Print" FontSize="25"
+                   HorizontalAlignment="Center" FontWeight="UltraBold" Margin="0, 5, 0, 15"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Title:" FontWeight="UltraBold" 
+                                   FontFamily="Segoe Print" FontSize="15"
+                                   Margin="20 0 0 20"/>
+                        <TextBlock Text="{Binding CurrentWorkingSession.Name, Mode=TwoWay}"
+                                FontFamily="Segoe Print" FontSize="15"
+                                   Margin="10 0 0 20"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Description:" FontWeight="UltraBold"
+                                   Margin="20 0 0 20" FontFamily="Segoe Print" FontSize="15"/>
 
-        <materialDesign:Card Margin="10" Grid.Column="1"
-                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <StackPanel Margin="10">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Title:  " FontFamily="Bold"/>
-                    <TextBlock Text="{Binding CurrentWorkingSession.Name, Mode=TwoWay}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Description:  " FontFamily="Bold"/>
-                    <TextBlock Text="{Binding CurrentWorkingSession.Description, Mode=TwoWay}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Time:  " FontFamily="Bold"/>
-                    <TextBlock Text="{Binding CurrentWorkingSession.TimeNarative, Mode=TwoWay}"/>
-                </StackPanel>
-                <TextBlock Text="Tasks:  " FontFamily="Bold"/>
-                <ListBox x:Name="listBox1" Height="100" Width="100"
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="130" Margin="10 0 0 20"
+                                      HorizontalScrollBarVisibility="Disabled">
+                            <TextBlock Text="{Binding CurrentWorkingSession.Description, Mode=TwoWay}"
+                                FontFamily="Segoe Print" FontSize="15"
+                                TextWrapping="Wrap" MaxWidth="429"/>
+                        </ScrollViewer>
+                        
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Time:  " FontWeight="UltraBold" FontFamily="Segoe Print"
+                                   Margin="20 0 0 20" FontSize="15"/>
+                        <TextBlock Text="{Binding CurrentWorkingSession.TimeNarative, Mode=TwoWay}"
+                                FontFamily="Segoe Print" FontSize="15" Margin="10 0 0 20"/>
+                    </StackPanel>
+                    <TextBlock Text="Tasks:  " FontWeight="UltraBold"  FontFamily="Segoe Print"
+                               Margin="20 0 0 20" FontSize="15"/>
+                    <ListBox x:Name="listBox1" MinHeight="10" MinWidth="100"
+                              Margin="20 0 0 20" ScrollViewer.CanContentScroll="True"
+                             MaxHeight="200"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
                          ItemTemplate="{StaticResource DataTemplate2}"
                          ItemsSource="{Binding Tasks}"/>
+                </StackPanel>
+            </materialDesign:Card>
+        </Grid>
+        <Border Background="Gray" Opacity="0.8" Grid.Row="1" >
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center"
+                  >
+                <Button x:Name="CreateButton" Content="Create" ToolTip="Create A Working Session"
+                Command="{Binding CreateCommand}" 
+                    Margin="5 0 0 0" Height="30" Width="75"/>
+                <Button x:Name="EditButton" Content="Edit" 
+                ToolTip="Edit The Selected Working Session"
+                Command="{Binding EditCommand}" Margin="5 0 0 0" Height="30" Width="75"/>
+                <Button x:Name="DeleteButton" Content="Delete"
+                ToolTip="Delete The Selected Working Session"
+                Command="{Binding DeleteCommand}"  Margin="5 0 0 0" Height="30" Width="75"/>
+                <Button x:Name="TodayButton" Content="Today" 
+                     Margin="5 0 0 0" Height="30" Width="75"
+                ToolTip="Today's Working Session" CommandParameter="today"
+                Command="{Binding SortWorkingSessionsCommand}"/>
+                <Button x:Name="FutureButton" Content="Future"
+                ToolTip="Future Working Sessions"
+                CommandParameter="future"
+                Command="{Binding SortWorkingSessionsCommand}" Margin="5 0 0 0" Height="30" Width="75"/>
+                <Button x:Name="PastButton" Content="Past" 
+                ToolTip="Past Working Sessions"
+                CommandParameter="past"
+                Command="{Binding SortWorkingSessionsCommand}"  Margin="5 0 5 0" Height="30" Width="75"/>
             </StackPanel>
-        </materialDesign:Card>
+        </Border>
     </Grid>
+    
 </UserControl>

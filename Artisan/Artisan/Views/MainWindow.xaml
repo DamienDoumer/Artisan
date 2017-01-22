@@ -57,11 +57,16 @@
         <DataTemplate DataType="{x:Type timeManagerViewModel:CreateEditWorkingSessionNextViewModel}">
             <timeManagerView:CreateEditWorkingSessionNextView/>
         </DataTemplate>
+
+        <ImageBrush x:Key="img" ImageSource="UIResources\SkyBlueBackGround.jpg">
+            
+        </ImageBrush>
     </Window.Resources>
 
 
-    <DockPanel>
+    <DockPanel Background="{StaticResource img}">
         <HamburgerMenu:HamburgerMenu Background="CornflowerBlue" MenuIconColor="White" 
+                                     Opacity="0.7"
                                      Grid.Column="0" DockPanel.Dock="Left"
                                      SelectionIndicatorColor="White" MenuItemForeground="White"
                                      HorizontalAlignment="Left">
@@ -80,7 +85,8 @@
             </HamburgerMenu:HamburgerMenu.Content>
         </HamburgerMenu:HamburgerMenu>
 
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Right" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Right" 
+                      VerticalScrollBarVisibility="Auto">
                 <!--This content control is used to carry the Views of other modules-->
                 <ContentControl BorderBrush="Red" HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"

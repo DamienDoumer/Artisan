@@ -20,7 +20,13 @@ namespace TimeManager.ViewModels
         private ObservableCollection<Task> tasks;
         private ObservableCollection<WorkingSession> workingSessions;
         private OccuranceMonitor occuranceMon;
+        private string grpBoxHeader;
 
+        public string GroupboxHeader
+        {
+            get { return grpBoxHeader; }
+            set { SetProperty(ref grpBoxHeader, value); }
+        }
         public ObservableCollection<WorkingSession> WorkingSessions
         {
             get { return workingSessions; }
@@ -65,7 +71,7 @@ namespace TimeManager.ViewModels
 
             workingSessions = new ObservableCollection<WorkingSession>(
                 wrkDao.RetrieveAllWorkingSessions());
-
+            GroupboxHeader = "Every working Sessions";
 
             SortWorkingSessionsCommand = new RelayCommand<string>(OnSortWorkingSessions);
         }
@@ -103,11 +109,14 @@ namespace TimeManager.ViewModels
             {
                 case "today":
                     addToEventsList(present);
+                    GroupboxHeader = "Today's Working Sessions";
                     break;
                 case "past":
+                    GroupboxHeader = "Past Working Sessions";
                     addToEventsList(past);
                     break;
                 case "future":
+                    GroupboxHeader = "Future Working Sessions";
                     addToEventsList(future);
                     break;
             }

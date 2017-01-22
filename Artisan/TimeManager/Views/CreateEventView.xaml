@@ -6,8 +6,10 @@
              xmlns:local="clr-namespace:TimeManager.Views"
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" Height="453.639" Width="324"
+             
              >
+
+    <!--mc:Ignorable="d" Height="453.639" Width="324"-->
 
     <!--This view is used to create and Edit Events sessions-->
     <UserControl.Resources>

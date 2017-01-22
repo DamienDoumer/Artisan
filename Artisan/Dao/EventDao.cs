@@ -78,8 +78,8 @@ namespace Dao
                 
                 while(reader.Read())
                 {
-                    evnt = new Event(Convert.ToInt32(reader[0].ToString()), reader[2].ToString(), 
-                        reader[1].ToString(), reader[3].ToString(), Convert.ToDateTime(reader[4].ToString()));
+                    evnt = new Event(Convert.ToInt32(reader[0].ToString()), reader[1].ToString(), 
+                        reader[2].ToString(), reader[3].ToString(), Convert.ToDateTime(reader[4].ToString()));
                     events.Add(evnt);
                 }
                 reader.Close();

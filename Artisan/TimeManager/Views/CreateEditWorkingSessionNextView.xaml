@@ -7,8 +7,9 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
              xmlns:data="clr-namespace:Dao.Entities;assembly=Dao"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" Width="405.882">
+             mc:Ignorable="d" >
+
+    <!--d:DesignHeight="300" Width="405.882"-->
 
     <UserControl.DataContext>
         <localViewModels:CreateEditWorkingSessionNextViewModel/>
