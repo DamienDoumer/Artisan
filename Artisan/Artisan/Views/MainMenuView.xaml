@@ -5,21 +5,108 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Artisan.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-
              mc:Ignorable="d"
-         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-     TextElement.FontWeight="Regular"
-     TextElement.FontFamily="Verdana"
-     TextElement.FontSize="13"
-     TextOptions.TextFormattingMode="Ideal"
-     TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}"
-     FontFamily="{DynamicResource MaterialDesignFont}"
+             xmlns:localViewModels="clr-namespace:Artisan.ViewModels"
+             xmlns:data="clr-namespace:Dao.Entities;assembly=Dao"
     >
-    <Grid Background="Aqua">
-        <!--<materialDesign:Card Margin="94,58,100,69" Background="AliceBlue"
-            		Foreground="{DynamicResource AccentColorBrush}"
-                             materialDesign:ShadowAssist.ShadowDepth="Depth3"/>-->
-        <Border Margin="82,102,117,49" Background="Red" />
+    <UserControl.DataContext>
+        <localViewModels:MainMenuViewModel/>    
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="DataTemplate2" DataType="{x:Type data:Task}">
+            <TextBlock Text="{Binding Name}"  FontFamily="Segoe Print" FontSize="15"/>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="141*"/>
+            <ColumnDefinition Width="143*"/>
+        </Grid.ColumnDefinitions>
+        
+        <materialDesign:Card Grid.Column="0" Margin="5" 
+                             Background="AliceBlue" materialDesign:ShadowAssist.ShadowDepth="Depth5">
+            <StackPanel Margin="10">
+                <TextBlock Text="Closest Appointment" FontFamily="Segoe Print" FontSize="25"
+                   HorizontalAlignment="Center" FontWeight="UltraBold" Margin="0, 5, 0, 15"/>
+                <StackPanel Orientation="Horizontal" Margin="5, 5, 5, 5">
+                    <TextBlock Text="Title:  " FontWeight="UltraBold" FontFamily="Segoe Print" FontSize="15"/>
+                    <TextBlock Text="{Binding ClossestEvent.Name, Mode=TwoWay}" FontSize="15"
+                               FontFamily="Segoe Print"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5, 5, 5, 5">
+                    <TextBlock Text="Venue:  " FontWeight="UltraBold" FontFamily="Segoe Print"
+                           FontSize="15"/>
+                    <TextBlock Text="{Binding ClossestEvent.Venue, Mode=TwoWay}" FontSize="15"
+                               FontFamily="Segoe Print"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5, 5, 5, 5">
+                    <TextBlock Text="Time:  " FontWeight="UltraBold" FontFamily="Segoe Print"
+                           FontSize="15"/>
+                    <TextBlock Text="{Binding ClossestEvent.Date_Time, Mode=TwoWay}" FontSize="15"
+                               FontFamily="Segoe Print"/>
+                </StackPanel>
+                <StackPanel  Orientation="Vertical" Margin="5, 5, 5, 5">
+                    <TextBlock Text="Description:  " FontWeight="UltraBold" FontFamily="Segoe Print"
+                           FontSize="15"/>
+
+                    <ScrollViewer MaxHeight="300" VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Disabled">
+                        <TextBlock Text="{Binding ClossestEvent.Description, Mode=TwoWay}" FontFamily="Segoe Print"
+                           TextWrapping="Wrap" MinWidth="200" MaxWidth="500" MinHeight="10" FontSize="15">
+                        </TextBlock>
+                    </ScrollViewer>
+
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Column="1" Margin="5" Grid.RowSpan="2"
+                             Background="AliceBlue"
+                                 materialDesign:ShadowAssist.ShadowDepth="Depth5">
+            <!--<materialDesign:Card.Effect>
+                    <BlurEffect Radius="10"/>
+                </materialDesign:Card.Effect>-->
+
+            <StackPanel Margin="10" Opacity="1">
+                <TextBlock Text="Clossest Working Session" FontFamily="Segoe Print" FontSize="25"
+                   HorizontalAlignment="Center" FontWeight="UltraBold" Margin="0, 5, 0, 15"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Title:" FontWeight="UltraBold" 
+                                   FontFamily="Segoe Print" FontSize="15"
+                                   Margin="20 0 0 20"/>
+                    <TextBlock Text="{Binding ClossestWorkingSession.Name, Mode=TwoWay}"
+                                FontFamily="Segoe Print" FontSize="15"
+                                   Margin="10 0 0 20"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Description:" FontWeight="UltraBold"
+                                   Margin="20 0 0 20" FontFamily="Segoe Print" FontSize="15"/>
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="130" Margin="10 0 0 20"
+                                      HorizontalScrollBarVisibility="Disabled">
+                        <TextBlock Text="{Binding ClossestWorkingSession.Description, Mode=TwoWay}"
+                                FontFamily="Segoe Print" FontSize="15"
+                                TextWrapping="Wrap" MaxWidth="429"/>
+                    </ScrollViewer>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Time:  " FontWeight="UltraBold" FontFamily="Segoe Print"
+                                   Margin="20 0 0 20" FontSize="15"/>
+                    <TextBlock Text="{Binding ClossestWorkingSession.TimeNarative, Mode=TwoWay}"
+                                FontFamily="Segoe Print" FontSize="15" Margin="10 0 0 20"/>
+                </StackPanel>
+                <TextBlock Text="Tasks:  " FontWeight="UltraBold"  FontFamily="Segoe Print"
+                               Margin="20 0 0 20" FontSize="15"/>
+                <ListBox x:Name="listBox1" MinHeight="10" MinWidth="100"
+                              Margin="20 0 0 20" ScrollViewer.CanContentScroll="True"
+                             MaxHeight="200"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         ItemTemplate="{StaticResource DataTemplate2}"
+                         ItemsSource="{Binding Tasks}"/>
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </UserControl>

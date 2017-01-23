@@ -13,6 +13,7 @@ namespace TimeManager.ViewModels
     {
         public static event Action CreateWorkingSessionCommand;
         public static event Action<WorkingSession> EditWorkingSession;
+        public static event Action<WorkingSession, ObservableCollection<WorkingSession>> DeleteWorkingSession;
 
         private WorkingSession currentWorkingSession;
         private WorkingSessionDao wrkDao;
@@ -71,7 +72,7 @@ namespace TimeManager.ViewModels
 
             workingSessions = new ObservableCollection<WorkingSession>(
                 wrkDao.RetrieveAllWorkingSessions());
-            GroupboxHeader = "Every working Sessions";
+            GroupboxHeader = "All your working Sessions";
 
             SortWorkingSessionsCommand = new RelayCommand<string>(OnSortWorkingSessions);
         }
@@ -81,8 +82,9 @@ namespace TimeManager.ViewModels
         }
         public void OnDelete()
         {
-            wrkDao.Delete(CurrentWorkingSession);
-            WorkingSessions.Remove(CurrentWorkingSession);
+            DeleteWorkingSession?.Invoke(CurrentWorkingSession, WorkingSessions);
+            //wrkDao.Delete(CurrentWorkingSession);
+            //WorkingSessions.Remove(CurrentWorkingSession);
         }
         public bool CanDelete()
         {

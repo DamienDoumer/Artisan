@@ -63,6 +63,7 @@
             </StackPanel>
             
             <materialDesign:Card Grid.Column="2" Margin="5" Grid.RowSpan="2"
+                                 Background="AliceBlue"
                                  materialDesign:ShadowAssist.ShadowDepth="Depth5">
                 <!--<materialDesign:Card.Effect>
                     <BlurEffect Radius="10"/>
@@ -108,28 +109,28 @@
                 </StackPanel>
             </materialDesign:Card>
         </Grid>
-        <Border Background="Gray" Opacity="0.8" Grid.Row="1" >
+        <Border  Opacity="0.9" Grid.Row="1" >
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center"
                   >
                 <Button x:Name="CreateButton" Content="Create" ToolTip="Create A Working Session"
-                Command="{Binding CreateCommand}" 
+                Command="{Binding CreateCommand}" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                     Margin="5 0 0 0" Height="30" Width="75"/>
-                <Button x:Name="EditButton" Content="Edit" 
+                <Button x:Name="EditButton" Content="Edit" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 ToolTip="Edit The Selected Working Session"
                 Command="{Binding EditCommand}" Margin="5 0 0 0" Height="30" Width="75"/>
-                <Button x:Name="DeleteButton" Content="Delete"
+                <Button x:Name="DeleteButton" Content="Delete" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 ToolTip="Delete The Selected Working Session"
                 Command="{Binding DeleteCommand}"  Margin="5 0 0 0" Height="30" Width="75"/>
-                <Button x:Name="TodayButton" Content="Today" 
+                <Button x:Name="TodayButton" Content="Today"  materialDesign:ShadowAssist.ShadowDepth="Depth5"
                      Margin="5 0 0 0" Height="30" Width="75"
-                ToolTip="Today's Working Session" CommandParameter="today"
+                ToolTip="Today's Working Sessions" CommandParameter="today"
                 Command="{Binding SortWorkingSessionsCommand}"/>
                 <Button x:Name="FutureButton" Content="Future"
-                ToolTip="Future Working Sessions"
+                ToolTip="Future Working Sessions" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 CommandParameter="future"
                 Command="{Binding SortWorkingSessionsCommand}" Margin="5 0 0 0" Height="30" Width="75"/>
                 <Button x:Name="PastButton" Content="Past" 
-                ToolTip="Past Working Sessions"
+                ToolTip="Past Working Sessions" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 CommandParameter="past"
                 Command="{Binding SortWorkingSessionsCommand}"  Margin="5 0 5 0" Height="30" Width="75"/>
             </StackPanel>

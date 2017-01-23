@@ -95,5 +95,35 @@ namespace Dao
             base.Update("Venue", newEvt.Venue, "Where ID = " + old.ID);
             base.Update("Date_Time", newEvt.Date_Time.ToString(), "Where ID = " + old.ID);
         }
+
+        public Event RetrieveClosestEvent()
+        {
+            string query = "Select * from "+Table+" order by Date_Time Desc Limit 1";
+            Event evnt;
+
+            using (connection = new Connection())
+            using (SQLiteCommand command = new SQLiteCommand())
+            {
+                SQLiteConnection con = connection.Open(DataSource);
+                command.Connection = con;
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                reader.Read();
+                if(reader.HasRows == true)
+                {
+                    evnt = new Event(Convert.ToInt32(reader[0].ToString()), reader[1].ToString(),
+                        reader[2].ToString(), reader[3].ToString(), Convert.ToDateTime(reader[4].ToString()));
+                }
+                else
+                {
+                    return new Event();
+                }
+                
+            }
+
+            return evnt;
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace TimeManager.ViewModels
         EventDao evtDao;
         private Event evnt;
         OccuranceMonitor occuranceMon;
+        private string groupboxHeader;
 
         /// <summary>
         /// Fired when the user chooses an event which he wants to edit 
@@ -28,7 +29,7 @@ namespace TimeManager.ViewModels
         /// <param name="evt">The event to be edited.</param>
         public static event Action<Event> EditEvent;
         public static event Action CreateEvent;
-        private string groupboxHeader;
+        public static event Action<Event, ObservableCollection<Event>> DeleteEvent;
 
         public RelayCommand EditCommand { get; private set; }
         public RelayCommand DeleteCommand { get; private set; }
@@ -83,8 +84,9 @@ namespace TimeManager.ViewModels
         }
         private void OnDelete()
         {
-            evtDao.Delete(CurrentEvent);
-            Events.Remove(CurrentEvent);
+            DeleteEvent?.Invoke(CurrentEvent, Events);
+            //evtDao.Delete(CurrentEvent);
+            //Events.Remove(CurrentEvent);
         }
         private bool CanDeleteOrEdit()
         {

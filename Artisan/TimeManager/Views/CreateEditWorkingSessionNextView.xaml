@@ -25,40 +25,50 @@
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type data:Task}" x:Key="ItemDisplay1">
             <StackPanel>
-                <TextBlock Text="{Binding Name}"/>
+                <TextBlock Text="{Binding Name}" TextWrapping="Wrap"/>
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
-    
-    <Grid>
+
+    <Grid Background="AliceBlue" Opacity="0.8">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
+            <RowDefinition Height="39"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
-        <TextBox Margin="10,122,10,10" Text="{Binding Name, Mode=TwoWay}"
-                 materialDesign:HintAssist.Hint="Enter Each Step Here And Press Enter 
-                 Or The Add Button."/>
-        <Button x:Name="button" Content="{Binding AddEditButtonText, Mode=TwoWay}" HorizontalAlignment="Left"
-                Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"
-                Command="{Binding AddCommand}" Width="75"/>
-        <Button x:Name="button1" Content="Remove" HorizontalAlignment="Left"
-                Margin="100,10,0,0" Grid.Row="1" VerticalAlignment="Top"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="139*" />
+                <ColumnDefinition Width="7" />
+                <ColumnDefinition Width="119*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBox Margin="10" Height="26" Text="{Binding Name, Mode=TwoWay}"
+                 materialDesign:HintAssist.Hint="Enter Each Step Here."/>
+
+            <ListBox x:Name="listBox" ItemsSource="{Binding TaskList}"
+                 Grid.Column="2" HorizontalAlignment="Center" SelectedItem="{Binding CurrentTask}"
+                 Margin="10" VerticalAlignment="Center"
+                 ItemTemplate="{StaticResource ItemDisplay1}" Width="144"/>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center"
+                  >
+            <Button x:Name="button" Content="{Binding AddEditButtonText, Mode=TwoWay}"
+                Margin="5 0 0 0" VerticalAlignment="Center"
+                Command="{Binding AddCommand}" Width="75" />
+            <Button x:Name="button1" Content="Remove" 
+                Margin="5 0 0 0"  VerticalAlignment="Center"
                 Command="{Binding RemoveCommand}" Width="75"/>
-        <Button x:Name="button2" Content="Save" HorizontalAlignment="Left"
-                VerticalAlignment="Top" Width="75" Margin="10,56,0,0" 
-                Command="{Binding SaveCommand}" Grid.Row="1"/>
-        <Button x:Name="Previous" Content="Back" HorizontalAlignment="Left"
-                VerticalAlignment="Top" Width="75" Margin="50,110,0,0" 
-                Command="{Binding PreviousScreenCommand}" Grid.Row="1"/>
-        <ListBox x:Name="listBox" ItemsSource="{Binding TaskList}"
-                 Grid.Column="1" HorizontalAlignment="Left" SelectedItem="{Binding CurrentTask}"
-                 Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="183" 
-                 ItemTemplate="{StaticResource ItemDisplay1}" Grid.RowSpan="2"/>
-
+            <Button x:Name="button2" Content="Save" 
+                VerticalAlignment="Center" Width="75" Margin="5 0 0 0"
+                Command="{Binding SaveCommand}"/>
+            <Button x:Name="Previous" Content="Back" HorizontalAlignment="Left"
+                VerticalAlignment="Center" Width="75" Margin="5 0 5 0"
+                Command="{Binding PreviousScreenCommand}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

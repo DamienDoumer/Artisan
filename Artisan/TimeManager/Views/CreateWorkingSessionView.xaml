@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TimeManager.Views"
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" >
+             mc:Ignorable="d">
 
 
     <!--d:DesignHeight="300" Width="339.11"-->
@@ -15,58 +15,47 @@
         <localViewModels:CreateEditWorkingSessionViewModel/>
     </UserControl.DataContext>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock" FontFamily="Verdana" FontSize="21"
-                   Grid.Row="0"
-                   HorizontalAlignment="Center" Margin="0,0,10,5" TextWrapping="Wrap" 
-                   Text="{Binding Title}" VerticalAlignment="Center" Width="329" Height="38"/>
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" 
-                 VerticalAlignment="Center" Height="26"
+    <materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Top"
+                         Margin="10" Background="AliceBlue" Opacity="0.8" Width="500"
+                         materialDesign:ShadowAssist.ShadowDepth="Depth5" 
+                         materialDesign:ShadowAssist.Darken="True">
+        <StackPanel>
+            <TextBlock x:Name="textBlock" FontFamily="Verdana" FontSize="21"
+                   Grid.Row="0" Margin="10,10,10,15" HorizontalAlignment="Center"
+                   Text="{Binding Title}" />
+            
+            <TextBox x:Name="NameTextBox" Margin="20 10 20 10" Height="26" 
                  Text="{Binding MainWorkingSession.Name, Mode=TwoWay}" 
                  materialDesign:HintAssist.Hint="Title"
-                 Margin="20,10,0,26" Width="249"
-                 Grid.Row="1"
 				 />
-        <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" 
-                 VerticalAlignment="Center" Height="26"
+            <ScrollViewer MaxHeight="51" VerticalScrollBarVisibility="Auto">
+                <TextBox x:Name="DescriptionTextBox" Margin="20 0 20 10" TextWrapping="Wrap"
                  Text="{Binding MainWorkingSession.Description, Mode=TwoWay}" 
                  materialDesign:HintAssist.Hint="Description"
-                 Margin="20,10,0,26" Width="249"
-                 Grid.Row="2"
 				 />
-        <DatePicker Width="249" HorizontalAlignment="Left" materialDesign:ShadowAssist.ShadowDepth="Depth3"
+            </ScrollViewer>
+
+            <DatePicker materialDesign:ShadowAssist.ShadowDepth="Depth3"
                     Text="{Binding MainWorkingSession.Day, Mode=TwoWay}"
-                    VerticalAlignment="Center"                      
+                    Margin="20 0 20 10"                 
                     materialDesign:HintAssist.Hint="Date"
-                    ToolTip="Enter the Date of your working session."
-                    Height="38"
-                    Margin="20,10,0,2" Grid.Row="3"
+                    ToolTip="Enter the Date of your working session." Grid.Row="3"
                     />
-        <materialDesign:TimePicker Is24Hours="True" x:Name="StartTimePicker"
-                                   VerticalAlignment="Top"  Width="249" HorizontalAlignment="Left"  
+            <materialDesign:TimePicker Is24Hours="True" x:Name="StartTimePicker"
                                    ToolTip="Enter the start time of your working session."
-                                   Grid.Row="4" Text="{Binding StartTime, Mode=TwoWay}" Margin="20,12,0,0"
-                                   materialDesign:HintAssist.Hint="Start Time"
-                                   Height="28"/>
-        <materialDesign:TimePicker Is24Hours="True" x:Name="EndTimePicker"
+                                   Text="{Binding StartTime, Mode=TwoWay}" Margin="20 0 20 10"
+                                   materialDesign:HintAssist.Hint="Start Time"/>
+            <materialDesign:TimePicker Is24Hours="True" x:Name="EndTimePicker"
                                    ToolTip="Enter the end time of your working session."
-                                   VerticalAlignment="Top"  Width="249" HorizontalAlignment="Left" 
+                                   Margin="20 0 20 10"
                                    materialDesign:HintAssist.Hint="End Time"
-                                   Grid.Row="5" Text="{Binding EndTime, Mode=TwoWay}" Margin="20,12,0,0"
-                                   Height="28"/>
-        <Button materialDesign:ShadowAssist.ShadowDepth="Depth3" Grid.Row="6" Command="{Binding NextCommand}"  
-        		VerticalAlignment="Center" HorizontalAlignment="Right"
-        	    Width="79" Height="25" Margin="0,10,31,8">
-            Next
-        </Button>
-    </Grid>
+                                   Text="{Binding EndTime, Mode=TwoWay}" />
+            <Button materialDesign:ShadowAssist.ShadowDepth="Depth3" Command="{Binding NextCommand}"  
+                Height="30" Width="60"
+        		VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20">
+                Next
+            </Button>
+        </StackPanel>
+    </materialDesign:Card>
+    
 </UserControl>

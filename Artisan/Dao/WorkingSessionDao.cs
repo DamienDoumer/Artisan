@@ -154,8 +154,6 @@ namespace Dao
             }
             return workingSession;
         }
-
-
         public int RetrieveAllWorkingSessionsCount()
         {
             return RetrieveCount("Select count() from " + Table);
@@ -182,6 +180,10 @@ namespace Dao
             Update("Day", wrk.Day.ToString(), condition);
             Update("StartTime", wrk.StartTime.ToString(), condition);
             Update("EndTime", wrk.EndTime.ToString(), condition);
+        }
+        public WorkingSession RetrieveClosestWorkingSession()
+        {
+            return RetrieveWorkingSession("Select * from "+Table+" order by StartTime Desc Limit 1");
         }
     }
 }

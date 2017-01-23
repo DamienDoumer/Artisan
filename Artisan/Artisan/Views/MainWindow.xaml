@@ -6,8 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Artisan.Views"
         mc:Ignorable="d"
-        Title="Artisan" Height="531.26" Width="654.329" WindowStartupLocation="CenterScreen"
-        x:Name="Artisan" MinHeight="525.26" MinWidth="636.329" BorderThickness="1"
+        Title="Artisan" Height="511.76" Width="727.829" WindowStartupLocation="CenterScreen"
+        x:Name="Artisan" MinHeight="511.76" MinWidth="636.329" BorderThickness="1"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
@@ -59,14 +59,14 @@
         </DataTemplate>
 
         <ImageBrush x:Key="img" ImageSource="UIResources\SkyBlueBackGround.jpg">
-            
+
         </ImageBrush>
     </Window.Resources>
 
 
     <DockPanel Background="{StaticResource img}">
         <HamburgerMenu:HamburgerMenu Background="CornflowerBlue" MenuIconColor="White" 
-                                     Opacity="0.7"
+                                     Opacity="0.8"
                                      Grid.Column="0" DockPanel.Dock="Left"
                                      SelectionIndicatorColor="White" MenuItemForeground="White"
                                      HorizontalAlignment="Left">
@@ -87,24 +87,12 @@
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Right" 
                       VerticalScrollBarVisibility="Auto">
-                <!--This content control is used to carry the Views of other modules-->
-                <ContentControl BorderBrush="Red" HorizontalAlignment="Stretch"
+            <!--This content control is used to carry the Views of other modules-->
+            <ContentControl BorderBrush="Red" HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 BorderThickness="2" Content="{Binding CurrentViewModel}"
                                 Grid.Column="1" Grid.Row="1"
                                 />
-            <!--<Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="5"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="5"/>
-                </Grid.ColumnDefinitions>
-            </Grid>-->
         </ScrollViewer>
 
     </DockPanel>

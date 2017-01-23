@@ -8,6 +8,9 @@ using Artisan.MVVMShared;
 using System.Diagnostics;
 using Dao.Entities;
 using TimeManager;
+using System.Collections.ObjectModel;
+using Artisan.Views;
+using Dao;
 
 namespace Artisan.ViewModels
 {
@@ -17,6 +20,10 @@ namespace Artisan.ViewModels
         /// Fired when th eneed of displaying a message to the user comes.
         /// </summary>
         public static event Action<string> DiaologNeeded;
+        /// <summary>
+        /// Fired before the user deletes a timeEntity
+        /// </summary>
+        public static event Action<TimeEntity, object> DeleteReponse;
 
         /// <summary>
         /// These commands are to handle the click events of the 
@@ -53,6 +60,7 @@ namespace Artisan.ViewModels
             CreateEditWorkingSessionNextViewModel.CreateEditTerminated += OnSwitchToManageWorkingSession;
             ManageWorkingSessionSwitchCommand = new RelayCommand(OnSwitchToManageWorkingSession);
             ManageWorkingSessionsViewModel.EditWorkingSession += OnEditWorkingSessionInitiated;
+            ManageWorkingSessionsViewModel.DeleteWorkingSession += DeleteWorkingSession;
 
             ///Here I handle the event Fired when the user wants to edit an event.
             manageEventViewModel = new ManageEventViewModel();
@@ -62,15 +70,28 @@ namespace Artisan.ViewModels
             MainMenuSwitchCommand = new RelayCommand(OnMainMenuViewSwitch);
             ManageEventSwitchCommand = new RelayCommand(OnManageEventViewSwitch);
             CurrentViewModel = mainMenuViewModel;
+            ManageEventViewModel.DeleteEvent += OnDeleteEvent;
 
             ///Code for monitoring working sessions and events.
-            occuranceMon = OccuranceMonitor.Instance;
-            occuranceMon.SortTimeEntities();
-            occuranceMon.StartMonitoring();
+            //occuranceMon = OccuranceMonitor.Instance;
+            //occuranceMon.SortTimeEntities();
+            //occuranceMon.StartMonitoring();
         }
 
         #region WorkingSession ManagementCode
 
+
+
+        /// <summary>
+        /// Call deletion in the main window Since the Dialog cannot be called in
+        /// ViewModel.
+        /// </summary>
+        /// <param name="wrk"></param>
+        /// <param name="wrkList"></param>
+        private void DeleteWorkingSession(WorkingSession wrk, ObservableCollection<WorkingSession> wrkList)
+        {
+            DeleteReponse?.Invoke(wrk, wrkList);
+        }
         private void SwitchToPreviousScreenInitiated()
         {
             CurrentViewModel = new CreateEditWorkingSessionViewModel();
@@ -124,9 +145,19 @@ namespace Artisan.ViewModels
             CreateEditWorkingSessionViewModel.MainWorkingSession = wrk;
             CurrentViewModel = new CreateEditWorkingSessionViewModel();
         }
+
+
+
         #endregion
 
         #region Event managing code
+
+
+
+        private void OnDeleteEvent(Event evt, ObservableCollection<Event> evts)
+        {
+            DeleteReponse?.Invoke(evt, evts);
+        }
         private void OnEventCreated(Event evt)
         {
             OnManageEventViewSwitch();
