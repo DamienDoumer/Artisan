@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
              xmlns:data="clr-namespace:Dao.Entities;assembly=Dao"
-             mc:Ignorable="d" >
+             mc:Ignorable="d" FontFamily="Segoe Print">
 
     <!--d:DesignHeight="300" Width="405.882"-->
 

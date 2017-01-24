@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("doumeraicon2.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/notificationsound.wav")]
 
 

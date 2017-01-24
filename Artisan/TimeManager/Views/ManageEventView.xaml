@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"             
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
              xmlns:data="clr-namespace:Dao.Entities;assembly=Dao"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" FontFamily="Segoe Print"
              >
     <!--Width="523.214" Height="428.572"-->
 
@@ -71,7 +71,7 @@
                     HorizontalAlignment="Center" FontWeight="UltraBold" Margin="5, 5, 5, 15"/>
 
                 <ListBox ItemsSource="{Binding Events}" ItemTemplate="{StaticResource DisplayEventTemplate}"
-                  SelectedItem="{Binding CurrentEvent}" />
+                  SelectedItem="{Binding CurrentEvent}" MaxHeight="500" />
             </StackPanel>
             <materialDesign:Card Grid.Column="2" Margin="5"
                                  Background="AliceBlue" materialDesign:ShadowAssist.ShadowDepth="Depth5">
@@ -115,34 +115,34 @@
                   >
                 <Button Command="{Binding CreateEventCommand}"
                         materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                        ToolTip="Create Appointment" Margin="5 0 0 0" Height="30" Width="75">
+                        ToolTip="Create Appointment" Margin="5 0 0 0" Height="30" Width="80">
                     Create
                 </Button>
                 <Button Command="{Binding EditCommand}" 
                         materialDesign:ShadowAssist.ShadowDepth="Depth5"
                         ToolTip="Edit selected appointment"
-                    Margin="5 0 0 0" Height="30" Width="75">
+                    Margin="5 0 0 0" Height="30" Width="80">
                     Edit
                 </Button>
                 <Button Command="{Binding DeleteCommand}"
                         materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                        Margin="5 0 0 0" Height="30" Width="75"
+                        Margin="5 0 0 0" Height="30" Width="80"
                         ToolTip="Delete selected appointment">
                     Delete
                 </Button>
                 <Button Command="{Binding LoadEventOfPeriodCommand}" CommandParameter="present"
                         HorizontalAlignment="Left" materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                        ToolTip="Today's Appointments" Margin="5 0 5 0" Height="30" Width="75">
+                        ToolTip="Today's Appointments" Margin="5 0 5 0" Height="30" Width="80">
                     Today
                 </Button>
                 <Button Command="{Binding LoadEventOfPeriodCommand}" CommandParameter="future"
                          materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                        ToolTip="Future Appointments" Margin="5 0 0 0" Height="30" Width="75">
+                        ToolTip="Future Appointments" Margin="5 0 0 0" Height="30" Width="80">
                     Future
                 </Button>
                 <Button Command="{Binding LoadEventOfPeriodCommand}" CommandParameter="past"
                         materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                        ToolTip="Past Appointments" Margin="5 0 0 0" Height="30" Width="75">
+                        ToolTip="Past Appointments" Margin="5 0 0 0" Height="30" Width="80">
                     Past
                 </Button>
                 

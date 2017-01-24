@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TimeManager.Views"
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             >
+             FontFamily="Segoe Print" FontSize="15">
 
     <!--mc:Ignorable="d" Height="453.639" Width="324"-->
 
@@ -30,22 +30,21 @@
                           Width="500" Opacity="0.8" Margin="10" VerticalAlignment="Top"
                          materialDesign:ShadowAssist.Darken="True">
         <StackPanel>
-            <Label Content="{Binding Title, Mode=TwoWay}" FontSize="19" Grid.Row="0"
+            <Label Content="{Binding Title, Mode=TwoWay}" FontSize="21" FontFamily="Segoe Print" Grid.Row="0"
                    Margin="10,10,10,15" HorizontalAlignment="Center"></Label>
-            <TextBox x:Name="NameTextBox" Margin="20 10 20 10" Height="26"
+            <TextBox x:Name="NameTextBox" Margin="20 10 20 10"
                  Text="{Binding MainEvent.Name}" 
                  materialDesign:HintAssist.Hint="Title"
 				 />
             <ScrollViewer MaxHeight="50" VerticalScrollBarVisibility="Auto">
                 <TextBox x:Name="DescriptionTextBox" 
-        	Text="{Binding MainEvent.Description}" Height="26" Margin="20 10 20 10"
+        	Text="{Binding MainEvent.Description}" Margin="20 10 20 10"
             materialDesign:HintAssist.Hint="Description"
         	TextWrapping="Wrap"/>
             </ScrollViewer>
 
             <TextBox x:Name="VenueTextBox"
                  materialDesign:HintAssist.Hint="Venue"
-                 Height="26" 
                  Text="{Binding MainEvent.Venue}" Margin="20 10 20 10"
                  TextWrapping="Wrap"/>
             <DatePicker materialDesign:ShadowAssist.ShadowDepth="Depth3"

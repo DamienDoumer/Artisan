@@ -125,7 +125,8 @@ namespace TimeManager.ViewModels
                     wrkDao.Update(MainWorkingSession);
                 }
             }
-            
+            OccuranceMonitor.Instance.StartMonitoring(MainWorkingSession);
+
             CreateEditTerminated?.Invoke();
         }
         private bool CanSave()

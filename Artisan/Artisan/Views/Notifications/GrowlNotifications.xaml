@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Artisan.Views.Notifications"
         mc:Ignorable="d" Height="530" Width="300" ShowActivated="False" AllowsTransparency="True" 
-        WindowStyle="None" ShowInTaskbar="False" Background="Transparent" Topmost="True" UseLayoutRounding="True">
+        WindowStyle="None" ShowInTaskbar="False" Background="Transparent" Topmost="True" UseLayoutRounding="True"
+        FontFamily="Segoe Print">
     
     <!--
     
@@ -39,7 +40,9 @@
                         <Image Grid.RowSpan="2" Source="{Binding Path=ImageUrl}" Margin="4" Width="80"></Image>
                         <TextBlock Grid.Column="1" Text="{Binding Path=Title}"  TextOptions.TextRenderingMode="ClearType" TextOptions.TextFormattingMode="Display" Foreground="White" 
                                    FontFamily="Arial" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"  Margin="2,4,4,2" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
-                        <Button x:Name="CloseButton" Grid.Column="1" Width="16" Height="16" HorizontalAlignment="Right" Margin="0,0,12,0" />
+                        <Button x:Name="CloseButton" Grid.Column="1" Width="16" Height="16" 
+                                Background="Gray" Content="X" Foreground="White"
+                                HorizontalAlignment="Right" Margin="0,0,12,0" />
                         <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Message}"  TextOptions.TextRenderingMode="ClearType" TextOptions.TextFormattingMode="Display" Foreground="White" 
                                    FontFamily="Arial" VerticalAlignment="Center"  Margin="2,2,4,4" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
                     </Grid>

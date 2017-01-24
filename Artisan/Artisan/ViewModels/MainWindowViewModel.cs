@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using TimeManager.ViewModels;
 using Artisan.MVVMShared;
 using System.Diagnostics;
@@ -12,12 +12,18 @@ using System.Collections.ObjectModel;
 using Artisan.Views;
 using Dao;
 using Artisan.Views.Notifications;
+using Artisan.Services;
 
 namespace Artisan.ViewModels
 {
     class MainWindowViewModel : BindableBase
     {
+        /// <summary>
+        /// notification objects.
+        /// And sound player 
+        /// </summary>
         GrowlNotifications growlNot;
+        NotificationSoundPlayer player;
 
         /// <summary>
         /// Fired when th eneed of displaying a message to the user comes.
@@ -27,6 +33,7 @@ namespace Artisan.ViewModels
         /// Fired before the user deletes a timeEntity
         /// </summary>
         public static event Action<TimeEntity, object> DeleteReponse;
+        public static event Action<string, string, bool> DisplayNotification;
 
         /// <summary>
         /// These commands are to handle the click events of the 
@@ -53,8 +60,9 @@ namespace Artisan.ViewModels
 
         public MainWindowViewModel()
         {
+            ///Instantiate notification object to notify the user when needed
             growlNot = new GrowlNotifications();
-            growlNot.AppointmentTimeArrivedNotification("Appointment time", "Go to school");
+            player = new NotificationSoundPlayer(@"C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\Resources\NotificationSound.wav");  
 
             ///Workingsession management code
             CreateEditWorkingSessionNextViewModel.SwitchToPreviousScreen += SwitchToPreviousScreenInitiated;
@@ -79,10 +87,39 @@ namespace Artisan.ViewModels
             ManageEventViewModel.DeleteEvent += OnDeleteEvent;
 
             ///Code for monitoring working sessions and events.
-            //occuranceMon = OccuranceMonitor.Instance;
-            //occuranceMon.SortTimeEntities();
-            //occuranceMon.StartMonitoring();
+            occuranceMon = OccuranceMonitor.Instance;
+            occuranceMon.AlarmTimeArrived += OccuranceMon_AlarmTimeArrived;
+            occuranceMon.SortTimeEntities();
+            occuranceMon.StartMonitoring();
         }
+
+        #region Occurance Monitor Handling code
+
+
+
+        private void OccuranceMon_AlarmTimeArrived(TimeEntity entity)
+        {
+            if (entity.GetType() == new WorkingSession().GetType())
+            {
+                WorkingSession wrk = entity as WorkingSession;
+                ///True for working sessions
+                DisplayNotification?.Invoke("Disp", "play", true);
+                player.Player.Play();
+            }
+            else
+            {
+                Event evt = entity as Event;
+                ///False for event 
+                DisplayNotification?.Invoke("Disp", "play", false);
+                growlNot.AppointmentTimeArrivedNotification("Appointment now",
+                    evt.Name);
+                player.Player.Play();
+            }
+        }
+
+
+
+        #endregion
 
         #region WorkingSession ManagementCode
 

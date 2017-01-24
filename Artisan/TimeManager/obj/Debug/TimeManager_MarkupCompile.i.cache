@@ -13,8 +13,8 @@ DEBUG;TRACE
 51261049206
 
 23-166849003
-161353007665
+12415468661
 Views\CreateEditWorkingSessionNextView.xaml;Views\CreateEventView.xaml;Views\CreateWorkingSessionView.xaml;Views\ManageEventView.xaml;Views\ManageWorkingSessionsView.xaml;
 
-False
+True
 

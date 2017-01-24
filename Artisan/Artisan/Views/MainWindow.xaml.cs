@@ -18,6 +18,7 @@ using MahApps.Metro.Controls.Dialogs;
 using Dao.Entities;
 using System.Collections.ObjectModel;
 using Dao;
+using Artisan.Views.Notifications;
 
 namespace Artisan.Views
 {
@@ -31,8 +32,34 @@ namespace Artisan.Views
             InitializeComponent();
             MainWindowViewModel.DiaologNeeded += OnDisplayMessage;
             MainWindowViewModel.DeleteReponse += OnDeleteResponse;
+            MainWindowViewModel.DisplayNotification += MainWindowViewModel_DisplayNotification;
         }
 
+        /// <summary>
+        /// Notify the user when needed
+        /// </summary>
+        /// <param name="arg1"></param>
+        /// <param name="arg2"></param>
+        /// <param name="isWorkingsession"></param>
+        private void MainWindowViewModel_DisplayNotification(string arg1, string arg2, bool isWorkingsession)
+        {
+            if(isWorkingsession)
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    new GrowlNotifications().WorkingSessionTimearrivedNotification(arg1, arg2);
+                }));
+            }
+            else
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    new GrowlNotifications().AppointmentTimeArrivedNotification(arg1, arg2);
+                }));
+            }
+
+            Show();
+        }
         private async void OnDisplayMessage(string message)
         {
             MessageDialogResult controller = await this.ShowMessageAsync("Hint", message);

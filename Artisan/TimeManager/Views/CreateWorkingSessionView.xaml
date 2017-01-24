@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:TimeManager.Views"
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             FontFamily="Segoe Print" FontSize="15">
 
 
     <!--d:DesignHeight="300" Width="339.11"-->
@@ -20,11 +21,11 @@
                          materialDesign:ShadowAssist.ShadowDepth="Depth5" 
                          materialDesign:ShadowAssist.Darken="True">
         <StackPanel>
-            <TextBlock x:Name="textBlock" FontFamily="Verdana" FontSize="21"
+            <TextBlock x:Name="textBlock" FontSize="21"
                    Grid.Row="0" Margin="10,10,10,15" HorizontalAlignment="Center"
-                   Text="{Binding Title}" />
+                   Text="{Binding Title}" FontFamily="Segoe Print"/>
             
-            <TextBox x:Name="NameTextBox" Margin="20 10 20 10" Height="26" 
+            <TextBox x:Name="NameTextBox" Margin="20 10 20 10"
                  Text="{Binding MainWorkingSession.Name, Mode=TwoWay}" 
                  materialDesign:HintAssist.Hint="Title"
 				 />

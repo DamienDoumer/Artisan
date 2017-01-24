@@ -70,3 +70,4 @@ C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\o
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\obj\Debug\Views\MessageDialog.baml
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\obj\Debug\Views\Notifications\GrowlNotifications.g.cs
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\obj\Debug\Views\Notifications\GrowlNotifications.baml
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\obj\Debug\Artisan_Content.g.cs

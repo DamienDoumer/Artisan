@@ -66,6 +66,9 @@ namespace TimeManager.ViewModels
             {
                 eventDao.Save(mainEvent);
             }
+
+            OccuranceMonitor.Instance.StartMonitoring(mainEvent);
+
             EventCreated?.Invoke(mainEvent);
         }
     }

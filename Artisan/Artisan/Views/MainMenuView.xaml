@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              xmlns:localViewModels="clr-namespace:Artisan.ViewModels"
-             xmlns:data="clr-namespace:Dao.Entities;assembly=Dao"
+             xmlns:data="clr-namespace:Dao.Entities;assembly=Dao" FontFamily="Segoe Print"
     >
     <UserControl.DataContext>
         <localViewModels:MainMenuViewModel/>    
@@ -65,9 +65,6 @@
         <materialDesign:Card Grid.Column="1" Margin="5" Grid.RowSpan="2"
                              Background="AliceBlue"
                                  materialDesign:ShadowAssist.ShadowDepth="Depth5">
-            <!--<materialDesign:Card.Effect>
-                    <BlurEffect Radius="10"/>
-                </materialDesign:Card.Effect>-->
 
             <StackPanel Margin="10" Opacity="1">
                 <TextBlock Text="Clossest Working Session" FontFamily="Segoe Print" FontSize="25"

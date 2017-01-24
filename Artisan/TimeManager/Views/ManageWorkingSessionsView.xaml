@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
              xmlns:data="clr-namespace:Dao.Entities;assembly=Dao"
-             mc:Ignorable="d">
+             mc:Ignorable="d" FontFamily="Segoe Print">
 
 
     <!--This height should be set only to work on the view and 
@@ -54,7 +54,7 @@
                 <TextBlock Text="{Binding GroupboxHeader}" FontFamily="Segoe Print" FontSize="25"
                    HorizontalAlignment="Center" FontWeight="UltraBold" Margin="5, 5, 5, 15"/>
 
-                <ListBox x:Name="listBox"
+                <ListBox x:Name="listBox" MaxHeight="500"
                  SelectedItem="{Binding CurrentWorkingSession}"
                  ItemTemplate="{StaticResource DataTemplate1}"
                  ItemsSource="{Binding WorkingSessions}"
@@ -114,25 +114,25 @@
                   >
                 <Button x:Name="CreateButton" Content="Create" ToolTip="Create A Working Session"
                 Command="{Binding CreateCommand}" materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                    Margin="5 0 0 0" Height="30" Width="75"/>
+                    Margin="5 0 0 0" Height="30" Width="80"/>
                 <Button x:Name="EditButton" Content="Edit" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 ToolTip="Edit The Selected Working Session"
-                Command="{Binding EditCommand}" Margin="5 0 0 0" Height="30" Width="75"/>
+                Command="{Binding EditCommand}" Margin="5 0 0 0" Height="30" Width="80"/>
                 <Button x:Name="DeleteButton" Content="Delete" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 ToolTip="Delete The Selected Working Session"
                 Command="{Binding DeleteCommand}"  Margin="5 0 0 0" Height="30" Width="75"/>
                 <Button x:Name="TodayButton" Content="Today"  materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                     Margin="5 0 0 0" Height="30" Width="75"
+                     Margin="5 0 0 0" Height="30" Width="80"
                 ToolTip="Today's Working Sessions" CommandParameter="today"
                 Command="{Binding SortWorkingSessionsCommand}"/>
                 <Button x:Name="FutureButton" Content="Future"
                 ToolTip="Future Working Sessions" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 CommandParameter="future"
-                Command="{Binding SortWorkingSessionsCommand}" Margin="5 0 0 0" Height="30" Width="75"/>
+                Command="{Binding SortWorkingSessionsCommand}" Margin="5 0 0 0" Height="30" Width="80"/>
                 <Button x:Name="PastButton" Content="Past" 
                 ToolTip="Past Working Sessions" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 CommandParameter="past"
-                Command="{Binding SortWorkingSessionsCommand}"  Margin="5 0 5 0" Height="30" Width="75"/>
+                Command="{Binding SortWorkingSessionsCommand}"  Margin="5 0 5 0" Height="30" Width="80"/>
             </StackPanel>
         </Border>
     </Grid>
