@@ -71,5 +71,6 @@ namespace Artisan.Views
                 evtList.Remove(evt);
             }
         }
+       
     }
 }

@@ -11,11 +11,14 @@ using TimeManager;
 using System.Collections.ObjectModel;
 using Artisan.Views;
 using Dao;
+using Artisan.Views.Notifications;
 
 namespace Artisan.ViewModels
 {
     class MainWindowViewModel : BindableBase
     {
+        GrowlNotifications growlNot;
+
         /// <summary>
         /// Fired when th eneed of displaying a message to the user comes.
         /// </summary>
@@ -50,6 +53,9 @@ namespace Artisan.ViewModels
 
         public MainWindowViewModel()
         {
+            growlNot = new GrowlNotifications();
+            growlNot.AppointmentTimeArrivedNotification("Appointment time", "Go to school");
+
             ///Workingsession management code
             CreateEditWorkingSessionNextViewModel.SwitchToPreviousScreen += SwitchToPreviousScreenInitiated;
             CreateEditWorkingSessionViewModel.Mode = CreateEditWorkingSessionViewModel.CREATE_MODE;

@@ -19,7 +19,7 @@
     
         GlowBrush="DarkBlue" BorderBrush="DarkBlue"
         ShowIconOnTitleBar="True"
-        Icon="UIResources\DoumeraIcon2.png"
+        Icon="UIResources\DoumeraIcon2.ico"
         WindowTransitionsEnabled="True"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"

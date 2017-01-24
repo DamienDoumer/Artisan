@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\App.xaml
-4-994743160
+5891242334
 
-12-1652772372
+141123555930
 23-1062342637
-Views\MainMenuView.xaml;Views\MainWindow.xaml;Views\MessageDialog.xaml;Views\WelcomeView.xaml;
+Views\Notifications\GrowlNotifications.xaml;Views\MainMenuView.xaml;Views\MainWindow.xaml;Views\MessageDialog.xaml;Views\WelcomeView.xaml;
 
 False
 

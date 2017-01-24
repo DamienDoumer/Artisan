@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("views/uiresources/skybluebackground.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("doumeraicon2.ico")]
 
 
