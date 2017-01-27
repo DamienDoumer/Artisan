@@ -74,14 +74,14 @@ namespace TimeManager.ViewModels
             /// as a working session event
             MainWorkingSession.EndTime = new DateTime(MainWorkingSession.Day.Year,
                                              MainWorkingSession.Day.Month, MainWorkingSession.Day.Day,
-                                             MainWorkingSession.EndTime.Hour,
-                                             MainWorkingSession.EndTime.Minute,
-                                             MainWorkingSession.EndTime.Second);
+                                             EndTime.Hour,
+                                             EndTime.Minute,
+                                             EndTime.Second);
             MainWorkingSession.StartTime = new DateTime(MainWorkingSession.Day.Year,
                                              MainWorkingSession.Day.Month, MainWorkingSession.Day.Day,
-                                             MainWorkingSession.StartTime.Hour,
-                                             MainWorkingSession.StartTime.Minute,
-                                             MainWorkingSession.StartTime.Second);
+                                             StartTime.Hour,
+                                             StartTime.Minute,
+                                             StartTime.Second);
         }
         private bool CanNextClick()
         {

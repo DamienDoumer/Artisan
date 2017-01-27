@@ -98,6 +98,11 @@ namespace Artisan.Views
                 evtList.Remove(evt);
             }
         }
-       
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Environment.Exit(0);
+        }
+
     }
 }

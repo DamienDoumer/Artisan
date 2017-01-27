@@ -39,14 +39,13 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="139*" />
-                <ColumnDefinition Width="7" />
                 <ColumnDefinition Width="119*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBox Margin="10" Height="26" Text="{Binding Name, Mode=TwoWay}"
+            <TextBox Margin="10" Height="30" Text="{Binding Name, Mode=TwoWay}"
                  materialDesign:HintAssist.Hint="Enter Each Step Here."/>
 
             <ListBox x:Name="listBox" ItemsSource="{Binding TaskList}"
