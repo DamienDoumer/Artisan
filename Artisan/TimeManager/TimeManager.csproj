@@ -62,6 +62,7 @@
     <Compile Include="ViewModels\CreateEditWorkingSessionNextViewModel.cs" />
     <Compile Include="ViewModels\CreateEventViewModel.cs" />
     <Compile Include="ViewModels\CreateEditWorkingSessionViewModel.cs" />
+    <Compile Include="ViewModels\InWorkingSessionViewModel.cs" />
     <Compile Include="ViewModels\ManageEventViewModel.cs" />
     <Compile Include="ViewModels\ManageWorkingSessionsViewModel.cs" />
     <Compile Include="Views\CreateEditWorkingSessionNextView.xaml.cs">
@@ -72,6 +73,9 @@
     </Compile>
     <Compile Include="Views\CreateWorkingSessionView.xaml.cs">
       <DependentUpon>CreateWorkingSessionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InWorkingSessionView.xaml.cs">
+      <DependentUpon>InWorkingSessionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ManageEventView.xaml.cs">
       <DependentUpon>ManageEventView.xaml</DependentUpon>
@@ -90,6 +94,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CreateWorkingSessionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InWorkingSessionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

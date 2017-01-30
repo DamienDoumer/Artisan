@@ -19,6 +19,12 @@ namespace Artisan.ViewModels
     class MainWindowViewModel : BindableBase
     {
         /// <summary>
+        /// This tells the mode in which theis ViewModel is set for currently
+        /// This depends on the scenarios in which the application is found.
+        /// </summary>
+        public string Mode { get; set; }
+
+        /// <summary>
         /// notification objects.
         /// And sound player 
         /// </summary>
@@ -33,7 +39,8 @@ namespace Artisan.ViewModels
         /// Fired before the user deletes a timeEntity
         /// </summary>
         public static event Action<TimeEntity, object> DeleteReponse;
-        public static event Action<string, string, bool> DisplayNotification;
+        public static event Action<string, string, bool> DisplayTimeArrivedNotification;
+        public static event Action<string, string> DisplayNotificationMessageBox;
 
         /// <summary>
         /// These commands are to handle the click events of the 
@@ -91,26 +98,44 @@ namespace Artisan.ViewModels
             occuranceMon.AlarmTimeArrived += OccuranceMon_AlarmTimeArrived;
             occuranceMon.SortTimeEntities();
             occuranceMon.StartMonitoring();
+            occuranceMon.CounterStarted += OnOccuranceMon_CounterStarted;
+            occuranceMon.CounterEnded += OnOccuranceMon_CounterEnded;
         }
+
+
 
         #region Occurance Monitor Handling code
 
 
-
+        private void OnOccuranceMon_CounterEnded(DateTime time, WorkingSession wrk)
+        {
+            Mode = string.Empty;
+        }
+        /// <summary>
+        /// Fired when the working session starts
+        /// </summary>
+        /// <param name="session"></param>
+        /// <param name="time"></param>
+        private void OnOccuranceMon_CounterStarted(WorkingSession session, DateTime time)
+        {
+            InWorkingSessionViewModel.MainWorkingSession = session;
+            Mode = CreateEditWorkingSessionViewModel.WORKING_SESSION_MODE;
+            CurrentViewModel = new InWorkingSessionViewModel();
+        }
         private void OccuranceMon_AlarmTimeArrived(TimeEntity entity)
         {
             if (entity.GetType() == new WorkingSession().GetType())
             {
                 WorkingSession wrk = entity as WorkingSession;
                 ///True for working sessions
-                DisplayNotification?.Invoke("Disp", "play", true);
+                DisplayTimeArrivedNotification?.Invoke("Disp", "play", true);
                 player.Player.Play();
             }
             else
             {
                 Event evt = entity as Event;
                 ///False for event 
-                DisplayNotification?.Invoke("Disp", "play", false);
+                DisplayTimeArrivedNotification?.Invoke("Disp", "play", false);
                 growlNot.AppointmentTimeArrivedNotification("Appointment now",
                     evt.Name);
                 player.Player.Play();
@@ -141,7 +166,16 @@ namespace Artisan.ViewModels
         }
         private void OnSwitchToManageWorkingSession()
         {
-            CurrentViewModel = manageWorkingSessionVM;
+            ///If the user is not on a current working session
+            if (Mode != CreateEditWorkingSessionViewModel.WORKING_SESSION_MODE)
+            {
+                CurrentViewModel = manageWorkingSessionVM;
+            }
+            else
+            {
+                ///Signal the usr that navigation has been disabled.
+                NavigationDisabledSignal();
+            }
         }
         /// <summary>
         /// Occures when the next button of create working session is pressed
@@ -217,23 +251,62 @@ namespace Artisan.ViewModels
             CreateEventViewModel.Title = "Edit Event";
             CurrentViewModel = createEventViewModel;
         }
-        private void OnMainMenuViewSwitch()
-        {
-            CurrentViewModel = mainMenuViewModel;
-        }
+        
         private void OnManageEventViewSwitch()
         {
-            CurrentViewModel = manageEventViewModel;
+            if (Mode != CreateEditWorkingSessionViewModel.WORKING_SESSION_MODE)
+            {
+                CurrentViewModel = manageEventViewModel;
+            }
+            else
+            {
+                NavigationDisabledSignal();
+            }
         }
         #endregion
-        
+
+
+        private void OnMainMenuViewSwitch()
+        {
+            if (Mode != CreateEditWorkingSessionViewModel.WORKING_SESSION_MODE)
+            {
+                CurrentViewModel = mainMenuViewModel;
+            }
+            else
+            {
+                NavigationDisabledSignal();
+            }
+        }
         private void OnSettingsViewSwitch()
         {
+            if(Mode != CreateEditWorkingSessionViewModel.WORKING_SESSION_MODE)
+            {
 
+            }
         }
         private void OnMessagesViewSwitch()
         {
+            if (Mode != CreateEditWorkingSessionViewModel.WORKING_SESSION_MODE)
+            {
 
+            }
+            else
+            {
+                NavigationDisabledSignal();
+            }
+        }
+
+        /// <summary>
+        /// Signals the View to display notifications.
+        /// </summary>
+        private void NavigationDisabledSignal()
+        {
+            ///===============================================
+            /// Translation...
+            /// ==============================================
+            
+            DisplayNotificationMessageBox?.Invoke("Warning", 
+                "You have an ongoing working session, you are advised to focus on it before it ends.");
         }
     }
 }

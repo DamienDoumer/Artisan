@@ -118,11 +118,12 @@ namespace TimeManager.ViewModels
             }
             else
             {
-                if(newTasks.Count > 0)
+                wrkDao.Update(MainWorkingSession);
+
+                if (newTasks.Count > 0)
                 {
                     ///In edit mode, save only the newly added tasks.
                     SaveTasks(newTasks);
-                    wrkDao.Update(MainWorkingSession);
                 }
             }
             OccuranceMonitor.Instance.StartMonitoring(MainWorkingSession);

@@ -10,6 +10,7 @@ namespace TimeManager.ViewModels
     {
         public const string CREATE_MODE = "Create";
         public const string EDIT_MODE = "Edit";
+        public const string WORKING_SESSION_MODE = "WorkingSession";
 
         private static WorkingSession workingSession;
         public static event Action<WorkingSession> NextStepLaunched;

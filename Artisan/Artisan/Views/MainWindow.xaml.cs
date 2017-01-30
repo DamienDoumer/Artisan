@@ -32,7 +32,18 @@ namespace Artisan.Views
             InitializeComponent();
             MainWindowViewModel.DiaologNeeded += OnDisplayMessage;
             MainWindowViewModel.DeleteReponse += OnDeleteResponse;
-            MainWindowViewModel.DisplayNotification += MainWindowViewModel_DisplayNotification;
+            MainWindowViewModel.DisplayTimeArrivedNotification += MainWindowViewModel_DisplayNotification;
+            MainWindowViewModel.DisplayNotificationMessageBox += OnMainWindowViewModel_DisplayNotification1;
+        }
+
+        /// <summary>
+        /// Display messageBox notification to the user.
+        /// </summary>
+        /// <param name="arg1"></param>
+        /// <param name="arg2"></param>
+        private async void OnMainWindowViewModel_DisplayNotification1(string arg1, string arg2)
+        {
+            MessageDialogResult controller = await this.ShowMessageAsync(arg1, arg2);
         }
 
         /// <summary>
@@ -58,7 +69,10 @@ namespace Artisan.Views
                 }));
             }
 
-            Show();
+            Dispatcher.Invoke((Action)(() =>
+            {
+                Show();
+            }));
         }
         private async void OnDisplayMessage(string message)
         {
@@ -103,6 +117,5 @@ namespace Artisan.Views
             base.OnClosed(e);
             Environment.Exit(0);
         }
-
     }
 }

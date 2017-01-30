@@ -50,23 +50,23 @@
 
             <ListBox x:Name="listBox" ItemsSource="{Binding TaskList}"
                  Grid.Column="2" HorizontalAlignment="Center" SelectedItem="{Binding CurrentTask}"
-                 Margin="10" VerticalAlignment="Center"
-                 ItemTemplate="{StaticResource ItemDisplay1}" Width="144"/>
+                 Margin="10"
+                 ItemTemplate="{StaticResource ItemDisplay1}"/>
         </Grid>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center"
                   >
             <Button x:Name="button" Content="{Binding AddEditButtonText, Mode=TwoWay}"
                 Margin="5 0 0 0" VerticalAlignment="Center"
-                Command="{Binding AddCommand}" Width="75" />
+                Command="{Binding AddCommand}" Width="80" />
             <Button x:Name="button1" Content="Remove" 
                 Margin="5 0 0 0"  VerticalAlignment="Center"
-                Command="{Binding RemoveCommand}" Width="75"/>
+                Command="{Binding RemoveCommand}" Width="85"/>
             <Button x:Name="button2" Content="Save" 
-                VerticalAlignment="Center" Width="75" Margin="5 0 0 0"
+                VerticalAlignment="Center" Width="85" Margin="5 0 0 0"
                 Command="{Binding SaveCommand}"/>
             <Button x:Name="Previous" Content="Back" HorizontalAlignment="Left"
-                VerticalAlignment="Center" Width="75" Margin="5 0 5 0"
+                VerticalAlignment="Center" Width="85" Margin="5 0 5 0"
                 Command="{Binding PreviousScreenCommand}"/>
         </StackPanel>
     </Grid>
