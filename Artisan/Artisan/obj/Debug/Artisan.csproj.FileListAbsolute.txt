@@ -71,3 +71,6 @@ C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\o
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\obj\Debug\Views\Notifications\GrowlNotifications.g.cs
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\obj\Debug\Views\Notifications\GrowlNotifications.baml
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\obj\Debug\Artisan_Content.g.cs
+C:\Users\Damien\Desktop\True Proj\Artisan\Artisan\bin\Debug\Artisan.exe.config
+C:\Users\Damien\Desktop\True Proj\Artisan\Artisan\obj\Debug\Artisan.exe
+C:\Users\Damien\Desktop\True Proj\Artisan\Artisan\obj\Debug\Artisan.pdb
