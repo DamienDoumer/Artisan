@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMShared", "MVVMShared\MV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seed", "Seed\Seed.csproj", "{C345E080-AE9B-4EA3-AB33-3827AB7DC1CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messenger", "Messanger\Messenger.csproj", "{3CE21394-117D-4F53-A83B-FB2C755BE7AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,14 @@ Global
 		{C345E080-AE9B-4EA3-AB33-3827AB7DC1CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C345E080-AE9B-4EA3-AB33-3827AB7DC1CE}.Release|x86.ActiveCfg = Release|Any CPU
 		{C345E080-AE9B-4EA3-AB33-3827AB7DC1CE}.Release|x86.Build.0 = Release|Any CPU
+		{3CE21394-117D-4F53-A83B-FB2C755BE7AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CE21394-117D-4F53-A83B-FB2C755BE7AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CE21394-117D-4F53-A83B-FB2C755BE7AA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3CE21394-117D-4F53-A83B-FB2C755BE7AA}.Debug|x86.Build.0 = Debug|Any CPU
+		{3CE21394-117D-4F53-A83B-FB2C755BE7AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CE21394-117D-4F53-A83B-FB2C755BE7AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CE21394-117D-4F53-A83B-FB2C755BE7AA}.Release|x86.ActiveCfg = Release|Any CPU
+		{3CE21394-117D-4F53-A83B-FB2C755BE7AA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

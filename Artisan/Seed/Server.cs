@@ -83,7 +83,7 @@ namespace Seed
                     }
                 }
             }
-            catch(Exceptio e)
+            catch(Exception e)
             {
                 //this exception is thrown when the port is busy
                 if(e.Message == "An attempt was made to access a socket in a way forbidden by its access permissions")
