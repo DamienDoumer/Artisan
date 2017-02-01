@@ -21,7 +21,14 @@ namespace Seed.Protocols
             AuthSession = session as Session;
             AuthObject = obj;
         }
+        public Authentication(AuthenticationObject obj)
+        {
+            AuthObject = obj;
+        }
+        public Authentication()
+        {
 
+        }
         public void Authenticate()
         {
             AuthSession.Send(Encoding.UTF8.GetBytes(SessionBase.AUTHENTICATION_REQUEST));

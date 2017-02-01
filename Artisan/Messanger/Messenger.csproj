@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,14 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dao">
+      <HintPath>..\Dao\bin\x86\Debug\Dao.dll</HintPath>
+    </Reference>
+    <Reference Include="Seed">
+      <HintPath>..\Seed\bin\Debug\Seed.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="Services\CheckConnection\SubModules\PingerService.cs" />
     <Compile Include="Services\CheckConnection\SubModules\WirelessNetCheckerService.cs" />
     <Compile Include="Services\ChryptoGrapher\MD5CryptographicService.cs" />
+    <Compile Include="Services\MessageManager.cs" />
     <Compile Include="Services\Messages\SimpleMessage.cs" />
   </ItemGroup>
   <ItemGroup>

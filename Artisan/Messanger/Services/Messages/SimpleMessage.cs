@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Messenger.Services.Messages
 {
-    class SimpleMessage
+    /// <summary>
+    /// This represents a simple text message
+    /// </summary>
+    public class SimpleMessage
     {
+        public string ISet { get; set; }
+        public string IReceived { get; set; }
     }
 }

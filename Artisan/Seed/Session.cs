@@ -19,10 +19,21 @@ namespace Seed
         public event FileTransferProgressionEventHandler FileTransferProgression;
         public event FileTransferTerminatedEventHandler FileTransferTerminated;
 
-        public Session(Socket socket, AuthenticationObject obj):base(socket, obj)
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="socket"></param>
+        /// <param name="obj"></param>
+        /// <param name="cryptograph"></param>
+        /// <param name="authentication"></param>
+        public Session(Socket socket, AuthenticationObject obj, ICryptographer cryptograph)
+            :base(socket, obj, cryptograph)
         {
             ///Set interface to have the authentication object
             ///For better code reuse
+            /// This is an error of mine when it comes to dependency injection.
+            /// Next release will be better
             AuthenticationProtocol = new Authentication(this, AuthObj);
         }
 
@@ -33,7 +44,7 @@ namespace Seed
         /// <returns></returns>
         private byte[] ConvertStringToByte(string data)
         {
-            return new byte[] { };
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -43,7 +54,7 @@ namespace Seed
         /// <returns></returns>
         private string ConvertByteToString(byte[] data)
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
         public override void Send(byte[] data)
         {

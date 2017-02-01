@@ -33,9 +33,11 @@ namespace Seed
         public int Port { get; set; }
         public List<Session> Sessions;
         public TcpListener Listener { get { return listener; } }
+        public ICryptographer Cryptograph { get; }
 
-        public Server(string iP, int port, AuthenticationObject obj)
+        public Server(string iP, int port, AuthenticationObject obj, ICryptographer crypt)
         {
+            Cryptograph = crypt;
             Authobject = obj;
             IP = iP;
             Port = port;
@@ -76,7 +78,7 @@ namespace Seed
                     {
                         if(clientSocket.Connected)
                         {
-                            Session session = new Session(clientSocket, Authobject);
+                            Session session = new Session(clientSocket, Authobject, Cryptograph);
                             Sessions.Add(session);
                             ConnectionAccepted?.Invoke(session);
                         }

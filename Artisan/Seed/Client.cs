@@ -37,10 +37,11 @@ namespace Seed
         public int Port { get { return port; } }
         public TcpClient ClientCore { get { return client; } }
         public AuthenticationObject Authobject { get; private set; }
+        public ICryptographer Cryptograph { get; }
 
-
-        public Client(AuthenticationObject obj)
+        public Client(AuthenticationObject obj, ICryptographer crypt)
         {
+            Cryptograph = crypt;
             client = new TcpClient();
             Authobject = obj;
         }
@@ -78,7 +79,7 @@ namespace Seed
 
                     //this code below will only execute if the connection succeeds.
                     connected = true;
-                    session = new Session(serverSocket, Authobject);
+                    session = new Session(serverSocket, Authobject, Cryptograph);
                     session.AuthObj = Authobject;
                     ConnectionEstablished(session);
 

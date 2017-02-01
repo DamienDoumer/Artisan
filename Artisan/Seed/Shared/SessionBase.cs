@@ -89,8 +89,9 @@ namespace Seed.Shared
         /// </summary>
         public IAuthentication AuthenticationProtocol { get; set; }
 
-        public SessionBase(Socket socket, AuthenticationObject obj)
+        public SessionBase(Socket socket, AuthenticationObject obj, ICryptographer cryptograph)
         {
+            Cryptograph = cryptograph;
             PacketSize = 2048;
             SessionSocket = socket;
             SessionSocket.LingerState = new LingerOption( true, 10);
