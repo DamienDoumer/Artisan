@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Management" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Services\ChryptoGrapher\MD5CryptographicService.cs" />
     <Compile Include="Services\MessageManager.cs" />
     <Compile Include="Services\Messages\SimpleMessage.cs" />
+    <Compile Include="Services\ChatUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />

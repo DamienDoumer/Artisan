@@ -44,11 +44,11 @@ namespace Seed.Shared
         /// <param name="session"></param>
         public delegate void SessionAbortedEventHandler(SessionBase session);
         /// <summary>
-        /// Fired when this session receives data
+        /// Fired when this session receives a message
         /// </summary>
         /// <param name="data"></param>
         /// <param name="iP"></param>
-        public delegate void DataReceivedEventHanlder(byte[] data, string iP);
+        public delegate void MessageReceivedEventHanlder(string message, string iP);
         /// <summary>
         /// Fired when a known and handled error occures in this session
         /// </summary>

@@ -1,0 +1,11 @@
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\Messanger.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\Messanger.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\Seed.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\Seed.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\obj\Debug\Messenger.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\obj\Debug\Messanger.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\obj\Debug\Messanger.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\Dao.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\System.Data.SQLite.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\Dao.pdb

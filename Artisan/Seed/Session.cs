@@ -11,7 +11,7 @@ namespace Seed
 {
     public class Session : SessionBase, IDisposable
     {
-        public event DataReceivedEventHanlder DataReceived;
+        public event MessageReceivedEventHanlder MessageReceived;
         public event ErrorOccuredEventHandler ErrorOccured;
         public event AuthenticationObjectReceivedEventHanlder AuthenticationObjectReceived;
         public event SessionAbortedEventHandler SessionAborted;
@@ -139,7 +139,7 @@ namespace Seed
                             }
                             else
                             {
-                                DataReceived?.Invoke(dataReceived, IP);
+                                MessageReceived?.Invoke(dataString, IP);
                             }
                         }
 

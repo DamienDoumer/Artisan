@@ -69,12 +69,20 @@ namespace Dao
                 command.ExecuteNonQuery();
                 SQLiteDataReader reader = command.ExecuteReader();
 
-                while (reader.Read())
+                try
                 {
-                    user = new User(reader[0].ToString(), 
-                        reader[1].ToString(),
-                        reader[2].ToString(), reader[3].ToString());
+                    while (reader.Read())
+                    {
+                        user = new User(reader[0].ToString(),
+                            reader[1].ToString(),
+                            reader[2].ToString(), reader[3].ToString());
+                    }
                 }
+                catch
+                {
+                    return null;
+                }
+               
                 reader.Close();
             }
 

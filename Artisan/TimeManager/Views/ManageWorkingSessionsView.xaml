@@ -57,8 +57,7 @@
                 <ListBox x:Name="listBox" MaxHeight="500"
                  SelectedItem="{Binding CurrentWorkingSession}"
                  ItemTemplate="{StaticResource DataTemplate1}"
-                 ItemsSource="{Binding WorkingSessions}"
-                 >
+                 ItemsSource="{Binding WorkingSessions}">
                 </ListBox>
             </StackPanel>
             

@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="TimeManager.Views.InWorkingSessionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TimeManager.Views"
+             xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
+             xmlns:data="clr-namespace:Dao.Entities;assembly=Dao"
+             mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <localViewModels:InWorkingSessionViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="DataTemplate1" DataType="{x:Type data:Task}">
+            <TextBlock Text="{Binding Name}"  FontFamily="Segoe Print" FontSize="15"/>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <!--d:DesignHeight="300" d:DesignWidth="300"-->
+
+    <Grid  Background="AliceBlue" Opacity="0.8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="133*"/>
+            <RowDefinition Height="39"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Name="WorkingSessinoTitle" Margin="0 10 0 20" Text="{Binding MainWorkingSession.Name}"
+                   HorizontalAlignment="Center" FontSize="20"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Name="TimeLeftTextBlock" Margin="10 20 0 20" FontSize="25"
+                           Text="{Binding TimeString, Mode=TwoWay}" VerticalAlignment="Center"/>
+                <ProgressBar Margin="10 20 0 20" Height="40" Value="{Binding ProgressValue}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <ListBox x:Name="Tasks" Grid.Column="1" 
+                         ItemsSource="{Binding MainWorkingSession.Tasks}" Margin="0 20 0 20" 
+                         ItemTemplate="{StaticResource DataTemplate1}" MaxHeight="300"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="130" Margin="0 0 0 20"
+                                      HorizontalScrollBarVisibility="Disabled">
+                    <TextBlock Text="{Binding MainWorkingSession.Description, Mode=OneWay}"
+                                FontFamily="Segoe Print" FontSize="15"
+                                TextWrapping="Wrap" MaxWidth="429"/>
+                </ScrollViewer>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="SaveButton" Content="Save" Height="30" Width="80" Margin="10 0 10 0"/>
+            <Button x:Name="CancelButton" Content="Cancel" Height="30" Width="80" Margin="10 0 10 0"/>
+        </StackPanel>
+        
+    </Grid>
+</UserControl>
