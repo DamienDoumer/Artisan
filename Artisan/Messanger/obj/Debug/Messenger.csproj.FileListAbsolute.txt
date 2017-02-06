@@ -9,3 +9,11 @@ C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\Dao.dll
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\System.Data.SQLite.dll
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\Dao.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\obj\Debug\Views\MessengerView.g.cs
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\obj\Debug\Messanger_MarkupCompile.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\obj\Debug\Messanger_MarkupCompile.lref
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\obj\Debug\Views\MessengerView.baml
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\obj\Debug\Messanger.g.resources
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\MVVMShared.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Messanger\bin\Debug\MVVMShared.pdb

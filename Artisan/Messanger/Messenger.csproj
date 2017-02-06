@@ -34,12 +34,16 @@
     <Reference Include="Dao">
       <HintPath>..\Dao\bin\x86\Debug\Dao.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="Seed">
       <HintPath>..\Seed\bin\Debug\Seed.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,10 +57,22 @@
     <Compile Include="Services\MessageManager.cs" />
     <Compile Include="Services\Messages\SimpleMessage.cs" />
     <Compile Include="Services\ChatUser.cs" />
+    <Compile Include="ViewModels\MessengerViewModel.cs" />
+    <Compile Include="Views\MessengerView.xaml.cs">
+      <DependentUpon>MessengerView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
+    <ProjectReference Include="..\MVVMShared\MVVMShared.csproj">
+      <Project>{66ee7114-9aef-482a-ae55-6033e5800e41}</Project>
+      <Name>MVVMShared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\MessengerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

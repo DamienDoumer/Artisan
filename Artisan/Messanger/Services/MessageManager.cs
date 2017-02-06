@@ -27,17 +27,12 @@ namespace Messenger.Services
         public event ScanArtisanStartedEventHandler ScanArtisanStarted;
         public delegate void ScanArtisanTerminatedEventHandler(List<ChatUser> users);
         public event ScanArtisanTerminatedEventHandler ScanArtisanTerminated;
-
-        /// <summary>
-        /// This object corresponds to the IP address of each session, 
-        /// And its related Messages, While precising iif the user sent or received the message
-        /// </summary>
-        public static Dictionary<ChatUser, ObservableCollection<SimpleMessage>> Conversations { get; private set; }
+        public event Action<ChatUser> ChatUserConnected;
+        public event Action<ChatUser, SimpleMessage> MessageReceived;
+        public event Action<ChatUser> ErrorOccured;
+        
         public Session CurrentSession { get; private set; }
-        /// <summary>
-        /// This corresponds tho the users who are connected
-        /// </summary>
-        public ObservableCollection<ChatUser> ConnectedUsers { get; private set; }
+        public List<ChatUser> ConnectedUsers { get; private set; }
         /// <summary>
         /// List of user sessions.
         /// </summary>
@@ -46,8 +41,7 @@ namespace Messenger.Services
         public MessageManager()
         {
             port = 1909;
-            Conversations = new Dictionary<ChatUser, ObservableCollection<SimpleMessage>>();
-            ConnectedUsers = new ObservableCollection<ChatUser>();
+            ConnectedUsers = new List<ChatUser>();
             Sessions = new List<Session>();
             conChecker = new ConnectionCheckerService(new WirelessNetCheckerService(), new object());
             userDao = new UserDao("User");
@@ -93,6 +87,11 @@ namespace Messenger.Services
             session.AuthenticationProtocol.Authenticate();
 
             Sessions.Add(session);
+
+            ///I'm starting threads in the COnstructors which is !!!!!!!!BAD!!!!!!!!!!!!
+            ///Find a way to overcome this!!!!!
+            StartProcesses();
+            ScanForArtisans();
         }
 
         /// <summary>
@@ -106,24 +105,24 @@ namespace Messenger.Services
             {
                 if(usr.IP == iP)
                 {
-                    Conversations[usr].Add(new SimpleMessage(message, DateTime.Now, false));
+                    MessageReceived?.Invoke(usr, new SimpleMessage(message, DateTime.Now, false));
                 }
             }
         }
 
         private void OnSession_FileTransferTerminated(Document doc)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         private void OnSession_FileTransferProgression(decimal percentage, string ip)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         private void OnSession_FileTransferInitiated(Document doc)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         private void OnSession_ErrorOccured(Exception ex, Seed.Enum.ErrorCode error, SessionBase session)
@@ -132,7 +131,7 @@ namespace Messenger.Services
             {
                 if (session.IP == usr.IP)
                 {
-                    Conversations.Remove(usr);
+                    ErrorOccured?.Invoke(usr);
                     ConnectedUsers.Remove(usr);
                     break;
                 }
@@ -160,7 +159,7 @@ namespace Messenger.Services
         {
             ///When authentication completes, save user as connected user.
             ConnectedUsers.Add(new ChatUser(obj.Name, obj.IP));
-            Conversations.Add(new ChatUser(obj.Name, obj.IP), new ObservableCollection<SimpleMessage>());
+            ChatUserConnected?.Invoke(new ChatUser(obj.Name, obj.IP));
         }
 
         /// <summary>
@@ -202,8 +201,6 @@ namespace Messenger.Services
                     ses.Send(Encoding.UTF8.GetBytes(message.Text));
                 }
             }
-
-            Conversations[user].Add(message);
         }
 
         /// <summary>
