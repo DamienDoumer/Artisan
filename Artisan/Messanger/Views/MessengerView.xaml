@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:Messanger.Views"
              xmlns:viewModel="clr-namespace:Messenger.ViewModels"
              xmlns:message="clr-namespace:Messenger.Services.Messages"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" >
+
+
+    <!--d:DesignHeight="300" d:DesignWidth="300"-->
+
     <UserControl.DataContext>
         <viewModel:MessengerViewModel/>
     </UserControl.DataContext>
@@ -91,6 +94,7 @@
     </UserControl.Resources>
     
     <Grid>
-            
+        <ListBox Name="MessageListBox" ItemTemplate="{StaticResource MessageTemplate}"/>
+        <ListBox Name="ConnectedUsersListBox" />
     </Grid>
 </UserControl>

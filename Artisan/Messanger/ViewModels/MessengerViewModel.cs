@@ -40,6 +40,7 @@ namespace Messenger.ViewModels
             {
                 SetProperty(ref currentUser, value);
                 ChangeForCurrentChat();
+                SendMessageCommand.RaiseCanExecuteChanged();
             }
         }
         /// <summary>
@@ -78,39 +79,52 @@ namespace Messenger.ViewModels
 
         private void OnMessenger_MessageReceived(ChatUser chatUser, SimpleMessage message)
         {
-            Conversations[chatUser].Add(message);
-            if(CurrentUser != null)
+            ///I dispatch in other to allow this thread to call UI 
+            ///Controls.
+            DispatchService.Invoke(new Action(() =>
             {
-                ///If the current chat user is the one who is involved in the conversations, 
-                ///Add it to the current chats, else Notify the user that a message was added.
-                if (CurrentUser.IP == chatUser.IP)
-                {CurrentUserMessages.Add(message); }
+                Conversations[chatUser].Add(message);
+                if (CurrentUser != null)
+                {
+                    ///If the current chat user is the one who is involved in the conversations, 
+                    ///Add it to the current chats, else Notify the user that a message was added.
+                    if (CurrentUser.IP == chatUser.IP)
+                    { CurrentUserMessages.Add(message); }
+                    else
+                    {
+                        NotifyForMessage(chatUser, message);
+                    }
+                }
                 else
                 {
                     NotifyForMessage(chatUser, message);
                 }
-            }
-            else
-            {
-                NotifyForMessage(chatUser, message);
-            }
+            }));
         }
 
         private void OnMessenger_ErrorOccured(ChatUser obj)
         {
-            Conversations.Remove(obj);
-            ConnectedUsers.Remove(obj);
-            if(CurrentUser.IP == obj.IP)
+            DispatchService.Invoke(new Action(() =>
             {
-                CurrentUser = null;
-                currentMessages.Clear();
+                Conversations.Remove(obj);
+                ConnectedUsers.Remove(obj);
+                if (CurrentUser.IP == obj.IP)
+                {
+                    CurrentUser = null;
+                    currentMessages.Clear();
+                }
             }
+            ));
         }
 
         private void OnMessenger_ChatUserConnected(ChatUser obj)
         {
-            Conversations.Add(obj, new ObservableCollection<SimpleMessage>());
-            ConnectedUsers.Add(obj);
+            DispatchService.Invoke(new Action(() =>
+            {
+                Conversations.Add(obj, new ObservableCollection<SimpleMessage>());
+                ConnectedUsers.Add(obj);
+            }
+            ));
         }
 
         /// <summary>
@@ -131,6 +145,7 @@ namespace Messenger.ViewModels
         {
             MessageNoticationNeeded?.Invoke(usr, msg);
         }
+
         private void SendMessage()
         {
             SimpleMessage msg = new SimpleMessage(CurrentMessage, DateTime.Now, true);
