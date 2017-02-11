@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeManager.ViewModels;
 
 namespace TimeManager.Views
 {
@@ -23,6 +24,11 @@ namespace TimeManager.Views
         public InWorkingSessionView()
         {
             InitializeComponent();
+            InWorkingSessionViewModel.ProgressNeeded += InWorkingSessionViewModel_ProgressNeeded;
+        }
+
+        private void InWorkingSessionViewModel_ProgressNeeded()
+        {
         }
     }
 }

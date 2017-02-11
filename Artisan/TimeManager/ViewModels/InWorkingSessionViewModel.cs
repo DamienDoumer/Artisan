@@ -15,6 +15,8 @@ namespace TimeManager.ViewModels
         private string timeString;
         private long progressValue;
 
+        public static event Action ProgressNeeded;
+
         public long ProgressValue
         {
             get { return progressValue; }
@@ -49,9 +51,7 @@ namespace TimeManager.ViewModels
         {
             DispatchService.Invoke(new Action(() =>
             {
-                TimeString = percentage.ToString();
-                Debug.WriteLine(progressValue);
-                progressValue++;
+                TimeString = DateTime.Now.Hour+":"+DateTime.Now.Minute+":"+DateTime.Now.Second;
             }));
         }
 

@@ -20,43 +20,58 @@
 
     <!--d:DesignHeight="300" d:DesignWidth="300"-->
 
-    <Grid  Background="AliceBlue" Opacity="0.8">
+    <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="133*"/>
+            <RowDefinition/>
             <RowDefinition Height="39"/>
         </Grid.RowDefinitions>
-        
-        <TextBlock Name="WorkingSessinoTitle" Margin="0 10 0 20" Text="{Binding MainWorkingSession.Name}"
+
+        <Grid Grid.Row="0"  Background="AliceBlue" Opacity="0.8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="133*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Name="WorkingSessoinTitle" Margin="0 10 0 10" Text="{Binding MainWorkingSession.Name}"
                    HorizontalAlignment="Center" FontSize="20"/>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <TextBlock Name="TimeLeftTextBlock" Margin="10 20 0 20" FontSize="25"
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Margin="10 10 0 10">
+                        <Label Content="Start Time:" Margin="0 0 5 0"></Label>
+                        <TextBlock Text="{Binding MainWorkingSession.StartTime}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10 10 0 10">
+                        <Label Content="End Time:" Margin="0 0 5 0"></Label>
+                        <TextBlock Text="{Binding MainWorkingSession.EndTime}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <TextBlock Name="TimeLeftTextBlock" Margin="10 10 0 10" FontSize="25"
                            Text="{Binding TimeString, Mode=TwoWay}" VerticalAlignment="Center"/>
-                <ProgressBar Margin="10 20 0 20" Height="40" Value="{Binding ProgressValue}"/>
-            </StackPanel>
-            <StackPanel Grid.Column="1">
-                <ListBox x:Name="Tasks" Grid.Column="1" 
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <ListBox x:Name="Tasks" Grid.Column="1" 
                          ItemsSource="{Binding MainWorkingSession.Tasks}" Margin="0 20 0 20" 
                          ItemTemplate="{StaticResource DataTemplate1}" MaxHeight="300"/>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="130" Margin="0 0 0 20"
+                    <Label Content="Description:" Margin="10 0 10 5"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="130" Margin="10 0 10 20"
                                       HorizontalScrollBarVisibility="Disabled">
-                    <TextBlock Text="{Binding MainWorkingSession.Description, Mode=OneWay}"
+                        <TextBlock Text="{Binding MainWorkingSession.Description, Mode=OneWay}"
                                 FontFamily="Segoe Print" FontSize="15"
                                 TextWrapping="Wrap" MaxWidth="429"/>
-                </ScrollViewer>
-            </StackPanel>
+                    </ScrollViewer>
+                </StackPanel>
+            </Grid>
+            <ProgressBar Name="ProgressBar" Grid.ColumnSpan="2" Grid.Row="2" MinHeight="20"
+                         Value="{Binding ProgressValue}" VerticalAlignment="Bottom"/>
         </Grid>
-
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="SaveButton" Content="Save" Height="30" Width="80" Margin="10 0 10 0"/>
             <Button x:Name="CancelButton" Content="Cancel" Height="30" Width="80" Margin="10 0 10 0"/>
         </StackPanel>
-        
     </Grid>
 </UserControl>

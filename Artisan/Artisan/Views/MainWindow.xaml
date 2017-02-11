@@ -60,9 +60,11 @@
         <DataTemplate DataType="{x:Type timeManagerViewModel:InWorkingSessionViewModel}">
             <timeManagerView:InWorkingSessionView/>
         </DataTemplate>
+       
         <ImageBrush x:Key="img" ImageSource="UIResources\SkyBlueBackGround.jpg">
 
         </ImageBrush>
+        
     </Window.Resources>
 
 
@@ -76,6 +78,7 @@
                 <HamburgerMenu:HamburgerMenuItem Height="50" Text="Home" Icon="UIResources\HomeIcon.png"
                                                  SelectionCommand="{Binding MainMenuSwitchCommand}" />
                 <HamburgerMenu:HamburgerMenuItem Height="50" Text="Wifi Messaging" Icon="UIResources\Message.png"
+                                                 SelectionCommand="{Binding MessageSwitchCommand}"
                                                  />
                 <HamburgerMenu:HamburgerMenuItem Height="50" Text="Manage your Appointments" 
                                                  SelectionCommand="{Binding ManageEventSwitchCommand}" 

@@ -221,7 +221,6 @@
   <ItemGroup>
     <Resource Include="DoumeraIcon2.ico" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\NotificationSound.wav" />
   </ItemGroup>

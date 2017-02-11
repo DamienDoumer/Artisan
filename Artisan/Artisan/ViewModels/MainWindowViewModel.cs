@@ -49,6 +49,7 @@ namespace Artisan.ViewModels
         public RelayCommand MainMenuSwitchCommand { get; private set; }
         public RelayCommand ManageEventSwitchCommand { get; private set; }
         public RelayCommand ManageWorkingSessionSwitchCommand { get; private set; }
+        public RelayCommand MessageSwitchCommand { get; private set; }
 
         ManageWorkingSessionsViewModel manageWorkingSessionVM;
         CreateEditWorkingSessionNextViewModel createWrkNextVM;
@@ -57,6 +58,7 @@ namespace Artisan.ViewModels
         MainMenuViewModel mainMenuViewModel = new MainMenuViewModel();
         ManageEventViewModel manageEventViewModel;
         private BindableBase currentViewModel;
+        //MessengerViewModel messengerViewModel;
         private OccuranceMonitor occuranceMon;
 
         public BindableBase CurrentViewModel
@@ -100,6 +102,10 @@ namespace Artisan.ViewModels
             occuranceMon.StartMonitoring();
             occuranceMon.CounterStarted += OnOccuranceMon_CounterStarted;
             occuranceMon.CounterEnded += OnOccuranceMon_CounterEnded;
+
+            ///Message Managing Code
+            MessageSwitchCommand = new RelayCommand(OnMessagesViewSwitch);
+            //messengerViewModel = new MessengerViewModel();
         }
 
 
@@ -288,7 +294,7 @@ namespace Artisan.ViewModels
         {
             if (Mode != CreateEditWorkingSessionViewModel.WORKING_SESSION_MODE)
             {
-
+                //CurrentViewModel = messengerViewModel;
             }
             else
             {
@@ -304,7 +310,6 @@ namespace Artisan.ViewModels
             ///===============================================
             /// Translation...
             /// ==============================================
-            
             DisplayNotificationMessageBox?.Invoke("Warning", 
                 "You have an ongoing working session, you are advised to focus on it before it ends.");
         }
