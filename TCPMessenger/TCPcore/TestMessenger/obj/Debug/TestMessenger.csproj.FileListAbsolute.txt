@@ -1,0 +1,48 @@
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\TestMessenger.exe.config
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\TestMessenger.exe
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\TestMessenger.pdb
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Messanger.dll
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\MVVMShared.dll
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Seed.dll
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Dao.dll
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\System.Data.SQLite.dll
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Messanger.pdb
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\MVVMShared.pdb
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Seed.pdb
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Dao.pdb
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\obj\Debug\MainWindow.g.cs
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\obj\Debug\App.g.cs
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger_MarkupCompile.cache
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger_MarkupCompile.lref
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\obj\Debug\MainWindow.baml
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger.g.resources
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger.Properties.Resources.resources
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger.csproj.GenerateResource.Cache
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger.exe
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\TestMessenger.exe.config
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger.exe
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\TestMessenger.exe
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\TestMessenger.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Messanger.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\MVVMShared.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Seed.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Dao.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\System.Data.SQLite.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Messanger.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\MVVMShared.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Seed.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\bin\Debug\Dao.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\obj\Debug\MainWindow.g.cs
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\obj\Debug\App.g.cs
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger_MarkupCompile.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger_MarkupCompile.lref
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\obj\Debug\MainWindow.baml
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger.g.resources
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger.Properties.Resources.resources
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\TestMessenger\obj\Debug\TestMessenger.csproj.GenerateResource.Cache

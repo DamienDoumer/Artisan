@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Dao.Entities;
 using System.Data.SQLite;
+using System.Diagnostics;
 
 namespace Dao
 {
@@ -71,7 +72,7 @@ namespace Dao
                 while (reader.Read())
                 {
                     task = new Task(Convert.ToInt32(reader[0]), reader[1].ToString(), 
-                        Convert.ToInt32(reader[2]), Convert.ToBoolean(reader[3]));
+                        Convert.ToInt32(reader[3]), Convert.ToBoolean(reader[2]));
                     tasks.Add(task);
                 }
                 reader.Close();

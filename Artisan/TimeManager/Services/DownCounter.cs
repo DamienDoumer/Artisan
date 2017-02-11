@@ -11,8 +11,7 @@ namespace TimeManager
     {
         public int Time { get; }
         public TimeEntity Entity { get; set; }
-
-
+        
         private int seconds;
         private int minutes;
         private int hours;
@@ -45,29 +44,32 @@ namespace TimeManager
             Thread thread = new Thread(new ThreadStart(
                 () => 
                 {
-                    float percentage = 0.0F;
+                    Decimal percentage;
 
                     if (CountStarted != null) CountStarted(DateTime.Now, Entity);
 
-                    for (int i = 0; i <= Time; i++)
+                    for (int i = 1; i <= Time; i++)
                     {
-                        percentage = (i * 100) / Time;
+                        percentage = Decimal.Divide((decimal)i, (decimal)Time);
+                        percentage = Decimal.Multiply(percentage, 100);
 
                         if (stopVal != true)
                         {
-                            Thread.Sleep(interval);
-                            
-                            if (TimeChanged != null)
+                            if (Entity.EndTime.Ticks <= DateTime.Now.Ticks)
                             {
-                                TimeChanged(hours,
-                                        minutes, seconds, DateTime.Now, percentage);
+                                break;
                             }
+
+                            Thread.Sleep(interval);
+
+                            TimeChanged?.Invoke(hours, minutes, seconds, DateTime.Now, percentage);
                         }
                         else
                         {
                             break;
                         }
                     }
+
                     CountEnded?.Invoke(DateTime.Now, Entity);
                 }
                 ));

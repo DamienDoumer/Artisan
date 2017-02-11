@@ -10,7 +10,7 @@ namespace TimeManager.Delegates
 
         public delegate void CounterEndedEventHandler(DateTime endTime, object obj);
         public delegate void CounterTimeChanged(int hour, int min, int sec,
-            DateTime timeOfChange, float percentage);
+            DateTime timeOfChange, decimal percentage);
         public delegate void CounterStartedEventHandler(DateTime date, object obj);
     }
 }

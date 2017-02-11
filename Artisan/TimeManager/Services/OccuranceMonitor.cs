@@ -45,7 +45,7 @@ namespace TimeManager
         /// <param name="time"></param>
         public delegate void CounterStartedEventHandler(WorkingSession session, DateTime time);
         public event CounterStartedEventHandler CounterStarted;
-        public delegate void CounterTimeChangedEventHandler(int h, int m, int s, DateTime time, float percentage);
+        public delegate void CounterTimeChangedEventHandler(int h, int m, int s, DateTime time, decimal percentage);
         public event CounterTimeChangedEventHandler CounterTimeChanged;
         public delegate void CounterEndedEventHandler(DateTime time, WorkingSession wrk);
         public event CounterEndedEventHandler CounterEnded;
@@ -312,7 +312,7 @@ namespace TimeManager
             if(timer.isWorkingSession)
             {
                 WorkingSession session = timer.Entity as WorkingSession;
-                long time = timer.Entity.EndTime.Ticks - timer.Entity.StartTime.Ticks;
+                long time = timer.Entity.EndTime.Ticks - DateTime.Now.Ticks;
                 TimeSpan span = new TimeSpan(time);
 
                 DownCounter counter = new DownCounter(span.Hours,
@@ -342,7 +342,7 @@ namespace TimeManager
 
             CounterStarted?.Invoke(ses, time);
         }
-        private void OnCounterTimeChanged(int h, int m, int s, DateTime time, float percentage)
+        private void OnCounterTimeChanged(int h, int m, int s, DateTime time, decimal percentage)
         {
             CounterTimeChanged?.Invoke(h, m, s, time, percentage);
 

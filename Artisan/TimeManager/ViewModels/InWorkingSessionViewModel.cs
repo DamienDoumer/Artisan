@@ -17,6 +17,10 @@ namespace TimeManager.ViewModels
 
         public static event Action ProgressNeeded;
 
+        /// <summary>
+        /// Tells if the user can still tick tasks as done or not done.
+        /// </summary>
+        public bool EnableTaskTick { get; set; }
         public long ProgressValue
         {
             get { return progressValue; }
@@ -42,15 +46,17 @@ namespace TimeManager.ViewModels
 
         public InWorkingSessionViewModel()
         {
+            EnableTaskTick = true;
             CancleCommand = new RelayCommand(OnCancle);
             SaveCommand = new RelayCommand(OnSave);
             OccuranceMonitor.Instance.CounterTimeChanged += OnInstance_CounterTimeChanged;
         }
 
-        private void OnInstance_CounterTimeChanged(int h, int m, int s, DateTime time, float percentage)
+        private void OnInstance_CounterTimeChanged(int h, int m, int s, DateTime time, decimal percentage)
         {
             DispatchService.Invoke(new Action(() =>
             {
+                Debug.WriteLine(percentage);
                 TimeString = DateTime.Now.Hour+":"+DateTime.Now.Minute+":"+DateTime.Now.Second;
             }));
         }

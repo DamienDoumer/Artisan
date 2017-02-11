@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:TimeManager.Views"
              xmlns:localViewModels="clr-namespace:TimeManager.ViewModels"
              xmlns:data="clr-namespace:Dao.Entities;assembly=Dao"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             
              mc:Ignorable="d">
 
     <UserControl.DataContext>
@@ -16,6 +18,23 @@
         <DataTemplate x:Key="DataTemplate1" DataType="{x:Type data:Task}">
             <TextBlock Text="{Binding Name}"  FontFamily="Segoe Print" FontSize="15"/>
         </DataTemplate>
+
+
+        <DataTemplate x:Key="TaskTemplate" DataType="{x:Type data:Task}">
+            <Border Name="BackGroundBorder" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox VerticalAlignment="Center" IsChecked="{Binding Accomplished, Mode=TwoWay}"/>
+                    <TextBlock  Margin="8 0 0 0" FontWeight="Bold" Text="{Binding Name}" />
+                </StackPanel>
+            </Border>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Accomplished}" Value="True">
+                    <Setter TargetName="BackGroundBorder" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+        
+
     </UserControl.Resources>
 
     <!--d:DesignHeight="300" d:DesignWidth="300"-->
@@ -55,8 +74,8 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <ListBox x:Name="Tasks" Grid.Column="1" 
-                         ItemsSource="{Binding MainWorkingSession.Tasks}" Margin="0 20 0 20" 
-                         ItemTemplate="{StaticResource DataTemplate1}" MaxHeight="300"/>
+                         ItemsSource="{Binding MainWorkingSession.Tasks}" IsEnabled="{Binding EnableTaskTick}" Margin="0 20 0 20" 
+                         ItemTemplate="{StaticResource TaskTemplate}" MaxHeight="300"/>
                     <Label Content="Description:" Margin="10 0 10 5"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="130" Margin="10 0 10 20"
                                       HorizontalScrollBarVisibility="Disabled">
