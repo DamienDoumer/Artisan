@@ -41,6 +41,7 @@ namespace Artisan.ViewModels
         public static event Action<TimeEntity, object> DeleteReponse;
         public static event Action<string, string, bool> DisplayTimeArrivedNotification;
         public static event Action<string, string> DisplayNotificationMessageBox;
+        public static event Action<string> CancelWorkingSession;
 
         /// <summary>
         /// These commands are to handle the click events of the 
@@ -71,7 +72,7 @@ namespace Artisan.ViewModels
         {
             ///Instantiate notification object to notify the user when needed
             growlNot = new GrowlNotifications();
-            player = new NotificationSoundPlayer(@"C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\Resources\NotificationSound.wav");  
+            player = new NotificationSoundPlayer(@"C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\Resources\NotificationSound.wav");
 
             ///Workingsession management code
             CreateEditWorkingSessionNextViewModel.SwitchToPreviousScreen += SwitchToPreviousScreenInitiated;
@@ -84,6 +85,9 @@ namespace Artisan.ViewModels
             ManageWorkingSessionSwitchCommand = new RelayCommand(OnSwitchToManageWorkingSession);
             ManageWorkingSessionsViewModel.EditWorkingSession += OnEditWorkingSessionInitiated;
             ManageWorkingSessionsViewModel.DeleteWorkingSession += DeleteWorkingSession;
+            InWorkingSessionViewModel.CancelWorkingSession += InWorkingSessionViewModelCancelWorkingSession;
+            InWorkingSessionViewModel.WorkingSessionTerminated += InWorkingSessionViewModel_WorkingSessionTerminated;
+            InWorkingSessionViewModel.Notification += InWorkingSessionViewModel_Notification;
 
             ///Here I handle the event Fired when the user wants to edit an event.
             manageEventViewModel = new ManageEventViewModel();
@@ -107,6 +111,10 @@ namespace Artisan.ViewModels
             MessageSwitchCommand = new RelayCommand(OnMessagesViewSwitch);
             //messengerViewModel = new MessengerViewModel();
         }
+
+
+
+
 
 
 
@@ -154,7 +162,21 @@ namespace Artisan.ViewModels
 
         #region WorkingSession ManagementCode
 
+        private void InWorkingSessionViewModel_Notification(string obj)
+        {
+            DiaologNeeded?.Invoke(obj);
+        }
 
+        private void InWorkingSessionViewModel_WorkingSessionTerminated()
+        {
+            Mode = "";
+            CurrentViewModel = manageWorkingSessionVM;
+        }
+
+        private void InWorkingSessionViewModelCancelWorkingSession(string obj)
+        {
+            CancelWorkingSession?.Invoke(obj);
+        }
 
         /// <summary>
         /// Call deletion in the main window Since the Dialog cannot be called in
@@ -170,6 +192,7 @@ namespace Artisan.ViewModels
         {
             CurrentViewModel = new CreateEditWorkingSessionViewModel();
         }
+
         private void OnSwitchToManageWorkingSession()
         {
             ///If the user is not on a current working session
@@ -257,7 +280,7 @@ namespace Artisan.ViewModels
             CreateEventViewModel.Title = "Edit Event";
             CurrentViewModel = createEventViewModel;
         }
-        
+
         private void OnManageEventViewSwitch()
         {
             if (Mode != CreateEditWorkingSessionViewModel.WORKING_SESSION_MODE)
@@ -285,7 +308,7 @@ namespace Artisan.ViewModels
         }
         private void OnSettingsViewSwitch()
         {
-            if(Mode != CreateEditWorkingSessionViewModel.WORKING_SESSION_MODE)
+            if (Mode != CreateEditWorkingSessionViewModel.WORKING_SESSION_MODE)
             {
 
             }
@@ -310,7 +333,7 @@ namespace Artisan.ViewModels
             ///===============================================
             /// Translation...
             /// ==============================================
-            DisplayNotificationMessageBox?.Invoke("Warning", 
+            DisplayNotificationMessageBox?.Invoke("Warning",
                 "You have an ongoing working session, you are advised to focus on it before it ends.");
         }
     }

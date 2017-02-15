@@ -22,7 +22,8 @@ namespace TimeManager
         private static OccuranceMonitor instance;
         public static OccuranceMonitor Instance
         {
-            get { return instance; } set { instance = value; }
+            get { return instance; }
+            set { instance = value; }
         }
 
         private List<TimeEntity> pastEntities;
@@ -82,6 +83,9 @@ namespace TimeManager
 
         public void SortTimeEntities()
         {
+
+            var doneWrk = workingSessionDao.RetrieveAccommplishedWorkingSessions();
+
             /////____________________________________________________________
             /////Debug Code
             //Debug.WriteLine("\nLOADING Time entities...\n");
@@ -99,14 +103,14 @@ namespace TimeManager
                 }
                 else
                 {
-                    futureEntities.Add(wrk);
+                    if (!doneWrk.Contains(wrk))
+                        futureEntities.Add(wrk);
 
                     /////____________________________________________________________
                     /////Debug Code
                     //Debug.WriteLine(" FUTURE" + wrk.ID + " Workingsession Was loaded from the database...\n");
 
                 }
-
             }
             foreach (Event evt in eventDao.RetrieveAllEvents())
             {
@@ -127,7 +131,7 @@ namespace TimeManager
                     //Debug.WriteLine(" FUTURE " + evt.ID + "Event Was loaded from the database...");
                 }
 
-                if(evt.Date_Time.DayOfYear == DateTime.Now.DayOfYear)
+                if (evt.Date_Time.DayOfYear == DateTime.Now.DayOfYear)
                 {
                     PresentEvents.Add(evt);
 
@@ -280,7 +284,7 @@ namespace TimeManager
             SprintTimer timer = null;
 
             TimeSelect selection = CheckOccuranceTimeRange(ent.EndTime);
-            Debug.WriteLine(selection+" "+ent.EndTime);
+            Debug.WriteLine(selection + " " + ent.EndTime);
             if (selection == TimeSelect.Hour)
             {
                 timer = new SprintTimer(ent, TimeSelect.Hour);
@@ -309,7 +313,7 @@ namespace TimeManager
         {
             AlarmTimeArrived?.Invoke(timer.Entity);
 
-            if(timer.isWorkingSession)
+            if (timer.isWorkingSession)
             {
                 WorkingSession session = timer.Entity as WorkingSession;
                 long time = timer.Entity.EndTime.Ticks - DateTime.Now.Ticks;
@@ -329,7 +333,7 @@ namespace TimeManager
         }
         private void OnTimeStopped(DateTime end, SprintTimer timer)
         {
-                AlarmTimeStopped?.Invoke(timer.Entity);
+            AlarmTimeStopped?.Invoke(timer.Entity);
         }
 
         private void OnCounterStarted(DateTime time, object wrk)
@@ -356,7 +360,7 @@ namespace TimeManager
             //Save this working session as done working session.
             workingSessionDao.SaveAsDoneWorkingSession(wrk);
 
-           CounterEnded?.Invoke(time, wrk);
+            CounterEnded?.Invoke(time, wrk);
         }
 
         /// <summary>

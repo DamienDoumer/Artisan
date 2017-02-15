@@ -14,8 +14,8 @@ namespace Dao
         /// <summary>
         /// Fired when the database was not found and there is need to create a new database
         /// </summary>
-        public delegate void DataBaseNotFoundEventHandler(string path, BaseDao dao);
-        public event DataBaseNotFoundEventHandler DatabaseNotFound;
+        ///public delegate void DataBaseNotFoundEventHandler(string path, BaseDao dao);
+        ///public event DataBaseNotFoundEventHandler DatabaseNotFound;
         
         public Connection Conn { get { return connection; } }
         public string DataBase { get; set; }
@@ -262,7 +262,7 @@ namespace Dao
             }
             catch (Exception e)
             {
-                throw;
+                throw e;
             }
         }
     }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Artisan.MVVMShared;
 using Dao.Entities;
 using System.Diagnostics;
+using Dao;
 
 namespace TimeManager.ViewModels
 {
@@ -15,8 +15,14 @@ namespace TimeManager.ViewModels
         private string timeString;
         private long progressValue;
 
-        public static event Action ProgressNeeded;
+        public static event Action<string> Notification;
+        public static event Action<string> CancelWorkingSession;
+        public static event Action WorkingSessionTerminated;
 
+        /// <summary>
+        /// WorkingSession terminated
+        /// </summary>
+        public static bool Terminated { get; set; }
         /// <summary>
         /// Tells if the user can still tick tasks as done or not done.
         /// </summary>
@@ -47,27 +53,75 @@ namespace TimeManager.ViewModels
         public InWorkingSessionViewModel()
         {
             EnableTaskTick = true;
-            CancleCommand = new RelayCommand(OnCancle);
-            SaveCommand = new RelayCommand(OnSave);
+            CancleCommand = new RelayCommand(OnCancle, CanCancel);
+            SaveCommand = new RelayCommand(OnSave, CanSave);
             OccuranceMonitor.Instance.CounterTimeChanged += OnInstance_CounterTimeChanged;
+            OccuranceMonitor.Instance.CounterEnded += OnInstance_CounterEnded;
+        }
+
+        private void OnInstance_CounterEnded(DateTime time, WorkingSession wrk)
+        {
+            EnableTaskTick = false;
+            Terminated = true;
+
+            DispatchService.Invoke(new Action(() =>
+            {
+                Notification?.Invoke("The time for this working session is over.");
+                SaveCommand.RaiseCanExecuteChanged();
+                CancleCommand.RaiseCanExecuteChanged();
+            }));
         }
 
         private void OnInstance_CounterTimeChanged(int h, int m, int s, DateTime time, decimal percentage)
         {
             DispatchService.Invoke(new Action(() =>
             {
-                Debug.WriteLine(percentage);
-                TimeString = DateTime.Now.Hour+":"+DateTime.Now.Minute+":"+DateTime.Now.Second;
+                TimeString = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
             }));
         }
 
         private void OnCancle()
         {
+            DispatchService.Invoke(new Action(() =>
+            {
+                CancelWorkingSession?.Invoke("Are you sure you want to abort this working session ?.");
+                //Save();
+                ///The saving working sessions process is found in the MainWindow View code, 
+                ///This is bad programming due to time constraints
 
+                if (Terminated)
+                {
+                    WorkingSessionTerminated?.Invoke();
+                }
+
+            }));
         }
         private void OnSave()
         {
+            DispatchService.Invoke(new Action(() =>
+            {
+                Save();
+                WorkingSessionTerminated?.Invoke();
+            }));
+        }
 
+        private void Save()
+        {
+            new WorkingSessionDao("WorkinSession") { }.SaveAsDoneWorkingSession(MainWorkingSession);
+
+            foreach (Task t in MainWorkingSession.Tasks)
+            {
+                new TaskDao("Task") { }.Update(t);
+            }
+        }
+
+        private bool CanSave()
+        {
+            return Terminated;
+        }
+        private bool CanCancel()
+        {
+            return !Terminated;
         }
     }
 }

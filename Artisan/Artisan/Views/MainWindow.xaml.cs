@@ -19,6 +19,7 @@ using Dao.Entities;
 using System.Collections.ObjectModel;
 using Dao;
 using Artisan.Views.Notifications;
+using TimeManager.ViewModels;
 
 namespace Artisan.Views
 {
@@ -34,6 +35,25 @@ namespace Artisan.Views
             MainWindowViewModel.DeleteReponse += OnDeleteResponse;
             MainWindowViewModel.DisplayTimeArrivedNotification += MainWindowViewModel_DisplayNotification;
             MainWindowViewModel.DisplayNotificationMessageBox += OnMainWindowViewModel_DisplayNotification1;
+            MainWindowViewModel.CancelWorkingSession += OnMainWindowViewModel_CancelWorkingSession;
+        }
+
+        private async void OnMainWindowViewModel_CancelWorkingSession(string obj)
+        {
+            if (await YesOrNoWarning(obj))
+            {
+                new WorkingSessionDao("WorkinSession") { }.SaveAsDoneWorkingSession(InWorkingSessionViewModel.MainWorkingSession);
+
+                foreach (Dao.Entities.Task t in InWorkingSessionViewModel.MainWorkingSession.Tasks)
+                {
+                    new TaskDao("Task") { }.Update(t);
+                }
+                InWorkingSessionViewModel.Terminated = true;
+            }
+            else
+            {
+
+            }
         }
 
         /// <summary>
@@ -54,7 +74,7 @@ namespace Artisan.Views
         /// <param name="isWorkingsession"></param>
         private void MainWindowViewModel_DisplayNotification(string arg1, string arg2, bool isWorkingsession)
         {
-            if(isWorkingsession)
+            if (isWorkingsession)
             {
                 this.Dispatcher.Invoke((Action)(() =>
                 {
@@ -80,10 +100,10 @@ namespace Artisan.Views
         }
         public async Task<bool> YesOrNoWarning(string message)
         {
-            MessageDialogResult result = await this.ShowMessageAsync("Beware", message, 
+            MessageDialogResult result = await this.ShowMessageAsync("Beware", message,
                 MessageDialogStyle.AffirmativeAndNegative);
 
-            if(result == MessageDialogResult.Affirmative)
+            if (result == MessageDialogResult.Affirmative)
             {
                 return true;
             }
@@ -104,7 +124,7 @@ namespace Artisan.Views
                 }
             }
             else
-            if(await YesOrNoWarning("Are you sure you want to delete this Event?."))
+            if (await YesOrNoWarning("Are you sure you want to delete this Event?."))
             {
                 Event evt = wrk as Event;
                 ObservableCollection<Event> evtList = list as ObservableCollection<Event>;
@@ -112,6 +132,7 @@ namespace Artisan.Views
                 evtList.Remove(evt);
             }
         }
+
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);

@@ -22,16 +22,18 @@ namespace TimeManager
         /// </summary>
         /// <param name="session"></param>
         /// <param name="time"></param>
-        public delegate void CounterStartedEventHandler(WorkingSession session, DateTime time);
-        public event CounterStartedEventHandler CounterStarted;
+        //public delegate void CounterStartedEventHandler(WorkingSession session, DateTime time);
+        //public event CounterStartedEventHandler CounterStarted;
+        
         /// <summary>
         /// Occures when the time of the counter changes.
         /// </summary>
         /// <param name="hours"></param>
         /// <param name="min"></param>
         /// <param name="sec"></param>
-        public delegate void CounterTimeChangedEventHandler(int h, int m, int s, DateTime time, float percentage);
-        public event CounterTimeChangedEventHandler CounterTimeChanged;
+        //public delegate void CounterTimeChangedEventHandler(int h, int m, int s, DateTime time, float percentage);
+        //public event CounterTimeChangedEventHandler CounterTimeChanged;
+
         /// <summary>
         /// Counter Ended.
         /// </summary>

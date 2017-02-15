@@ -24,11 +24,7 @@ namespace TimeManager.Views
         public InWorkingSessionView()
         {
             InitializeComponent();
-            InWorkingSessionViewModel.ProgressNeeded += InWorkingSessionViewModel_ProgressNeeded;
         }
 
-        private void InWorkingSessionViewModel_ProgressNeeded()
-        {
-        }
     }
 }
