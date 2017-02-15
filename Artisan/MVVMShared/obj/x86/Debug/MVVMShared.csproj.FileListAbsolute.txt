@@ -1,0 +1,5 @@
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\MVVMShared\bin\x86\Debug\MVVMShared.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\MVVMShared\bin\x86\Debug\MVVMShared.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\MVVMShared\obj\x86\Debug\MVVMShared.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\MVVMShared\obj\x86\Debug\MVVMShared.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\MVVMShared\obj\x86\Debug\MVVMShared.pdb

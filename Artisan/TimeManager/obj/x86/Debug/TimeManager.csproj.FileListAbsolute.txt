@@ -1,0 +1,5 @@
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\x86\Debug\TimeManager.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\x86\Debug\Views\InWorkingSessionView.g.cs
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\x86\Debug\TimeManager_MarkupCompile.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\x86\Debug\TimeManager_MarkupCompile.lref
