@@ -145,7 +145,6 @@
                         ToolTip="Past Appointments" Margin="5 0 0 0" Height="30" Width="80">
                     Past
                 </Button>
-                
             </StackPanel>
         </Border>
     </Grid>

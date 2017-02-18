@@ -88,6 +88,7 @@ namespace Artisan.ViewModels
             InWorkingSessionViewModel.CancelWorkingSession += InWorkingSessionViewModelCancelWorkingSession;
             InWorkingSessionViewModel.WorkingSessionTerminated += InWorkingSessionViewModel_WorkingSessionTerminated;
             InWorkingSessionViewModel.Notification += InWorkingSessionViewModel_Notification;
+            CreateEditWorkingSessionViewModel.NotificationNeeded += OnCreateEditWorkingSessionViewModel_NotificationNeeded;
 
             ///Here I handle the event Fired when the user wants to edit an event.
             manageEventViewModel = new ManageEventViewModel();
@@ -113,8 +114,7 @@ namespace Artisan.ViewModels
             //messengerViewModel = new MessengerViewModel();
         }
 
-        
-
+       
 
 
 
@@ -161,6 +161,11 @@ namespace Artisan.ViewModels
         #endregion
 
         #region WorkingSession ManagementCode
+
+        private void OnCreateEditWorkingSessionViewModel_NotificationNeeded(string obj)
+        {
+            DiaologNeeded?.Invoke(obj);
+        }
 
         private void InWorkingSessionViewModel_Notification(string obj)
         {

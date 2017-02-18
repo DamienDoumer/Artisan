@@ -3,6 +3,7 @@ using Dao.Entities;
 using Artisan.MVVMShared;
 using Dao;
 using System.Diagnostics;
+using System.Text;
 
 namespace TimeManager.ViewModels
 {
@@ -12,8 +13,10 @@ namespace TimeManager.ViewModels
         public const string EDIT_MODE = "Edit";
         public const string WORKING_SESSION_MODE = "WorkingSession";
 
+        StringBuilder errorMessage;
         private static WorkingSession workingSession;
         public static event Action<WorkingSession> NextStepLaunched;
+        public static event Action<string> NotificationNeeded;
 
         public static string Mode { get; set; }
         public static string Title { get; set; }
@@ -49,26 +52,77 @@ namespace TimeManager.ViewModels
 
         private void OnNextClickUpdate()
         {
-            BuilWorkingSessionTime();
-            NextStepLaunched?.Invoke(MainWorkingSession);
+            if (!ErrorCheck())
+            {
+                BuilWorkingSessionTime();
+                NextStepLaunched?.Invoke(MainWorkingSession);
+            }
+            else
+            {
+                NotificationNeeded?.Invoke(errorMessage.ToString());
+            }
         }
         private void OnNextClickSave()
         {
+
             BuilWorkingSessionTime();
-            ///I set the ID of this wrkingsession to correspond to that
-            /// of the workingsession to be Saved.
-            try
+
+           
+            if (!ErrorCheck())
             {
-                MainWorkingSession.ID = new WorkingSessionDao("WorkingSession") { }
-                .RetrieveLastWorkingSession().ID + 1;
+                ///I set the ID of this wrkingsession to correspond to that
+                /// of the workingsession to be Saved.
+                try
+                {
+                    MainWorkingSession.ID = new WorkingSessionDao("WorkingSession") { }
+                    .RetrieveLastWorkingSession().ID + 1;
+                }
+                catch
+                {
+                    MainWorkingSession.ID = 0;
+                }
+
+                NextStepLaunched?.Invoke(MainWorkingSession);
             }
-            catch
+            else
             {
-                MainWorkingSession.ID = 0;
+                NotificationNeeded?.Invoke(errorMessage.ToString());
             }
 
-            NextStepLaunched?.Invoke(MainWorkingSession);
         }
+
+        public bool ErrorCheck()
+        {
+            bool error = false;
+            bool errorProp = false;
+            errorMessage = new StringBuilder();
+
+            if (MainWorkingSession.Name == "")
+            {
+                errorMessage.Append("You must input the working session's title and description.\n");
+                errorProp = true;
+                error = true;
+            }
+            if (MainWorkingSession.Description == "" && !errorProp)
+            {
+                errorMessage.Append("You must input the working session's title and description.\n");
+                errorProp = true;
+                error = true;
+            }
+            if (MainWorkingSession.EndTime.Ticks <= MainWorkingSession.StartTime.Ticks)
+            {
+                errorMessage.Append("Your working session's end time cannot be earlier than its start time.\n");
+                error = true;
+            }
+            if (MainWorkingSession.StartTime.Ticks < DateTime.Now.Ticks)
+            {
+                errorMessage.Append("Your working session's start time must not be in the past.\n");
+                error = true;
+            }
+
+            return error;
+        }
+
         private void BuilWorkingSessionTime()
         {
             ///Set the appropriate date and send it to the next layer 

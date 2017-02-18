@@ -18,6 +18,17 @@
         <localViewModels:ManageWorkingSessionsViewModel/>
     </UserControl.DataContext>
 
+    <UserControl.InputBindings>
+        
+        <KeyBinding Key="D"
+                    Modifiers="Ctrl"
+                    Command="{Binding DeleteCommand}"/>
+        <KeyBinding Key="E"
+                    Modifiers="Ctrl"
+                    Command="{Binding EditCommand}"/>
+        
+    </UserControl.InputBindings>
+
     <UserControl.Resources>
         <DataTemplate x:Key="DataTemplate2" DataType="{x:Type data:Task}">
             <TextBlock Text="{Binding Name}"  FontFamily="Segoe Print" FontSize="15"/>
