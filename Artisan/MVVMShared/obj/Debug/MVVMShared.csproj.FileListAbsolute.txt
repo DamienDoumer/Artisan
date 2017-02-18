@@ -3,3 +3,4 @@ C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\MVVMShare
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\MVVMShared\obj\Debug\MVVMShared.dll
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\MVVMShared\obj\Debug\MVVMShared.pdb
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\MVVMShared\obj\Debug\MVVMShared.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\MVVMShared\bin\Debug\MVVMShared.dll.config

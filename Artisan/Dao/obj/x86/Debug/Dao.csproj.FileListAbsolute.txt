@@ -13,3 +13,4 @@ C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Dao\bin\x
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Dao\obj\x86\Debug\Dao.csprojResolveAssemblyReference.cache
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Dao\obj\x86\Debug\Dao.dll
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Dao\obj\x86\Debug\Dao.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Dao\bin\x86\Debug\Dao.dll.config
