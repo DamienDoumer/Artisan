@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Artisan.Views"
         mc:Ignorable="d"
-        Title="Artisan" Height="511.76" Width="727.829" WindowStartupLocation="CenterScreen"
+        Title="Artisan" Height="511.76" Width="791.829" WindowStartupLocation="CenterScreen"
         x:Name="Artisan" MinHeight="511.76" MinWidth="636.329" BorderThickness="1"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"

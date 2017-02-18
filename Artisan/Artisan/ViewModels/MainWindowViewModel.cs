@@ -98,6 +98,7 @@ namespace Artisan.ViewModels
             ManageEventSwitchCommand = new RelayCommand(OnManageEventViewSwitch);
             CurrentViewModel = mainMenuViewModel;
             ManageEventViewModel.DeleteEvent += OnDeleteEvent;
+            CreateEventViewModel.NotificationNeeded += OnCreateEventViewModel_NotificationNeeded;
 
             ///Code for monitoring working sessions and events.
             occuranceMon = OccuranceMonitor.Instance;
@@ -112,8 +113,7 @@ namespace Artisan.ViewModels
             //messengerViewModel = new MessengerViewModel();
         }
 
-
-
+        
 
 
 
@@ -259,6 +259,10 @@ namespace Artisan.ViewModels
         #region Event managing code
 
 
+        private void OnCreateEventViewModel_NotificationNeeded(string obj)
+        {
+            DiaologNeeded?.Invoke(obj);
+        }
 
         private void OnDeleteEvent(Event evt, ObservableCollection<Event> evts)
         {
