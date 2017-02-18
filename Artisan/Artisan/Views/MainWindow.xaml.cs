@@ -48,11 +48,9 @@ namespace Artisan.Views
                 {
                     new TaskDao("Task") { }.Update(t);
                 }
-                InWorkingSessionViewModel.Terminated = true;
-            }
-            else
-            {
 
+                InWorkingSessionViewModel.Terminated = true;
+                InWorkingSessionViewModel.TerminateWoringSession();
             }
         }
 

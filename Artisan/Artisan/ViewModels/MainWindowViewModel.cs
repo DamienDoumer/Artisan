@@ -114,7 +114,7 @@ namespace Artisan.ViewModels
             //messengerViewModel = new MessengerViewModel();
         }
 
-       
+
 
 
 
@@ -142,14 +142,14 @@ namespace Artisan.ViewModels
             {
                 WorkingSession wrk = entity as WorkingSession;
                 ///True for working sessions
-                DisplayTimeArrivedNotification?.Invoke("Disp", "play", true);
+                DisplayTimeArrivedNotification?.Invoke(wrk.Name, wrk.Description, true);
                 player.Player.Play();
             }
             else
             {
                 Event evt = entity as Event;
                 ///False for event 
-                DisplayTimeArrivedNotification?.Invoke("Disp", "play", false);
+                DisplayTimeArrivedNotification?.Invoke(evt.Name, evt.Description, false);
                 growlNot.AppointmentTimeArrivedNotification("Appointment now",
                     evt.Name);
                 player.Player.Play();

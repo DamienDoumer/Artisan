@@ -123,5 +123,9 @@ namespace TimeManager.ViewModels
         {
             return !Terminated;
         }
+        public static void TerminateWoringSession()
+        {
+            WorkingSessionTerminated?.Invoke();
+        }
     }
 }
