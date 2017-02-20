@@ -14,6 +14,7 @@ namespace TimeManager.ViewModels
         private static WorkingSession mainWorkingSession;
         private string timeString;
         private long progressValue;
+        private bool enableTaskTick;
 
         public static event Action<string> Notification;
         public static event Action<string> CancelWorkingSession;
@@ -22,11 +23,15 @@ namespace TimeManager.ViewModels
         /// <summary>
         /// WorkingSession terminated
         /// </summary>
-        public bool Terminated { get; set; }
+        public static bool Terminated { get; set; }
         /// <summary>
         /// Tells if the user can still tick tasks as done or not done.
         /// </summary>
-        public bool EnableTaskTick { get; set; }
+        public bool EnableTaskTick
+        {
+            get { return enableTaskTick; }
+            set { SetProperty(ref enableTaskTick, value); }
+        }
         public long ProgressValue
         {
             get { return progressValue; }
@@ -62,15 +67,19 @@ namespace TimeManager.ViewModels
         private void OnInstance_CounterEnded(DateTime time, WorkingSession wrk)
         {
             EnableTaskTick = false;
-            Terminated = true;
 
-            DispatchService.Invoke(new Action(() =>
+            if (!Terminated)
             {
-                Terminated = true;
-                Notification?.Invoke("The time for this working session is over.");
-                SaveCommand.RaiseCanExecuteChanged();
-                CancleCommand.RaiseCanExecuteChanged();
-            }));
+                DispatchService.Invoke(new Action(() =>
+              {
+                  Terminated = true;
+                  EnableTaskTick = false;
+                  Notification?.Invoke("The time for this working session is over.");
+                  SaveCommand.RaiseCanExecuteChanged();
+                  CancleCommand.RaiseCanExecuteChanged();
+                  Terminated = false;
+              }));
+            }
         }
 
         private void OnInstance_CounterTimeChanged(int h, int m, int s, DateTime time, decimal percentage)
@@ -85,7 +94,7 @@ namespace TimeManager.ViewModels
         {
             DispatchService.Invoke(new Action(() =>
             {
-                CancelWorkingSession?.Invoke("Are you sure you want to abort this working session ?.");
+                CancelWorkingSession?.Invoke("Are you sure you want to abort this working session ? Your current progress will be saved.");
                 //Save();
                 ///The saving working sessions process is found in the MainWindow View code, 
                 ///This is bad programming due to time constraints

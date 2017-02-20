@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using Dao;
 using Artisan.Views.Notifications;
 using TimeManager.ViewModels;
+using System.Diagnostics;
 
 namespace Artisan.Views
 {
@@ -46,9 +47,12 @@ namespace Artisan.Views
 
                 foreach (Dao.Entities.Task t in InWorkingSessionViewModel.MainWorkingSession.Tasks)
                 {
+                    Debug.WriteLine(t.Accomplished);
+
                     new TaskDao("Task") { }.Update(t);
                 }
                 InWorkingSessionViewModel.TerminateWoringSession();
+                InWorkingSessionViewModel.Terminated = true;
 
             }
         }

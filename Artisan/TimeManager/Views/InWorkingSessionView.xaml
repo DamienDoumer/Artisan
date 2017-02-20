@@ -75,7 +75,7 @@
                 <StackPanel Grid.Column="1">
                     <ListBox x:Name="Tasks" Grid.Column="1" 
                          ItemsSource="{Binding MainWorkingSession.Tasks}" IsEnabled="{Binding EnableTaskTick}" Margin="0 20 0 20" 
-                         ItemTemplate="{StaticResource TaskTemplate}" MaxHeight="300"/>
+                         ItemTemplate="{StaticResource TaskTemplate}"/>
                     <Label Content="Description:" Margin="10 0 10 5"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="130" Margin="10 0 10 20"
                                       HorizontalScrollBarVisibility="Disabled">

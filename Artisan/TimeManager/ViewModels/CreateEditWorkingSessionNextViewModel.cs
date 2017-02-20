@@ -118,12 +118,25 @@ namespace TimeManager.ViewModels
             }
             else
             {
-                wrkDao.Update(MainWorkingSession);
+                ///----------------------------------------------
+                ///NB:::::::::::::
+                ///If the working session was done, save it as not done since the user has to redo it
+                MainWorkingSession.Accomplished = false;
 
+                wrkDao.Update(MainWorkingSession);
                 if (newTasks.Count > 0)
                 {
                     ///In edit mode, save only the newly added tasks.
                     SaveTasks(newTasks);
+                }
+                
+                foreach(Task t in MainWorkingSession.Tasks )
+                {
+                    ///__________________________---
+                    ///NB:::::::::
+                    ///If a task was accomplished in this edited working session, set it as not accomplished
+                    t.Accomplished = false;
+                    new TaskDao("Task") { }.Update(t);
                 }
             }
             OccuranceMonitor.Instance.StartMonitoring(MainWorkingSession);

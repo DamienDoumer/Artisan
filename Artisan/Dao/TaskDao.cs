@@ -128,6 +128,8 @@ namespace Dao
         public void Update(Task task)
         {
             Update("Name", task.Name, "Where ID = " + task.ID);
+            Update("Accomplished", task.Accomplished.ToString(), "Where ID = " + task.ID);
+            Debug.WriteLine(task.Accomplished);
         }
     }
 }
