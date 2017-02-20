@@ -104,7 +104,7 @@ namespace TimeManager.ViewModels
 
         private void Save()
         {
-            new WorkingSessionDao("WorkinSession") { }.SaveAsDoneWorkingSession(MainWorkingSession);
+            new WorkingSessionDao() { }.SaveAsDoneWorkingSession(MainWorkingSession);
 
             foreach (Task t in MainWorkingSession.Tasks)
             {

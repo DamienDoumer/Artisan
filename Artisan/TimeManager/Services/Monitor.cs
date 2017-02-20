@@ -20,7 +20,7 @@ namespace TimeManager
             settingsDao = new SettingsDao("Settings");
             settingsDao.SaveDateForDaysOfWork();
             taskDao = new TaskDao(Shared.TaskTableName);
-            workingSessionDao = new WorkingSessionDao(Shared.WorkingSessionTableName);
+            workingSessionDao = new WorkingSessionDao();
         }
 
         public void MonitorTimeSpentOnPC()

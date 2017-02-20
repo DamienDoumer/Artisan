@@ -243,13 +243,7 @@ namespace Dao
                                                "  PRIMARY KEY(Day) " +
                                                " );";
                         command.ExecuteNonQuery();
-
-                        command.CommandText = "CREATE TABLE `DoneWorkingSession` ( " +
-                                              "`WorkingSessionID`	INTEGER NOT NULL, " +
-                                              " `ComplitionDateTime`	varchar(30) NOT NULL, " +
-                                              " FOREIGN KEY(`WorkingSessionID`) REFERENCES WorkingSession(ID) )";
-                        command.ExecuteNonQuery();
-
+                        
                         command.CommandText = "CREATE TABLE `Monitor` ( " +
                                                " `SecondsSpentOnPC`	INTEGER NOT NULL, " +
                                                " `Day`	VarChar(30), " +

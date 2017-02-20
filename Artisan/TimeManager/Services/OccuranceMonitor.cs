@@ -73,7 +73,7 @@ namespace TimeManager
             pastEntities = new List<TimeEntity>();
             futureEntities = new List<TimeEntity>();
             PresentEvents = new List<Event>();
-            workingSessionDao = new WorkingSessionDao("WorkingSession");
+            workingSessionDao = new WorkingSessionDao();
             eventDao = new EventDao("Event");
         }
         static OccuranceMonitor()
@@ -103,7 +103,7 @@ namespace TimeManager
                 }
                 else
                 {
-                    if (doneWrk.Contains(wrk))
+                    if (!doneWrk.Contains(wrk))
                     {
                         futureEntities.Add(wrk);
                     }

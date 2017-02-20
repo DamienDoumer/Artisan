@@ -97,7 +97,7 @@ namespace TimeManager.ViewModels
             newTasks = new List<Task>();
             name = "";
             taskDao = new TaskDao("Task");
-            wrkDao = new WorkingSessionDao("WorkingSession");
+            wrkDao = new WorkingSessionDao();
             SaveCommand = new RelayCommand(OnSave, CanSave);
             RemoveCommand = new RelayCommand(OnRemove, CanRemove);
             AddCommand = new RelayCommand(OnAddEdit, CanAdd);

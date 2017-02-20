@@ -16,7 +16,7 @@ namespace Artisan.ViewModels
 
         public MainMenuViewModel()
         {
-            wrkDao = new WorkingSessionDao("WorkingSession");
+            wrkDao = new WorkingSessionDao();
             evtDao = new EventDao("Event");
 
             ClossestEvent = evtDao.RetrieveClosestEvent();

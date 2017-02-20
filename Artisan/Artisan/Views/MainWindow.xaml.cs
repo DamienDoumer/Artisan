@@ -42,7 +42,7 @@ namespace Artisan.Views
         {
             if (await YesOrNoWarning(obj))
             {
-                new WorkingSessionDao("WorkinSession") { }.SaveAsDoneWorkingSession(InWorkingSessionViewModel.MainWorkingSession);
+                new WorkingSessionDao() { }.SaveAsDoneWorkingSession(InWorkingSessionViewModel.MainWorkingSession);
 
                 foreach (Dao.Entities.Task t in InWorkingSessionViewModel.MainWorkingSession.Tasks)
                 {
@@ -115,7 +115,7 @@ namespace Artisan.Views
                 {
                     WorkingSession wrk2 = wrk as WorkingSession;
                     ObservableCollection<WorkingSession> list2 = list as ObservableCollection<WorkingSession>;
-                    new WorkingSessionDao("WorkingSession").Delete(wrk2);
+                    new WorkingSessionDao().Delete(wrk2);
                     list2.Remove(wrk2);
                     return;
                 }

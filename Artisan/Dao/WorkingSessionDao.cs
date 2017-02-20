@@ -16,13 +16,14 @@ namespace Dao
                                     "`Description`	TEXT NOT NULL," +
                                     "`Day`	VarChar(50) NOT NULL," +
                                     "`StartTime`	VarChar(50) NOT NULL," +
-                                    "`EndTime`	VarChar(50) NOT NULL" +
+                                    "`EndTime`	VarChar(50) NOT NULL, " +
+                                    "`Accomplished`	boolean NOT NULL"+
                                     ");";
 
 
 
-        public WorkingSessionDao(string table):base(table)
-        { tDao = new TaskDao(table); }
+        public WorkingSessionDao():base("WorkingSession")
+        { tDao = new TaskDao("Task"); }
 
 
 
@@ -58,13 +59,11 @@ namespace Dao
         }//Works
         public List<WorkingSession> RetrieveAccommplishedWorkingSessions()
         {
-            return RetrieveWorkingSessions("select * from WorkingSession"+
-                " where ID in (select WorkingSessionID from DoneWorkingSession)");
+            return RetrieveWorkingSessions("select * from WorkingSession where Accomplished = 'True'");
         }//works
         public List<WorkingSession> RetrieveNotAccommplishedWorkingSessions()
         {
-            return RetrieveWorkingSessions("select * from WorkingSession where"+
-                " ID not in (select WorkingSessionID from DoneWorkingSession)");
+            return RetrieveWorkingSessions("select * from WorkingSession where Accomplished = 'False'");
         }//works
         //public List<WorkingSession> RetrieveAccommplishedBeforeTimeWorkingSessions()
         //{
@@ -94,9 +93,9 @@ namespace Dao
                 while (reader.Read())
                 {
                     workingSession = new WorkingSession(Convert.ToInt32(reader[0]),
-                        reader[1].ToString(), Convert.ToDateTime(reader[3].ToString()),
-                        reader[2].ToString(), Convert.ToDateTime(reader[4].ToString()),
-                        Convert.ToDateTime(reader[5].ToString()));
+                         reader[1].ToString(), Convert.ToDateTime(reader[3].ToString()),
+                         reader[2].ToString(), Convert.ToDateTime(reader[4].ToString()),
+                         Convert.ToDateTime(reader[5].ToString()), Convert.ToBoolean(reader[6]));
 
                     workingSession.Tasks = tDao.RetrieveTasksForWorkingSession(workingSession);
 
@@ -106,16 +105,10 @@ namespace Dao
 
             return workingSessions;
         }//works
-        public bool SaveAsDoneWorkingSession(WorkingSession wrk)
+        public void SaveAsDoneWorkingSession(WorkingSession wrk)
         {
-            int success = 0;
-            string query = "Insert into DoneWorkingSession values (" + wrk.ID + ", '"+DateTime.Now.ToString()+"')";
-            Query = query;
-            success = ExecuteQuery(query);
-
-            if (success == 1)
-                return true;
-            return false;
+            wrk.Accomplished = true;
+            Update(wrk);
         }//works
 
         /// <summary>
@@ -148,7 +141,7 @@ namespace Dao
                 workingSession = new WorkingSession(Convert.ToInt32(reader[0]),
                         reader[1].ToString(), Convert.ToDateTime(reader[3].ToString()),
                         reader[2].ToString(), Convert.ToDateTime(reader[4].ToString()),
-                        Convert.ToDateTime(reader[5].ToString()));
+                        Convert.ToDateTime(reader[5].ToString()), Convert.ToBoolean(reader[6]));
 
                 workingSession.Tasks = tDao.RetrieveTasksForWorkingSession(workingSession);
             }
@@ -160,13 +153,13 @@ namespace Dao
         }//works
         public int RetrieveAccommplishedWorkingSessionsCount()
         {
-            return RetrieveCount("select count() from WorkingSession" +
-                " where ID in (select WorkingSessionID from DoneWorkingSession)");
+            return RetrieveCount("select count() from WorkingSession where ID in"+
+                " (select ID from WorkingSession where Accomplished = 'True')");
         }//works
         public int RetrieveNotAccommplishedWorkingSessionsCount()
         {
-            return RetrieveCount("select * from WorkingSession where" +
-                " ID not in (select WorkingSessionID from DoneWorkingSession)");
+            return RetrieveCount("select count() from WorkingSession where ID in" +
+                " (select ID from WorkingSession where Accomplished = 'False')");
         }//works
         public int RetrieveWorkingSessionsCountForDate(DateTime date)
         {
@@ -180,6 +173,7 @@ namespace Dao
             Update("Day", wrk.Day.ToString(), condition);
             Update("StartTime", wrk.StartTime.ToString(), condition);
             Update("EndTime", wrk.EndTime.ToString(), condition);
+            Update("Accomplished", wrk.Accomplished.ToString(), condition);
         }
         public WorkingSession RetrieveClosestWorkingSession()
         {

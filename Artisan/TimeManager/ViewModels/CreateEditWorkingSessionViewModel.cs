@@ -75,7 +75,7 @@ namespace TimeManager.ViewModels
                 /// of the workingsession to be Saved.
                 try
                 {
-                    MainWorkingSession.ID = new WorkingSessionDao("WorkingSession") { }
+                    MainWorkingSession.ID = new WorkingSessionDao() { }
                     .RetrieveLastWorkingSession().ID + 1;
                 }
                 catch

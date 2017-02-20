@@ -9,6 +9,7 @@ namespace Dao.Entities
         private DateTime day;
         public List<Task> Tasks { get; set; }
         public string Description { get; set; }
+        public bool Accomplished { get; set; }
 
         /// <summary>
         /// The Day should be stored as a date without time.
@@ -21,11 +22,13 @@ namespace Dao.Entities
 
         public WorkingSession() : base(0, "", DateTime.Now, DateTime.Now, "WorkingSession")
         {
+            Accomplished = false;
         }
 
         public WorkingSession(string name, DateTime day, string desc,
-            DateTime startT, DateTime endT) : base(0, name, startT, endT, "WorkingSession")
+            DateTime startT, DateTime endT, bool accomplished) : base(0, name, startT, endT, "WorkingSession")
         {
+            Accomplished = accomplished;
             this.day = day.Date;
             Description = desc;
             StartTime = startT;
@@ -33,9 +36,10 @@ namespace Dao.Entities
         }
 
         public WorkingSession(string name, DateTime day,
-            List<Task> tasks,string desc, DateTime startT, DateTime endT)
+            List<Task> tasks,string desc, DateTime startT, DateTime endT, bool accomplished)
             : base(0, name, startT, endT, "WorkingSession")
         {
+            Accomplished = accomplished;
             Description = desc;
             StartTime = startT;
             EndTime = endT;
@@ -44,8 +48,9 @@ namespace Dao.Entities
             this.day = day.Date;
         }
         public WorkingSession(int id, string name, DateTime day,
-            string desc, DateTime startT, DateTime endT) : base(id, name, startT, endT, "WorkingSession")
+            string desc, DateTime startT, DateTime endT, bool accomplished) : base(id, name, startT, endT, "WorkingSession")
         {
+            Accomplished = accomplished;
             Name = name;
             Description = desc;
             StartTime = startT;
@@ -54,15 +59,15 @@ namespace Dao.Entities
         }
         public override string[] GetProperties()
         {
-            return new string[] { "Name", "Description", "Day", "StartTime", "EndTime" };
+            return new string[] { "Name", "Description", "Day", "StartTime", "EndTime", "Accomplished" };
         }
         public override string[] GetPropertyValues()
         {
-            return new string[] {Name, Description, Day.ToString(), StartTime.ToString(), EndTime.ToString() };
+            return new string[] {Name, Description, Day.ToString(), StartTime.ToString(), EndTime.ToString(), Accomplished.ToString() };
         }
         public override string ToString()
         {
-            return Name +" "+ Description + " " + Day.ToString() + " " + StartTime.ToString() + " " + EndTime.ToString();
+            return Name +" "+ Description + " " + Day.ToString() + " " + StartTime.ToString() + " " + EndTime.ToString()+" "+Accomplished;
         }
 
         public override bool Equals(object obj)
@@ -75,6 +80,10 @@ namespace Dao.Entities
             }
 
             return false;
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

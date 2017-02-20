@@ -66,7 +66,7 @@ namespace TimeManager.ViewModels
             CreateCommand = new RelayCommand(OnCreate);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
-            wrkDao = new WorkingSessionDao("WorkingSession");
+            wrkDao = new WorkingSessionDao();
             taskDao = new TaskDao("Task");
             tasks = new ObservableCollection<Task>();
 
