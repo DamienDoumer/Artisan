@@ -30,13 +30,13 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid Background="AliceBlue" Opacity="0.8">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="39"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid  Background="AliceBlue" Opacity="0.8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="139*" />
                 <ColumnDefinition Width="119*" />
@@ -48,8 +48,8 @@
             <TextBox Margin="10" Height="30" Text="{Binding Name, Mode=TwoWay}"
                  materialDesign:HintAssist.Hint="Enter Each Step Here."/>
 
-            <ListBox x:Name="listBox" ItemsSource="{Binding TaskList}"
-                 Grid.Column="2" HorizontalAlignment="Center" SelectedItem="{Binding CurrentTask}"
+            <ListBox x:Name="listBox" ItemsSource="{Binding TaskList}"  
+                 Grid.Column="2" SelectedItem="{Binding CurrentTask}"
                  Margin="10"
                  ItemTemplate="{StaticResource ItemDisplay1}"/>
         </Grid>
@@ -57,16 +57,16 @@
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center"
                   >
             <Button x:Name="button" Content="{Binding AddEditButtonText, Mode=TwoWay}"
-                Margin="5 0 0 0" VerticalAlignment="Center"
+                Margin="5 0 0 0" VerticalAlignment="Center" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 Command="{Binding AddCommand}" Width="80" />
-            <Button x:Name="button1" Content="Remove" 
+            <Button x:Name="button1" Content="Remove"  materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 Margin="5 0 0 0"  VerticalAlignment="Center"
                 Command="{Binding RemoveCommand}" Width="85"/>
-            <Button x:Name="button2" Content="Save" 
+            <Button x:Name="button2" Content="Save" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 VerticalAlignment="Center" Width="85" Margin="5 0 0 0"
                 Command="{Binding SaveCommand}"/>
             <Button x:Name="Previous" Content="Back" HorizontalAlignment="Left"
-                VerticalAlignment="Center" Width="85" Margin="5 0 5 0"
+                VerticalAlignment="Center" Width="85" Margin="5 0 5 0" materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 Command="{Binding PreviousScreenCommand}"/>
         </StackPanel>
     </Grid>

@@ -22,7 +22,7 @@ namespace TimeManager.ViewModels
         /// <summary>
         /// WorkingSession terminated
         /// </summary>
-        public static bool Terminated { get; set; }
+        public bool Terminated { get; set; }
         /// <summary>
         /// Tells if the user can still tick tasks as done or not done.
         /// </summary>
@@ -66,6 +66,7 @@ namespace TimeManager.ViewModels
 
             DispatchService.Invoke(new Action(() =>
             {
+                Terminated = true;
                 Notification?.Invoke("The time for this working session is over.");
                 SaveCommand.RaiseCanExecuteChanged();
                 CancleCommand.RaiseCanExecuteChanged();
@@ -89,13 +90,9 @@ namespace TimeManager.ViewModels
                 ///The saving working sessions process is found in the MainWindow View code, 
                 ///This is bad programming due to time constraints
 
-                if (Terminated)
-                {
-                    WorkingSessionTerminated?.Invoke();
-                }
-
             }));
         }
+
         private void OnSave()
         {
             DispatchService.Invoke(new Action(() =>

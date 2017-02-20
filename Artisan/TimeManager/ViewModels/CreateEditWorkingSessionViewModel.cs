@@ -52,9 +52,10 @@ namespace TimeManager.ViewModels
 
         private void OnNextClickUpdate()
         {
+            BuilWorkingSessionTime();
+
             if (!ErrorCheck())
             {
-                BuilWorkingSessionTime();
                 NextStepLaunched?.Invoke(MainWorkingSession);
             }
             else
@@ -96,7 +97,7 @@ namespace TimeManager.ViewModels
             bool error = false;
             bool errorProp = false;
             errorMessage = new StringBuilder();
-
+            
             if (MainWorkingSession.Name == "")
             {
                 errorMessage.Append("You must input the working session's title and description.\n");

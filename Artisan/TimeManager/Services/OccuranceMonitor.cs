@@ -103,8 +103,10 @@ namespace TimeManager
                 }
                 else
                 {
-                    if (!doneWrk.Contains(wrk))
+                    if (doneWrk.Contains(wrk))
+                    {
                         futureEntities.Add(wrk);
+                    }
 
                     /////____________________________________________________________
                     /////Debug Code
@@ -141,6 +143,7 @@ namespace TimeManager
                 }
             }
         }
+
         /// <summary>
         /// this is used to sort events which are given in and 
         /// Send them out when needed.

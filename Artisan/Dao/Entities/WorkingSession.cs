@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Dao.Entities
 {
@@ -62,6 +63,18 @@ namespace Dao.Entities
         public override string ToString()
         {
             return Name +" "+ Description + " " + Day.ToString() + " " + StartTime.ToString() + " " + EndTime.ToString();
+        }
+
+        public override bool Equals(object obj)
+        {
+            WorkingSession wrk = obj as WorkingSession;
+
+            if(typeof(WorkingSession) == this.GetType() && wrk != null)
+            {
+                return wrk.ID == ID;
+            }
+
+            return false;
         }
     }
 }
