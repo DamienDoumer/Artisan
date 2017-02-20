@@ -48,13 +48,13 @@ namespace TimeManager.ViewModels
 
         public CreateEventViewModel()
         {
-            if (Title == "Create Event")
+            if (Title == "Create Appointment")
             {
                 mainEvent = new Event();
                 Date = DateTime.Now;
             }
             else
-            if(Title == "Edit Event")
+            if(Title == "Edit Appointment")
             {
                 Date = mainEvent.Date_Time;
                 Time = mainEvent.Date_Time;
@@ -106,7 +106,7 @@ namespace TimeManager.ViewModels
                 mainEvent.Date_Time = finalDate;
                 mainEvent.EndTime = finalDate;
 
-                if (Title == "Edit Event") { eventDao.UpdateEvent(oldEvent, mainEvent); }
+                if (Title == "Edit Appointment") { eventDao.UpdateEvent(oldEvent, mainEvent); }
                 else
                 {
                     eventDao.Save(mainEvent);

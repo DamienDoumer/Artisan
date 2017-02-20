@@ -280,13 +280,13 @@ namespace Artisan.ViewModels
         }
         private void NavigateToCreateEventView()
         {
-            CreateEventViewModel.Title = "Create Event";
+            CreateEventViewModel.Title = "Create Appointment";
             CurrentViewModel = createEventViewModel;
         }
         private void NavigateToEditEventView(Event evt)
         {
             CreateEventViewModel.MainEvent = evt;
-            CreateEventViewModel.Title = "Edit Event";
+            CreateEventViewModel.Title = "Edit Appointment";
             CurrentViewModel = createEventViewModel;
         }
 
