@@ -47,8 +47,6 @@ namespace Artisan.Views
 
                 foreach (Dao.Entities.Task t in InWorkingSessionViewModel.MainWorkingSession.Tasks)
                 {
-                    Debug.WriteLine(t.Accomplished);
-
                     new TaskDao("Task") { }.Update(t);
                 }
                 InWorkingSessionViewModel.TerminateWoringSession();

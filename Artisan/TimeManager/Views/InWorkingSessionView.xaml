@@ -87,9 +87,9 @@
             </Grid>
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="SaveButton" Command="{Binding SaveCommand}" Content="Save" 
+            <Button x:Name="SaveButton" Command="{Binding SaveCommand}" Content="Done" 
                     materialDesign:ShadowAssist.ShadowDepth="Depth5" Height="30" Width="80" Margin="10 0 10 0"/>
-            <Button x:Name="CancelButton" Command="{Binding CancleCommand}" Content="Cancel" 
+            <Button x:Name="CancelButton" Command="{Binding CancleCommand}" Content="Cancle" 
                     materialDesign:ShadowAssist.ShadowDepth="Depth5" Height="30" Width="80" Margin="10 0 10 0"/>
         </StackPanel>
     </Grid>

@@ -175,6 +175,7 @@ namespace Artisan.ViewModels
         private void InWorkingSessionViewModel_WorkingSessionTerminated()
         {
             Mode = "";
+            InWorkingSessionViewModel.Terminated = true;
             CurrentViewModel = manageWorkingSessionVM;
         }
 

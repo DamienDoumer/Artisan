@@ -24,9 +24,7 @@ namespace TimeManager
         }
 
         public void MonitorTimeSpentOnPC()
-        {
-
-        }
+        {}
         public float CalculatePercentageOfAccomplishedTasks()
         {
             int numAccomplishedTasks = taskDao.RetrieveAccomplishedTasksCount();

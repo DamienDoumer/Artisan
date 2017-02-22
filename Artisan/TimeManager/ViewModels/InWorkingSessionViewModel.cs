@@ -15,11 +15,19 @@ namespace TimeManager.ViewModels
         private string timeString;
         private long progressValue;
         private bool enableTaskTick;
+        //string btnContent;
 
+        //Changes when the button needs to be for cancle or save
+        //public string ButtonContent
+        //{
+        //    get { return btnContent; }
+        //    set { SetProperty(ref btnContent, value); }
+        //}
         public static event Action<string> Notification;
         public static event Action<string> CancelWorkingSession;
         public static event Action WorkingSessionTerminated;
 
+        bool canSave;
         /// <summary>
         /// WorkingSession terminated
         /// </summary>
@@ -57,7 +65,9 @@ namespace TimeManager.ViewModels
 
         public InWorkingSessionViewModel()
         {
+            Terminated = false;
             EnableTaskTick = true;
+            //ButtonContent = "Cancle";
             CancleCommand = new RelayCommand(OnCancle, CanCancel);
             SaveCommand = new RelayCommand(OnSave, CanSave);
             OccuranceMonitor.Instance.CounterTimeChanged += OnInstance_CounterTimeChanged;
@@ -72,11 +82,13 @@ namespace TimeManager.ViewModels
             {
                 DispatchService.Invoke(new Action(() =>
               {
+                  //ButtonContent = "Done";
                   Terminated = true;
                   EnableTaskTick = false;
                   Notification?.Invoke("The time for this working session is over.");
-                  SaveCommand.RaiseCanExecuteChanged();
+                  Debug.WriteLine(Terminated);
                   CancleCommand.RaiseCanExecuteChanged();
+                  SaveCommand.RaiseCanExecuteChanged();
                   Terminated = false;
               }));
             }
@@ -92,13 +104,11 @@ namespace TimeManager.ViewModels
 
         private void OnCancle()
         {
+
             DispatchService.Invoke(new Action(() =>
             {
-                CancelWorkingSession?.Invoke("Are you sure you want to abort this working session ? Your current progress will be saved.");
-                //Save();
-                ///The saving working sessions process is found in the MainWindow View code, 
-                ///This is bad programming due to time constraints
-
+                CancelWorkingSession?.
+                Invoke("Are you sure you want to abort this working session ? Your current progress will be saved.");
             }));
         }
 
@@ -123,10 +133,18 @@ namespace TimeManager.ViewModels
 
         private bool CanSave()
         {
-            return Terminated;
+            return canSave;
         }
         private bool CanCancel()
         {
+            if (Terminated)
+            {
+                canSave = true;
+            }
+            else
+            {
+                canSave = false;
+            }
             return !Terminated;
         }
         public static void TerminateWoringSession()
