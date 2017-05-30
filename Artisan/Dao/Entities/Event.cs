@@ -15,18 +15,7 @@ namespace Dao.Entities
             }
             set
             {
-                if(value.Length > 50)
-                {
-                    ///----------------------------------///
-                    /// translation needed               ///
-                    /// ---------------------------------///
-                    throw (new 
-                        Exception("The venue of your event should not be of more than 100 characters."));
-                }
-                else
-                {
-                    venue = value;
-                }
+                venue = value;
             }
         }
         public DateTime Date_Time { get; set; }
@@ -36,14 +25,8 @@ namespace Dao.Entities
         {
             Description = desc;
 
-            if (venue.Length > 50)
-            {
-                throw new Exception("The venue of your event should not be of more than 100 characters.");
-            }
-            else
-            {
-                this.venue = venue;
-            }
+            this.venue = venue;
+
             Date_Time = date;
         }
         public Event():base(0, "", DateTime.Now, DateTime.Now, "Event")

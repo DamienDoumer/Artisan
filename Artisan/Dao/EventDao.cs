@@ -35,6 +35,9 @@ namespace Dao
 
                     command.Connection = con;
                     Query = build.ToString();
+
+                    Debug.WriteLine(Query);
+
                     command.CommandText = Query;
 
                     success = command.ExecuteNonQuery();

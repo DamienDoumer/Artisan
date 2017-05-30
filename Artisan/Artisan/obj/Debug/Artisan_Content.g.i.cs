@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/notificationsound.wav")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("views/uiresources/performance.png")]
 
 

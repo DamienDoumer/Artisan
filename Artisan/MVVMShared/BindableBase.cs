@@ -29,6 +29,7 @@ namespace Artisan.MVVMShared
             member = val;
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+        
 
         /// <summary>
         /// This is used when if one property is changed, it will automatically cause 

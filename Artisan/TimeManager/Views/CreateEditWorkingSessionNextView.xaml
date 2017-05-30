@@ -36,7 +36,7 @@
             <RowDefinition Height="39"/>
         </Grid.RowDefinitions>
 
-        <Grid  Background="AliceBlue" Opacity="0.8">
+        <Grid Background="AliceBlue" Opacity="0.8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="139*" />
                 <ColumnDefinition Width="119*" />

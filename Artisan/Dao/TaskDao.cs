@@ -103,23 +103,23 @@ namespace Dao
         }
         public List<Task> RetrieveUnAccomplishedTasks()
         {
-            return RetrieveTasks("select * from task where Accomplished = 'false'");
+            return RetrieveTasks("select * from task where Accomplished = 'False'");
         }
         public int RetrieveAccomplishedTasksCount()
         {
-            return RetrieveCount("select count() from task where Accomplished = 'true'");
+            return RetrieveCount("select count() from task where Accomplished = 'True'");
         }
         public int RetrieveUnAccomplishedTasksCount()
         {
-            return RetrieveCount("select count() from task where Accomplished = 'false'");
+            return RetrieveCount("select count() from task where Accomplished = 'False'");
         }
         public int RetrieveAccomplishedTasksCountForWorkingSession(WorkingSession wrk)
         {
-            return RetrieveCount("select count() from task where Accomplished = 'true' and WorkingSessionID = " + wrk.ID);
+            return RetrieveCount("select count() from task where Accomplished = 'True' and WorkingSessionID = " + wrk.ID);
         }//Works
         public int RetrieveUnAccomplishedTasksCountForWorkingSession(WorkingSession wrk)
         {
-            return RetrieveCount("select count() from task where Accomplished = 'true' and WorkingSessionID = " + wrk.ID);
+            return RetrieveCount("select count() from task where Accomplished = 'False' and WorkingSessionID = " + wrk.ID);
         }//works
         public int RetrieveAllTasksCount()
         {

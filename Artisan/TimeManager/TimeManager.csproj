@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TimeManager</RootNamespace>
     <AssemblyName>TimeManager</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -67,6 +67,10 @@
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WpfCharts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WpfCharts.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Services\Delegates\TimeManagerDelegates.cs" />
@@ -78,12 +82,14 @@
     <Compile Include="Services\OccuranceMonitor.cs" />
     <Compile Include="Services\SprintTimer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\WorkingSessionStatistic.cs" />
     <Compile Include="ViewModels\CreateEditWorkingSessionNextViewModel.cs" />
     <Compile Include="ViewModels\CreateEventViewModel.cs" />
     <Compile Include="ViewModels\CreateEditWorkingSessionViewModel.cs" />
     <Compile Include="ViewModels\InWorkingSessionViewModel.cs" />
     <Compile Include="ViewModels\ManageEventViewModel.cs" />
     <Compile Include="ViewModels\ManageWorkingSessionsViewModel.cs" />
+    <Compile Include="ViewModels\ViewStatisticsViewModel.cs" />
     <Compile Include="Views\CreateEditWorkingSessionNextView.xaml.cs">
       <DependentUpon>CreateEditWorkingSessionNextView.xaml</DependentUpon>
     </Compile>
@@ -101,6 +107,9 @@
     </Compile>
     <Compile Include="Views\ManageWorkingSessionsView.xaml.cs">
       <DependentUpon>ManageWorkingSessionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StatisticsView.xaml.cs">
+      <DependentUpon>StatisticsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ManageWorkingSessionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StatisticsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

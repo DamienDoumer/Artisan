@@ -1,5 +1,10 @@
 ﻿using Dao;
 using Dao.ShareResources;
+using TimeManager.Services;
+using Dao.Entities;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace TimeManager
 {
@@ -23,30 +28,56 @@ namespace TimeManager
             workingSessionDao = new WorkingSessionDao();
         }
 
+        public WorkingSessionStatistic CalculateStatsForWorkingSession(WorkingSession wrk)
+        {
+            int accTasks = taskDao.RetrieveUnAccomplishedTasksCountForWorkingSession(wrk);
+            int totalTasks = taskDao.RetrieveTasksForWorkingSession(wrk).Count;
+            
+            decimal percentage = CalculatePercentage(accTasks, totalTasks);
+            return new WorkingSessionStatistic(wrk.Name, percentage, wrk.StartTime ,wrk.Tasks);
+        }
+        public List<WorkingSessionStatistic> CalculateStatsForEveryWorkingSessions()
+        {
+            var stats = new List<WorkingSessionStatistic>();
+            foreach (WorkingSession wrk in workingSessionDao.RetrieveAllWorkingSessions())
+            {
+                stats.Add(CalculateStatsForWorkingSession(wrk));
+            }
+
+            return stats;
+        }
+
         public void MonitorTimeSpentOnPC()
         {}
-        public float CalculatePercentageOfAccomplishedTasks()
+        public decimal CalculatePercentageOfAccomplishedTasks()
         {
             int numAccomplishedTasks = taskDao.RetrieveAccomplishedTasksCount();
             int totalTasks = taskDao.RetrieveAllTasksCount();
 
             return CalculatePercentage(numAccomplishedTasks, totalTasks);
         }
-        public float CalculatePercentageOfUnAccomplishedTasks()
+        public decimal CalculatePercentageOfUnAccomplishedTasks()
         {
 
             return CalculatePercentage(taskDao.RetrieveUnAccomplishedTasksCount()
                 , taskDao.RetrieveAllTasksCount());
         }
-        public float CalculatePercentageOfDoneWorkingSessions()
+        public decimal CalculatePercentageOfDoneWorkingSessions()
         {
             return CalculatePercentage(workingSessionDao.RetrieveAccommplishedWorkingSessionsCount(),
                 workingSessionDao.RetrieveAllWorkingSessionsCount());
         }
-        public float CalculatePercentageOfNotDoneWorkingSessions()
+        public decimal CalculatePercentageOfNotDoneWorkingSessions()
         {
             return CalculatePercentage(workingSessionDao.RetrieveNotAccommplishedWorkingSessionsCount(),
                 workingSessionDao.RetrieveAllWorkingSessionsCount());
+        }
+        //Calculate the percentage of tasks and sessions completed together
+        public decimal CalculateTotalComplisionPercentage()
+        {
+            var wrkPercent = CalculatePercentageOfDoneWorkingSessions();
+            var taskPercent = CalculatePercentageOfAccomplishedTasks();
+            return CalculatePercentage(wrkPercent + taskPercent, 200);
         }
         public int NumberOfAccomplishedTasks()
         {
@@ -60,9 +91,37 @@ namespace TimeManager
         {
             return new int();
         }
-        private float CalculatePercentage(int small, int total)
+        private decimal CalculatePercentage(int small, int total)
         {
-            return (small * 100) / total;
+            decimal percentage;
+
+            try
+            {
+                percentage = Decimal.Divide((decimal)small, (decimal)total);
+                percentage = Decimal.Multiply(percentage, 100);
+            }
+            catch (DivideByZeroException)
+            {
+                return new decimal(0);
+            }
+            
+            return percentage;
+        }
+        private decimal CalculatePercentage(decimal small, int total)
+        {
+            decimal percentage;
+
+            try
+            {
+                percentage = Decimal.Divide(small, (decimal)total);
+                percentage = Decimal.Multiply(percentage, 100);
+            }
+            catch(DivideByZeroException)
+            {
+                return new decimal(0);
+            }
+
+            return percentage;
         }
     }
 }

@@ -43,3 +43,6 @@ C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManag
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\InWorkingSessionView.g.cs
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\InWorkingSessionView.baml
 C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\bin\Debug\TimeManager.dll.config
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\bin\Debug\WpfCharts.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\StatisticsView.g.cs
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\TimeManager\obj\Debug\Views\StatisticsView.baml

@@ -1,0 +1,21 @@
+C:\Users\Ze Damien\Desktop\Seed\TCPcore\Seed\obj\Debug\Seed.csprojResolveAssemblyReference.cache
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\TCPcore\Seed\obj\Debug\Seed.csprojResolveAssemblyReference.cache
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\TCPcore\Seed\bin\Debug\Seed.dll
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\TCPcore\Seed\bin\Debug\Seed.pdb
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\TCPcore\Seed\obj\Debug\Seed.dll
+D:\Users\Public\MeraFiles\Software engineering\Projects\Git Repositories\D-Meraa\TCPcore\Seed\obj\Debug\Seed.pdb
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\Seed\obj\Debug\Seed.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\Seed\obj\Debug\Seed.dll
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\Seed\obj\Debug\Seed.pdb
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\Seed\bin\Debug\Seed.dll
+C:\Users\Damien\Desktop\TCPMessenger\TCPcore\Seed\bin\Debug\Seed.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\Seed\bin\Debug\Seed.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\Seed\bin\Debug\Seed.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\Seed\obj\Debug\Seed.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\Seed\obj\Debug\Seed.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\TCPMessenger\TCPcore\Seed\obj\Debug\Seed.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Seed\bin\Debug\Seed.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Seed\bin\Debug\Seed.pdb
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Seed\obj\Debug\Seed.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Seed\obj\Debug\Seed.dll
+C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Seed\obj\Debug\Seed.pdb

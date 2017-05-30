@@ -4,6 +4,7 @@ using System.Text;
 using System.Data.SQLite;
 using Dao.ShareResources;
 using System.IO;
+using System.Diagnostics;
 
 namespace Dao
 {
@@ -190,6 +191,9 @@ namespace Dao
                 SQLiteConnection con = connection.Open(DataSource);
                 command.Connection = con;
                 command.CommandText = query;
+
+                Debug.WriteLine(Query);
+
                 success = command.ExecuteNonQuery();
             }
             return success;

@@ -26,6 +26,11 @@ namespace TimeManager
             set { instance = value; }
         }
 
+        /// <summary>
+        /// Determines if the events of this singleton have already
+        /// been subscribed to.
+        /// </summary>
+        public bool Subscribed { get; set; }
         private List<TimeEntity> pastEntities;
         private List<TimeEntity> futureEntities;
         public List<Event> PresentEvents { get; }

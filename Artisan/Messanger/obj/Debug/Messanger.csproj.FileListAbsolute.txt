@@ -1,0 +1,5 @@
+C:\Users\Damien\Desktop\MVVMShared\Messanger\Messanger\obj\Debug\Messanger.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Desktop\MVVMShared\Messanger\Messanger\bin\Debug\Messanger.dll
+C:\Users\Damien\Desktop\MVVMShared\Messanger\Messanger\bin\Debug\Messanger.pdb
+C:\Users\Damien\Desktop\MVVMShared\Messanger\Messanger\obj\Debug\Messanger.dll
+C:\Users\Damien\Desktop\MVVMShared\Messanger\Messanger\obj\Debug\Messanger.pdb

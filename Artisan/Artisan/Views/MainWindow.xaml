@@ -16,6 +16,8 @@
         xmlns:timeManagerViewModel="clr-namespace:TimeManager.ViewModels;assembly=TimeManager"
         xmlns:timeManagerView="clr-namespace:TimeManager.Views;assembly=TimeManager"
         xmlns:localViewModels="clr-namespace:Artisan.ViewModels"
+        xmlns:messengerViewModel="clr-namespace:Messenger.ViewModels;assembly=Messanger"
+        xmlns:messengerView="clr-namespace:Messenger.Views;assembly=Messanger"
     
         GlowBrush="DarkBlue" BorderBrush="DarkBlue"
         ShowIconOnTitleBar="True"
@@ -39,6 +41,14 @@
 
         <!--Call the View within the DataTemplate
             and create it and set its datacontext to the ViewModel stated above-->
+
+
+        <DataTemplate DataType="{x:Type timeManagerViewModel:ViewStatisticsViewModel}">
+            <timeManagerView:StatisticsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type messengerViewModel:MessengerViewModel}">
+            <messengerView:MessengerView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type localViewModels:MainMenuViewModel}">
             <local:MainMenuView/>
         </DataTemplate>
@@ -86,7 +96,10 @@
                 <HamburgerMenu:HamburgerMenuItem Height="50" Text="Manage Your Working Sessions" 
                                                  SelectionCommand="{Binding ManageWorkingSessionSwitchCommand}"
                                                  Icon="UIResources\WorkingSession.png"/>
+                <HamburgerMenu:HamburgerMenuItem Height="50" Text="Statistics" Icon="UIResources\Performance.png"
+                                                 SelectionCommand="{Binding StatisticsSwitchCommand}"/>
                 <HamburgerMenu:HamburgerMenuItem Height="50" Text="Settings" Icon="UIResources\Settings.png"/>
+                
             </HamburgerMenu:HamburgerMenu.Content>
         </HamburgerMenu:HamburgerMenu>
 

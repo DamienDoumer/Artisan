@@ -13,6 +13,7 @@ using Artisan.Views;
 using Dao;
 using Artisan.Views.Notifications;
 using Artisan.Services;
+using Messenger.ViewModels;
 
 namespace Artisan.ViewModels
 {
@@ -51,7 +52,10 @@ namespace Artisan.ViewModels
         public RelayCommand ManageEventSwitchCommand { get; private set; }
         public RelayCommand ManageWorkingSessionSwitchCommand { get; private set; }
         public RelayCommand MessageSwitchCommand { get; private set; }
+        public RelayCommand StatisticsSwitchCommand { get; private set; }
 
+        ViewStatisticsViewModel StatsViewModel;
+        MessengerViewModel messengerViewModel;
         ManageWorkingSessionsViewModel manageWorkingSessionVM;
         CreateEditWorkingSessionNextViewModel createWrkNextVM;
         CreateEventViewModel createEventViewModel = new CreateEventViewModel();
@@ -72,7 +76,7 @@ namespace Artisan.ViewModels
         {
             ///Instantiate notification object to notify the user when needed
             growlNot = new GrowlNotifications();
-            player = new NotificationSoundPlayer(@"C:\Users\Damien\Desktop\Software development\MainProjectFolder\Artisan\Artisan\Resources\NotificationSound.wav");
+            player = new NotificationSoundPlayer(@"NotificationSound.wav");
 
             ///Workingsession management code
             CreateEditWorkingSessionNextViewModel.SwitchToPreviousScreen += SwitchToPreviousScreenInitiated;
@@ -97,27 +101,45 @@ namespace Artisan.ViewModels
             CreateEventViewModel.EventCreated += OnEventCreated;
             MainMenuSwitchCommand = new RelayCommand(OnMainMenuViewSwitch);
             ManageEventSwitchCommand = new RelayCommand(OnManageEventViewSwitch);
-            CurrentViewModel = mainMenuViewModel;
             ManageEventViewModel.DeleteEvent += OnDeleteEvent;
             CreateEventViewModel.NotificationNeeded += OnCreateEventViewModel_NotificationNeeded;
 
+
+            CurrentViewModel = mainMenuViewModel;
+
+
             ///Code for monitoring working sessions and events.
             occuranceMon = OccuranceMonitor.Instance;
-            occuranceMon.AlarmTimeArrived += OccuranceMon_AlarmTimeArrived;
-            occuranceMon.SortTimeEntities();
-            occuranceMon.StartMonitoring();
-            occuranceMon.CounterStarted += OnOccuranceMon_CounterStarted;
-            occuranceMon.CounterEnded += OnOccuranceMon_CounterEnded;
+
+            if(!occuranceMon.Subscribed)
+            {
+                occuranceMon.AlarmTimeArrived += OccuranceMon_AlarmTimeArrived;
+                occuranceMon.SortTimeEntities();
+                occuranceMon.StartMonitoring();
+                occuranceMon.CounterStarted += OnOccuranceMon_CounterStarted;
+                occuranceMon.CounterEnded += OnOccuranceMon_CounterEnded;
+                occuranceMon.Subscribed = true;
+            }
+            
+            StatisticsSwitchCommand = new RelayCommand(OnStatisticsSwitch);
+
+            ///Statistics Porion
+            StatsViewModel = new ViewStatisticsViewModel();
 
             ///Message Managing Code
             MessageSwitchCommand = new RelayCommand(OnMessagesViewSwitch);
             //messengerViewModel = new MessengerViewModel();
+
+            ////Debugg
+            //CurrentViewModel = new InWorkingSessionViewModel();
+
+            ///Messenger
+            messengerViewModel = new MessengerViewModel(false);
         }
 
 
 
-
-
+        
         #region Occurance Monitor Handling code
 
 
@@ -327,7 +349,19 @@ namespace Artisan.ViewModels
         {
             if (Mode != CreateEditWorkingSessionViewModel.WORKING_SESSION_MODE)
             {
-                //CurrentViewModel = messengerViewModel;
+                CurrentViewModel = messengerViewModel;
+            }
+            else
+            {
+                NavigationDisabledSignal();
+            }
+        }
+        private void OnStatisticsSwitch()
+        {
+
+            if (Mode != CreateEditWorkingSessionViewModel.WORKING_SESSION_MODE)
+            {
+                CurrentViewModel = StatsViewModel;
             }
             else
             {

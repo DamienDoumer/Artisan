@@ -13,6 +13,7 @@ namespace Artisan.MVVMShared
         public static void Invoke(Action action)
         {
             Dispatcher dispatchObject = Application.Current.Dispatcher;
+
             if (dispatchObject == null || dispatchObject.CheckAccess())
             {
                 action();
