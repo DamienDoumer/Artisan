@@ -17,9 +17,9 @@
 [Rr]eleases/
 [Xx]64/
 [Xx]86/
-#[Bb]uild/
+[Bb]uild/
 bld/
-#[Bb]in/
+[Bb]in/
 [Oo]bj/
 
 # Visual Studio 2015 cache/options directory
